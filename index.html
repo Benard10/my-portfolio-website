@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benard Okello - GIS Specialist</title>
+    <link rel="icon" type="image/png" href="assets/globe.png">
+    <meta name="description" content="Benard Okello - GIS Specialist and Data Analyst with 10+ years of geospatial expertise in remote sensing, mapping, and data solutions.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -210,8 +212,8 @@
         
         /* Projects */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 2rem;
         }
         
@@ -221,6 +223,11 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
+            width: 320px;
+            min-width: 280px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
         }
         
         .project-card:hover {
@@ -229,13 +236,28 @@
         }
         
         .project-header {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
             padding: 1.5rem;
         }
         
+        .project-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
         .project-content {
+            flex: 1 1 auto;
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
         }
         
         .project-content h3 {
@@ -268,8 +290,9 @@
         
         /* Technical Skills */
         .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
         }
         
@@ -307,8 +330,9 @@
         
         /* Soft Skills */
         .soft-skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
         }
         
@@ -374,8 +398,9 @@
         
         /* Contact */
         .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
         }
         
@@ -494,6 +519,28 @@
                 grid-template-columns: 1fr;
             }
         }
+
+            .floating-whatsapp {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #25D366;
+                padding: 14px;
+                border-radius: 50%;
+                z-index: 999;
+                box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+                transition: transform 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    } 
+            .floating-whatsapp i {
+                font-size: 1.0rem;
+                color: white;
+  }
+            .floating-whatsapp:hover {
+                transform: scale(1.1);
+    }
     </style>
 </head>
 <body>
@@ -542,6 +589,48 @@
     </section>
 
     <!-- Projects Section -->
+    <style>
+        /* Ensure all project cards and images have the same height */
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .project-card {
+            width: 320px;
+            min-width: 280px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-header {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        .project-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .project-content {
+            flex: 1 1 auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        @media (max-width: 1100px) {
+            .projects-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Key Projects</h2>
@@ -549,9 +638,10 @@
                 <!-- Project 1 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h2>Mapping of Cane Fields for Kabras Sugar</h2>
+                        <img src="assets/Kabras.jpg" alt="Mapping of Cane Fields for Kabras Sugar" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
+                        <h2>Mapping of Cane Fields for Kabras Sugar</h2>
                         <p>Led a team of 70 mappers to collect and analyse geospatial data to update the agricultural database for Kabras Sugar. We utilised smartphones with GPS for field data collection, allowing us to gather precise information about cane field boundaries and farmer details.</p>
                         
                         <h3>Skills Utilized</h3>
@@ -572,9 +662,10 @@
                 <!-- Project 2 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h2>Kenyan Standard Gauge Railway Construction</h2>
+                        <img src="assets/KRC.jpg" alt="Kenyan Standard Gauge Railway Construction" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
+                        <h2>Kenyan Standard Gauge Railway Construction</h2>
                         <p>Played a crucial role in creating the fundamental GIS datasets needed for the construction of the Kenyan Standard Gauge Railway (SGR). This project involved mapping all features along the established corridor, developing detailed terrain models, and identifying key ecosystem areas affected by the railway's path.</p>
                         
                         <h3>Skills Utilized</h3>
@@ -595,9 +686,10 @@
                 <!-- Project 3 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h2>Entebbe International Airport GIS Database Update</h2>
+                        <img src="assets/Entebbe-International-Airport.jpg" alt="Entebbe International Airport GIS Database Update" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
+                        <h2>Entebbe International Airport GIS Database Update</h2>
                         <p>Tasked with the comprehensive update of the GIS database for Uganda's Entebbe International Airport. Utilised expertise in ArcGIS and AutoCAD to manage spatial data compilation, integrate new geospatial information, and create detailed maps.</p>
                         
                         <h3>Skills Utilized</h3>
@@ -617,9 +709,10 @@
                 <!-- Project 4 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h2>Environmental Monitoring & Conservation</h2>
+                        <img src="assets/environment.jpg" alt="Environmental Monitoring & Conservation" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
+                        <h2>Environmental Monitoring & Conservation</h2>
                         <p>Managed several GIS projects focusing on environmental monitoring and conservation efforts. Analysed satellite imagery, conducted environmental data analysis, and developed geospatial solutions for monitoring changes in land use, vegetation, and ecosystems.</p>
                         
                         <h3>Skills Utilized</h3>
@@ -639,6 +732,7 @@
             </div>
         </div>
     </section>
+    <!-- Duplicate Key Projects section removed to fix HTML errors -->
 
     <!-- Technical Skills Section -->
     <section id="skills">
@@ -893,11 +987,12 @@
             
             <div class="social-links">
                 <a href="mailto:benardokellotieno@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/254700482189?text=Hello%20Benard%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
             </div>
             <p>&copy; <script>document.write(new Date().getFullYear())</script> Benard Okello. All rights reserved.</p>
         </div>
-    </footer>
+</footer>
+    <a href="https://wa.me/254729482189?text=Hi%20Benard" target="_blank" class="floating-whatsapp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>
