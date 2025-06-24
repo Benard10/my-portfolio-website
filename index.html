@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="assets/globe.png">
     <meta name="description" content="Benard Okello - GIS Specialist and Data Analyst with 10+ years of geospatial expertise in remote sensing, mapping, and data solutions.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2c3e50;
@@ -15,19 +16,37 @@
             --light: #ecf0f1;
             --dark: #1a252f;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --glass: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .dark-mode {
+            --primary: #a3b1bf;
+            --secondary: #5dade2;
+            --accent: #58d68d;
+            --light: #2c3e50;
+            --dark: #ecf0f1;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --glass: rgba(26, 37, 47, 0.5);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             color: #333;
             line-height: 1.6;
+            transition: background 0.5s ease;
+            font-size: 13px; /* Reduced base font size by 3px */
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a252f, #0d1b26);
         }
         
         .container {
@@ -45,6 +64,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         header::before {
@@ -74,6 +94,14 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
         
         .profile-img img {
@@ -85,12 +113,14 @@
         h1 {
             font-size: 2.8rem;
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .tagline {
             font-size: 1.4rem;
             font-weight: 300;
             margin-bottom: 1.5rem;
+            opacity: 0.9;
         }
         
         .contact-info {
@@ -107,21 +137,41 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.3s;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
         
         .contact-info a:hover {
             transform: translateY(-3px);
-            text-decoration: underline;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* Navigation */
         nav {
-            background-color: white;
+            background-color: var(--light);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.4s ease;
+        }
+        
+        body.dark-mode nav {
+            background-color: rgba(26, 37, 47, 0.95);
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .nav-scrolled {
+            background-color: rgba(26, 37, 47, 0.95);
         }
         
         .nav-container {
@@ -135,10 +185,17 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .logo span {
             color: var(--secondary);
+        }
+        
+        .logo i {
+            color: var(--accent);
         }
         
         .nav-links {
@@ -153,6 +210,7 @@
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
+            padding: 5px 0;
         }
         
         .nav-links a:hover {
@@ -170,17 +228,56 @@
             transition: width 0.3s;
         }
         
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--glass);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            margin-left: 15px;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        body.dark-mode .theme-toggle {
+            color: var(--light);
         }
         
         /* Section Styles */
         section {
             padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         section:nth-child(even) {
             background-color: white;
+        }
+        
+        body.dark-mode section:nth-child(even) {
+            background-color: rgba(26, 37, 47, 0.5);
         }
         
         .section-title {
@@ -188,6 +285,7 @@
             margin-bottom: 3rem;
             color: var(--primary);
             position: relative;
+            font-size: 2.2rem;
         }
         
         .section-title::after {
@@ -208,31 +306,51 @@
             margin: 0 auto;
             text-align: center;
             font-size: 1.1rem;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            background: rgba(236, 240, 241, 0.7);
+        }
+        
+        body.dark-mode .intro-content {
+            background: rgba(26, 37, 47, 0.3);
         }
         
         /* Projects */
         .projects-grid {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 2rem;
         }
         
         .project-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
             width: 320px;
             min-width: 280px;
             max-width: 340px;
             display: flex;
             flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        body.dark-mode .project-card {
+            background: rgba(26, 37, 47, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .project-header {
@@ -244,6 +362,17 @@
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
             padding: 1.5rem;
+            position: relative;
+        }
+        
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
         }
         
         .project-header img {
@@ -251,6 +380,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-header img {
+            transform: scale(1.1);
         }
         
         .project-content {
@@ -263,6 +397,7 @@
         .project-content h3 {
             color: var(--primary);
             margin-bottom: 0.5rem;
+            font-size: 1.4rem;
         }
         
         .skills-list {
@@ -278,14 +413,26 @@
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
         }
         
         .outcome {
             background-color: rgba(39, 174, 96, 0.1);
             padding: 1rem;
             border-radius: 5px;
-            margin-top: 1rem;
+            margin-top: auto;
             border-left: 4px solid var(--accent);
+        }
+        
+        body.dark-mode .outcome {
+            background-color: rgba(39, 174, 96, 0.2);
         }
         
         /* Technical Skills */
@@ -298,9 +445,22 @@
         
         .skill-category {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            width: 300px;
+        }
+        
+        body.dark-mode .skill-category {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .skill-category h3 {
@@ -308,6 +468,7 @@
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--light);
+            font-size: 1.3rem;
         }
         
         .skill-item {
@@ -326,6 +487,13 @@
             align-items: center;
             justify-content: center;
             color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .skill-item:hover .skill-icon {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
         }
         
         /* Soft Skills */
@@ -338,17 +506,24 @@
         
         .soft-skill-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-top: 4px solid var(--secondary);
+            width: 250px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.dark-mode .soft-skill-card {
+            background: rgba(26, 37, 47, 0.4);
         }
         
         .soft-skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .soft-skill-icon {
@@ -362,6 +537,11 @@
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
             font-size: 1.8rem;
+            transition: var(--transition);
+        }
+        
+        .soft-skill-card:hover .soft-skill-icon {
+            transform: rotate(15deg) scale(1.1);
         }
         
         .soft-skill-card h3 {
@@ -374,6 +554,10 @@
             color: #555;
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+        
+        body.dark-mode .soft-skill-card p {
+            color: #ccc;
         }
         
         /* Certifications */
@@ -394,6 +578,18 @@
             box-shadow: var(--shadow);
             text-align: left;
             border-left: 4px solid var(--secondary);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.dark-mode .cert-item {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         /* Contact */
@@ -406,19 +602,38 @@
         
         .contact-info-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            width: 250px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-top: 3px solid var(--secondary);
+        }
+        
+        body.dark-mode .contact-info-card {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .contact-icon {
             font-size: 2.5rem;
             color: var(--secondary);
             margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-info-card:hover .contact-icon {
+            transform: scale(1.2);
         }
         
         .contact-info-card h3 {
@@ -434,15 +649,17 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 500;
-            transition: background 0.3s, transform 0.3s;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .btn:hover {
             background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
         }
         
         .btn-download {
@@ -459,6 +676,7 @@
             color: white;
             padding: 2rem 0;
             text-align: center;
+            position: relative;
         }
         
         .social-links {
@@ -471,19 +689,107 @@
         .social-links a {
             color: white;
             font-size: 1.5rem;
-            transition: transform 0.3s;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .social-links a.whatsapp-icon i {
-            font-size: 1.5rem; 
-            color: #25D366;
-        }
         .social-links a:hover {
             transform: translateY(-5px);
             color: var(--secondary);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-links a.whatsapp-icon i {
+            color: #25D366;
+        }
+        
+        .social-links a:hover i {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            padding: 14px;
+            border-radius: 50%;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.226);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            animation: pulse 2s infinite;
+        } 
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .floating-whatsapp i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 998;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
         
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .projects-grid {
+                justify-content: center;
+            }
+            
+            .skill-category,
+            .soft-skill-card,
+            .contact-info-card {
+                width: calc(50% - 1rem);
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -496,12 +802,22 @@
                 justify-content: center;
             }
             
+            .theme-toggle {
+                margin: 10px auto 0;
+            }
+            
             h1 {
                 font-size: 2.2rem;
             }
             
             .tagline {
                 font-size: 1.2rem;
+            }
+            
+            .skill-category,
+            .soft-skill-card,
+            .contact-info-card {
+                width: 100%;
             }
         }
         
@@ -511,36 +827,10 @@
                 gap: 1rem;
             }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .soft-skills-container {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.8rem;
             }
         }
-
-            .floating-whatsapp {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: #25D366;
-                padding: 14px;
-                border-radius: 50%;
-                z-index: 999;
-                box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
-                transition: transform 0.3s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-    } 
-            .floating-whatsapp i {
-                font-size: 1.0rem;
-                color: white;
-  }
-            .floating-whatsapp:hover {
-                transform: scale(1.1);
-    }
     </style>
 </head>
 <body>
@@ -564,16 +854,22 @@
     </header>
 
     <!-- Navigation -->
-    <nav>
+    <nav id="main-nav">
         <div class="container nav-container">
-            <div class="logo">Benard Okello</div>
+            <div class="logo">
+                <i class="fas fa-globe-africa"></i>
+                Benard Okello
+            </div>
             <ul class="nav-links">
-                <li><a href="#intro">Overview</a></li>
+                <li><a href="#intro" class="active">Overview</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -589,48 +885,6 @@
     </section>
 
     <!-- Projects Section -->
-    <style>
-        /* Ensure all project cards and images have the same height */
-        .projects-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .project-card {
-            width: 320px;
-            min-width: 280px;
-            max-width: 340px;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-header {
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-        }
-        .project-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .project-content {
-            flex: 1 1 auto;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-        @media (max-width: 1100px) {
-            .projects-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Key Projects</h2>
@@ -641,10 +895,10 @@
                         <img src="assets/Kabras.jpg" alt="Mapping of Cane Fields for Kabras Sugar" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
-                        <h2>Mapping of Cane Fields for Kabras Sugar</h2>
+                        <h3>Mapping of Cane Fields for Kabras Sugar</h3>
                         <p>Led a team of 70 mappers to collect and analyse geospatial data to update the agricultural database for Kabras Sugar. We utilised smartphones with GPS for field data collection, allowing us to gather precise information about cane field boundaries and farmer details.</p>
                         
-                        <h3>Skills Utilized</h3>
+                        <h4>Skills Utilized</h4>
                         <div class="skills-list">
                             <span class="skill-tag">Spatial Analysis</span>
                             <span class="skill-tag">Real-time Data Management</span>
@@ -662,13 +916,13 @@
                 <!-- Project 2 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <img src="assets/KRC.jpg" alt="Kenyan Standard Gauge Railway Construction" style="width:100%;height:auto;display:block;">
+                        <img src="assets/Makadara_Express.jpg" alt="Kenyan Standard Gauge Railway Construction" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
-                        <h2>Kenyan Standard Gauge Railway Construction</h2>
+                        <h3>Kenyan Standard Gauge Railway Construction</h3>
                         <p>Played a crucial role in creating the fundamental GIS datasets needed for the construction of the Kenyan Standard Gauge Railway (SGR). This project involved mapping all features along the established corridor, developing detailed terrain models, and identifying key ecosystem areas affected by the railway's path.</p>
                         
-                        <h3>Skills Utilized</h3>
+                        <h4>Skills Utilized</h4>
                         <div class="skills-list">
                             <span class="skill-tag">Terrain Modeling</span>
                             <span class="skill-tag">Road Network Analysis</span>
@@ -686,13 +940,13 @@
                 <!-- Project 3 -->
                 <div class="project-card">
                     <div class="project-header">
-                        <img src="assets/Entebbe-International-Airport.jpg" alt="Entebbe International Airport GIS Database Update" style="width:100%;height:auto;display:block;">
+                        <img src="assets/Uganda-airlines.jpg" alt="Entebbe International Airport " style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
-                        <h2>Entebbe International Airport GIS Database Update</h2>
+                        <h3>Entebbe International Airport GIS Database Update</h3>
                         <p>Tasked with the comprehensive update of the GIS database for Uganda's Entebbe International Airport. Utilised expertise in ArcGIS and AutoCAD to manage spatial data compilation, integrate new geospatial information, and create detailed maps.</p>
                         
-                        <h3>Skills Utilized</h3>
+                        <h4>Skills Utilized</h4>
                         <div class="skills-list">
                             <span class="skill-tag">ArcGIS</span>
                             <span class="skill-tag">AutoCAD</span>
@@ -712,10 +966,10 @@
                         <img src="assets/environment.jpg" alt="Environmental Monitoring & Conservation" style="width:100%;height:auto;display:block;">
                     </div>
                     <div class="project-content">
-                        <h2>Environmental Monitoring & Conservation</h2>
+                        <h3>Environmental Monitoring & Conservation</h3>
                         <p>Managed several GIS projects focusing on environmental monitoring and conservation efforts. Analysed satellite imagery, conducted environmental data analysis, and developed geospatial solutions for monitoring changes in land use, vegetation, and ecosystems.</p>
                         
-                        <h3>Skills Utilized</h3>
+                        <h4>Skills Utilized</h4>
                         <div class="skills-list">
                             <span class="skill-tag">Remote Sensing</span>
                             <span class="skill-tag">Environmental Analysis</span>
@@ -732,7 +986,6 @@
             </div>
         </div>
     </section>
-    <!-- Duplicate Key Projects section removed to fix HTML errors -->
 
     <!-- Technical Skills Section -->
     <section id="skills">
@@ -992,7 +1245,125 @@
             </div>
             <p>&copy; <script>document.write(new Date().getFullYear())</script> Benard Okello. All rights reserved.</p>
         </div>
-</footer>
+    </footer>
+    
     <a href="https://wa.me/254729482189?text=Hi%20Benard" target="_blank" class="floating-whatsapp"><i class="fab fa-whatsapp"></i></a>
+    
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Scroll animations for sections
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Sticky navigation with background change
+        const nav = document.getElementById('main-nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+            
+            // Back to top button visibility
+            const backToTop = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Back to top functionality
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Set active navigation link based on scroll position
+        window.addEventListener('scroll', () => {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
