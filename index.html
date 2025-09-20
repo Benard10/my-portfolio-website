@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benard Okello - GIS Specialist</title>
+    <link rel="icon" type="image/png" href="assets/globe.png">
+    <meta name="description" content="Benard Okello - GIS Specialist and Data Analyst with 10+ years of geospatial expertise in remote sensing, mapping, and data solutions.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #27ae60;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --glass: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .dark-mode {
+            --primary: #a3b1bf;
+            --secondary: #5dade2;
+            --accent: #58d68d;
+            --light: #2c3e50;
+            --dark: #ecf0f1;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --glass: rgba(26, 37, 47, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            line-height: 1.6;
+            transition: background 0.5s ease;
+            font-size: 13px; /* Reduced base font size by 3px */
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a252f, #0d1b26);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--light);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.4s ease;
+        }
+        
+        body.dark-mode nav {
+            background-color: rgba(26, 37, 47, 0.95);
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .nav-scrolled {
+            background-color: rgba(26, 37, 47, 0.95);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--glass);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            margin-left: 15px;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        body.dark-mode .theme-toggle {
+            color: var(--light);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section:nth-child(even) {
+            background-color: white;
+        }
+        
+        body.dark-mode section:nth-child(even) {
+            background-color: rgba(26, 37, 47, 0.5);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            font-size: 2.2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        /* Introduction */
+        .intro-content {
+            width: 100%; /* Widened to fill container */
+            margin: 0 auto;
+            text-align: justify;
+            font-size: 1.1rem;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            background: rgba(236, 240, 241, 0.7);
+        }
+        
+        body.dark-mode .intro-content {
+            background: rgba(26, 37, 47, 0.3);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            width: 320px;
+            min-width: 280px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        body.dark-mode .project-card {
+            background: rgba(26, 37, 47, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-header {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+        
+        .project-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-header img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            flex: 1 1 auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Ensure it takes the height of project-header */
+            overflow: hidden;
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
+        }
+
+        .slider-image.active {
+            opacity: 1;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .skill-tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .outcome {
+            background-color: rgba(39, 174, 96, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: auto;
+            border-left: 4px solid var(--accent);
+        }
+        
+        body.dark-mode .outcome {
+            background-color: rgba(39, 174, 96, 0.2);
+        }
+        
+        /* Technical Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            width: 300px;
+        }
+        
+        body.dark-mode .skill-category {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+            font-size: 1.3rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .skill-item:hover .skill-icon {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Soft Skills */
+        .soft-skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .soft-skill-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--secondary);
+            width: 250px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.dark-mode .soft-skill-card {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .soft-skill-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .soft-skill-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+        
+        .soft-skill-card:hover .soft-skill-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .soft-skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .soft-skill-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        body.dark-mode .soft-skill-card p {
+            color: #ccc;
+        }
+        
+        /* Certifications */
+        .certifications {
+            text-align: center;
+        }
+        
+        .certs-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cert-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: left;
+            border-left: 4px solid var(--secondary);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.dark-mode .cert-item {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Contact */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .contact-info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 250px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-top: 3px solid var(--secondary);
+        }
+        
+        body.dark-mode .contact-info-card {
+            background: rgba(26, 37, 47, 0.4);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-info-card:hover .contact-icon {
+            transform: scale(1.2);
+        }
+        
+        .contact-info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-download {
+            background: var(--accent);
+        }
+        
+        .btn-download:hover {
+            background: #219653;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-links a.whatsapp-icon i {
+            color: #25D366;
+        }
+        
+        .social-links a:hover i {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            padding: 14px;
+            border-radius: 50%;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.226);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            animation: pulse 2s infinite;
+        } 
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .floating-whatsapp i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 998;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .projects-grid {
+                justify-content: center;
+            }
+            
+            .skill-category,
+            .soft-skill-card,
+            .contact-info-card {
+                width: calc(50% - 1rem);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .theme-toggle {
+                margin: 10px auto 0;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .skill-category,
+            .soft-skill-card,
+            .contact-info-card {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="profile-img">
+                <img src="assets/profile-pic.jpg" alt="Benard Okello">
+            </div>
+            <h1>Benard Okello</h1>
+            <div class="tagline">Geospatial Researcher/Specialist & Data Analyst</div>
+            <div class="branding-line">Bridging spatial science and data analytics to deliver research-driven insights for real-world decisions.</div>
+            
+            <div class="contact-info">
+                <a href="mailto:benardokellotieno@gmail.com">
+                    <i class="fas fa-envelope"></i> benardokellotieno@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-globe-africa"></i>
+                Benard Okello
+            </div>
+            <ul class="nav-links">
+                <li><a href="#intro" class="active">Overview</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Introduction Section -->
+    <section id="intro">
+        <div class="container">
+            <h2 class="section-title">Professional Overview</h2>
+            <div class="intro-content">
+                <p>Welcome to my portfolio! I am a seasoned GIS specialist with ten years of experience in geospatial analysis, remote sensing, environmental management, and a strong focus on geospatial research, applied spatial statistics, and bridging spatial and non-spatial data for comprehensive insights.</p>
+                <p>Throughout my career, I have led and contributed to various large-scale projects, utilising cutting-edge GIS technologies and tools to provide critical data analysis and support decision-making. My expertise spans from agricultural monitoring, infrastructure development, and data management, equipping me to deliver high-quality geospatial solutions tailored to diverse sectors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-style: italic; color: #555;">My projects extend beyond applied GIS, contributing valuable insights to geospatial research.</p>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="assets/Kabras.jpg" alt="Mapping of Cane Fields for Kabras Sugar" style="width:100%;height:auto;display:block;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Mapping of Cane Fields for Kabras Sugar West Kenya </h3>
+                        <p>Led a team of 70 mappers to collect and analyse geospatial data to update the agricultural database for Kabras Sugar. We utilised smartphones with GPS for field data collection, allowing us to gather precise information about cane field boundaries and farmer details.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Spatial Analysis</span>
+                            <span class="skill-tag">Real-time Data Management</span>
+                            <span class="skill-tag">Team Leadership</span>
+                            <span class="skill-tag">GIS Data Collection</span>
+                            <span class="skill-tag">Database Updates</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> Successfully updated the farmers' database and integrated it with a spatial web map. This innovation enabled real-time spatial analysis, allowing stakeholders to identify fields that were mature and ready for harvest, thereby enhancing operational efficiency and decision-making.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="assets/Makadara_Express.jpg" alt="Kenyan Standard Gauge Railway Construction" style="width:100%;height:auto;display:block;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Kenyan Standard Gauge Railway Construction</h3>
+                        <p>Played a crucial role in creating the fundamental GIS datasets needed for the construction of the Kenyan Standard Gauge Railway (SGR). This project involved mapping all features along the established corridor, developing detailed terrain models, and identifying key ecosystem areas affected by the railway's path.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Terrain Modeling</span>
+                            <span class="skill-tag">Road Network Analysis</span>
+                            <span class="skill-tag">Ecosystem Mapping</span>
+                            <span class="skill-tag">Data Compilation</span>
+                            <span class="skill-tag">ArcGIS</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> The GIS datasets developed were integral in facilitating the construction process, providing precise spatial insights that supported effective decision-making in infrastructure development. This work minimised potential disruptions to ecosystems and enhanced the project's sustainability.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="assets/Uganda-airlines.jpg" alt="Entebbe International Airport " style="width:100%;height:auto;display:block;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Entebbe International Airport GIS Database Update</h3>
+                        <p>Tasked with the comprehensive update of the GIS database for Uganda's Entebbe International Airport. Utilised expertise in ArcGIS and AutoCAD to manage spatial data compilation, integrate new geospatial information, and create detailed maps.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">ArcGIS</span>
+                            <span class="skill-tag">AutoCAD</span>
+                            <span class="skill-tag">Spatial Data Compilation</span>
+                            <span class="skill-tag">Database Management</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> The updated GIS database significantly improved the accuracy and usability of spatial data for airport management, providing a reliable source of geospatial information for operational planning and infrastructure development.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="assets/environment.jpg" alt="Environmental Monitoring & Conservation" style="width:100%;height:auto;display:block;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Environmental Monitoring & Conservation</h3>
+                        <p>Managed several GIS projects focusing on environmental monitoring and conservation efforts. Analysed satellite imagery, conducted environmental data analysis, and developed geospatial solutions for monitoring changes in land use, vegetation, and ecosystems.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Remote Sensing</span>
+                            <span class="skill-tag">Environmental Analysis</span>
+                            <span class="skill-tag">Spatial Data Modeling</span>
+                            <span class="skill-tag">Project Management</span>
+                            <span class="skill-tag">QGIS</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> Provided detailed spatial analysis and reports that supported sustainable environmental management practices, identifying key areas for conservation and guiding strategic environmental policies.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Juba City Mapping -->
+                <div class="project-card">
+                    <div class="project-header slider-container">
+                        <img class="slider-image" src="assets/QGIS.png" alt="QGIS Interface">
+                        <img class="slider-image" src="assets/Postgresql .png" alt="PostgreSQL Database">
+                        <img class="slider-image" src="assets/Dashboard.png" alt="Dashboard Visualization">
+                    </div>
+                    <div class="project-content">
+                        <h3>Juba City Mapping: Base Mapping and Land Information Management System</h3>
+                        <p>Developed a comprehensive Land Information Management System for Juba, South Sudan. This involved base mapping and integrating data from a PostgreSQL database with QGIS for detailed land use management layers. The project culminated in dashboard visualizations for effective project management and progress tracking.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">GIS Mapping</span>
+                            <span class="skill-tag">Database Management</span>
+                            <span class="skill-tag">QGIS</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Dashboarding</span>
+                            <span class="skill-tag">Land Use Mapping</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Streamlit</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> Provided critical spatial data and visualization tools for urban planning and resource management in Juba, enhancing decision-making for land use and development.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: West Kenya Crop Management & NDVI Analysis -->
+                <div class="project-card">
+                    <div class="project-header slider-container">
+                        <img class="slider-image" src="assets/NDVI1.png" alt="NDVI Analysis 1">
+                        <img class="slider-image" src="assets/NDVI2.png" alt="NDVI Analysis 2">
+                        <img class="slider-image" src="assets/NDVI3.png" alt="NDVI Analysis 3">
+                        <img class="slider-image" src="assets/NDVI4.png" alt="NDVI Analysis 4">
+                        <img class="slider-image" src="assets/NDVI5.png" alt="NDVI Analysis 5">
+                    </div>
+                    <div class="project-content">
+                        <h3>West Kenya Crop Management & NDVI Analysis</h3>
+                        <p>Developed an advanced crop management system for over 100,000 agricultural fields in West Kenya. This system leverages Normalized Difference Vegetation Index (NDVI) technology to monitor crop growth and health, providing critical insights for optimized agricultural practices and yield prediction. The project involved large-scale data processing and the implementation of a robust analytical framework.</p>
+                        
+                        <h4>Skills Utilized</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">NDVI Analysis</span>
+                            <span class="skill-tag">Remote Sensing</span>
+                            <span class="skill-tag">Crop Monitoring</span>
+                            <span class="skill-tag">Large-scale Data Processing</span>
+                            <span class="skill-tag">GIS</span>
+                            <span class="skill-tag">Agricultural GIS</span>
+                            <span class="skill-tag">Google Earth Engine</span>
+                        </div>
+                        
+                        <div class="outcome">
+                            <strong>Outcome:</strong> Enabled efficient crop health monitoring and management across vast agricultural lands, leading to improved decision-making for farmers and enhanced crop yields.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>GIS Software</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <div>ArcGIS Desktop & Pro</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>QGIS</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Mapping Tools</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div>2D & 3D GIS Analysis</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <div>AutoCAD</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data Management</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div>Geoserver</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div>PostGIS & Postgres</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Remote Sensing</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <div>Lidar Processing</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div>Photogrammetry</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Mobile Data Collection</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>Kobo, Survey123, ODK</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+                        <div>Q-Field, GPS, RTK Operation</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud Computing</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div>Google Earth Engine - Java</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div>Google Colab - Python</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Statistical & Analytical Tools</h3>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div>Python (Pandas, NumPy, SciPy, Streamlit for Dashboard Creation)</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>Power BI, Excel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section id="soft-skills">
+        <div class="container">
+            <h2 class="section-title">Soft Skills</h2>
+            <div class="soft-skills-container">
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Interpersonal Skills</h3>
+                    <p>Building strong professional relationships and collaborating effectively with diverse teams.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Contingency Analysis</h3>
+                    <p>Interpretation, diagnosis and proactive problem-solving in complex situations.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Dedication & Commitment</h3>
+                    <p>Unrelenting pursuit of project goals with focused determination.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Communication</h3>
+                    <p>Clear articulation of technical concepts to diverse stakeholders.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Time Management</h3>
+                    <p>Efficient prioritisation and execution of tasks to meet deadlines.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Delegation</h3>
+                    <p>Effective assignment of responsibilities to optimise team performance.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <h3>Attention to Detail</h3>
+                    <p>Analytical approach ensuring precision in all deliverables.</p>
+                </div>
+                
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>Leadership</h3>
+                    <p>Guiding teams to success with vision and inspiration.</p>
+                </div>
+
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Research & Critical Thinking</h3>
+                    <p>Applying rigorous methodologies to explore complex geospatial problems and derive actionable insights.</p>
+                </div>
+
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Capacity Building</h3>
+                    <p>Proven ability to train and mentor teams, enhancing their skills in geospatial data collection and analysis, as demonstrated by leading a team of 70 mappers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certs-container">
+                <div class="cert-item">
+                    <h3>GIS Specialization</h3>
+                    <p>University of California (Coursera)</p>
+                </div>
+                
+                <div class="cert-item">
+                    <h3>GIS Mapping and Spatial Analysis Specialization</h3>
+                    <p>University of Toronto (Coursera)</p>
+                </div>
+                
+                <div class="cert-item">
+                    <h3>Esri MOOC – Cartography, Spatial Analysis</h3>
+                    <p>Esri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>benardokellotieno@gmail.com</p>
+                    <a href="mailto:benardokellotieno@gmail.com" class="btn">Send Message</a>
+                </div>
+                
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Connect with me on LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank" class="btn">Visit Profile</a>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Chat with me directly on WhatsApp</p>
+                    <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="btn">
+                        Send Message
+                    </a>
+                </div>
+                
+                <div class="contact-info-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3>Download Resume (CV)</h3>
+                    <p>Get a PDF copy of my Resume</p>
+                    <a href="assets/benard_okello_CV.pdf" class="btn btn-download"target="_blank" rel="noopener noreferrer">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>I am always open to new opportunities and collaborations in the field of geospatial research, GIS, remote sensing, and data analysis.</p>
+            <p>Please feel free to reach out to discuss potential projects or to learn more about my work.</p>
+            
+            <div class="social-links">
+                <a href="mailto:benardokellotieno@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Benard Okello. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/254729482189?text=Hi%20Benard" target="_blank" class="floating-whatsapp"><i class="fab fa-whatsapp"></i></a>
+    
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Scroll animations for sections
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Sticky navigation with background change
+        const nav = document.getElementById('main-nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+            
+            // Back to top button visibility
+            const backToTop = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Back to top functionality
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Set active navigation link based on scroll position
+        window.addEventListener('scroll', () => {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Image Slider for Project Cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            const images = card.querySelectorAll('.slider-image');
+            if (images.length > 1) {
+                let currentImageIndex = 0;
+
+                // Set the first image as active initially
+                images[currentImageIndex].classList.add('active');
+
+                setInterval(() => {
+                    images[currentImageIndex].classList.remove('active');
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    images[currentImageIndex].classList.add('active');
+                }, 3000); // Change image every 3 seconds
+            }
+        });
+    </script>
+</body>
+</html>
