@@ -457,11 +457,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact form submission logic
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            // Here you would add your form submission logic, e.g., using Fetch API to send data to a backend or a service like Formspree.
-            alert('Thank you for your message! I will get back to you shortly.');
-            contactForm.reset();
+
+            const nameInput = document.getElementById('form-name');
+            const emailInput = document.getElementById('form-email');
+            const subjectInput = document.getElementById('form-subject');
+            const messageInput = document.getElementById('form-message');
+
+            if (!nameInput.value.trim() || !emailInput.value.trim() || !subjectInput.value.trim() || !messageInput.value.trim()) {
+                alert('Please fill out all fields before sending.');
+                return;
+            }
+
+            const phoneNumber = '254729482189';
+            const whatsappMessage = `Hello Benard, I'm contacting you from your portfolio.
+
+*Name:* ${nameInput.value.trim()}
+*Email:* ${emailInput.value.trim()}
+*Subject:* ${subjectInput.value.trim()}
+
+*Message:*
+${messageInput.value.trim()}`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+
+            // Give the browser a moment to open the new tab before resetting
+            setTimeout(() => {
+                contactForm.reset();
+                alert('Your message is ready to be sent in WhatsApp!');
+            }, 500);
         });
     }
 });
