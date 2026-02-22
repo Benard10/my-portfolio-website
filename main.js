@@ -3,6 +3,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelectorAll('a[href^="#"]');
     const header = document.querySelector('nav');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const startDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+
+    function applyTheme(isDark) {
+        document.body.classList.toggle('theme-dark', isDark);
+        const icon = themeToggle ? themeToggle.querySelector('i') : null;
+        if (icon) {
+            icon.classList.toggle('ri-moon-line', !isDark);
+            icon.classList.toggle('ri-sun-line', isDark);
+        }
+        if (themeToggleMobile) {
+            themeToggleMobile.textContent = isDark ? 'Use Light Theme' : 'Use Dark Theme';
+        }
+    }
+
+    applyTheme(startDark);
+
+    function toggleTheme() {
+        const isDark = !document.body.classList.contains('theme-dark');
+        applyTheme(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('click', toggleTheme);
+    }
 
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', function() {
@@ -32,6 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
+    // Add a slight stagger so reveal animations feel intentional.
+    document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+        el.style.transitionDelay = `${Math.min(index * 0.06, 0.42)}s`;
+    });
+
+    document.querySelectorAll('img').forEach((img, index) => {
+        if (index > 0 && !img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+
     filterBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
@@ -52,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.display = 'none';
                 }
             });
+        });
+    });
+
+    projectCards.forEach(function(card) {
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const project = card.dataset.project;
+                if (project) {
+                    openModal(project);
+                }
+            }
         });
     });
 
@@ -453,6 +508,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    const sectionIds = ['home', 'about', 'projects', 'soft-skills', 'experience', 'contact'];
+    const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const activeId = entry.target.id;
+            document.querySelectorAll('.nav-link').forEach((link) => {
+                const href = link.getAttribute('href');
+                link.classList.toggle('is-current', href === `#${activeId}`);
+            });
+        });
+    }, { threshold: 0.35, rootMargin: '-20% 0px -55% 0px' });
+
+    sections.forEach((section) => sectionObserver.observe(section));
 
     // Contact form submission logic
     const contactForm = document.getElementById('contact-form');

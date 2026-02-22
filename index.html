@@ -11,123 +11,380 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
-                        secondary: '#1e40af'
+                        primary: '#2563eb',
+                        accent: '#0ea5e9',
+                        dark: '#0f172a',
                     },
-                    borderRadius: {
-                        'button': '8px'
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                     }
                 },
             }
-            ,
-            darkMode: 'class'
         }
     </script>
     <!-- Font Awesome CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="preload" as="image" href="assets/profile.jpeg">
     <style>
+        :root {
+            --surface: #eef2f7;
+            --surface-elevated: rgba(255, 255, 255, 0.96);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --ring: #2563eb;
+            --accent-1: #2563eb;
+            --accent-2: #0ea5e9;
+            --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+        .theme-dark {
+            --surface: #0b1220;
+            --surface-elevated: rgba(15, 23, 42, 0.82);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --ring: #22d3ee;
+            --accent-1: #60a5fa;
+            --accent-2: #38bdf8;
+            --shadow-soft: 0 14px 34px rgba(2, 6, 23, 0.45);
+        }
         :where([class^="ri-"])::before { content: "\f3c2"; }
-        * { font-family: 'Inter', sans-serif; }
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
-        .hero-bg {
-            background-image: url('assets/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        .glass-card {
+            background: var(--surface-elevated);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            box-shadow: var(--shadow-soft);
+        }
+        body:not(.theme-dark) .glass-card {
+            backdrop-filter: none;
+            border-color: rgba(148, 163, 184, 0.32);
+        }
+        .profile-shape {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up { transform: translateY(40px); }
+        /* Hide scrollbar for horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         .prose{color:unset;max-width:unset}.prose :where(h4):where(:not(:first-child)){margin-top:unset}.prose :where(p):where(:not(:first-child)){margin-top:unset}.prose :where(ul):where(:not(:first-child)){margin-top:unset}
+        .skill-bar {
+            width: 0;
+            transition: width 2s ease-out;
+        }
+        body {
+            background-color: var(--surface);
+            color: var(--text-main);
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            z-index: -1;
+            border-radius: 9999px;
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        body::before {
+            width: 440px;
+            height: 440px;
+            top: -120px;
+            left: -90px;
+            background: radial-gradient(circle at center, rgba(20, 184, 166, 0.12) 0%, rgba(20, 184, 166, 0) 72%);
+        }
+        body::after {
+            width: 520px;
+            height: 520px;
+            bottom: -190px;
+            right: -130px;
+            background: radial-gradient(circle at center, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0) 72%);
+        }
+        .text-dark,
+        .text-slate-900,
+        .text-slate-800 {
+            color: var(--text-main) !important;
+        }
+        .text-slate-700,
+        .text-slate-600,
+        .text-slate-500 {
+            color: var(--text-muted) !important;
+        }
+        .nav-link.is-current {
+            color: var(--accent-1) !important;
+            font-weight: 700;
+        }
+        .focus-ring:focus-visible,
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
+        }
+        .project-card {
+            position: relative;
+            isolation: isolate;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+        .project-card::before {
+            content: attr(data-metric);
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            z-index: 10;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            border-radius: 9999px;
+            padding: 0.32rem 0.7rem;
+            color: #082f49;
+            background: rgba(186, 230, 253, 0.9);
+            border: 1px solid rgba(125, 211, 252, 0.9);
+        }
+        .theme-dark .project-card::before {
+            color: #dbeafe;
+            background: rgba(2, 132, 199, 0.35);
+            border-color: rgba(125, 211, 252, 0.45);
+        }
+        .project-card .case-study-line {
+            font-size: 0.72rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--accent-1);
+        }
+        .floating-cta {
+            box-shadow: 0 10px 28px rgba(2, 132, 199, 0.35);
+        }
+        .theme-dark .bg-white {
+            background-color: #0f172a !important;
+        }
+        .theme-dark .border-slate-200,
+        .theme-dark .border-gray-200 {
+            border-color: rgba(100, 116, 139, 0.4) !important;
+        }
+        .theme-dark .bg-gray-200 {
+            background-color: #334155 !important;
+        }
+        .theme-dark .bg-dark\/95 {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+        }
+        .resume-shell {
+            width: min(100%, 1680px);
+            margin: 0 auto;
+            padding: 6rem 0.5rem 2rem;
+            display: grid;
+            grid-template-columns: clamp(320px, 24vw, 420px) minmax(0, 1fr);
+            gap: 1rem;
+            align-items: start;
+            box-sizing: border-box;
+        }
+        .resume-sidebar {
+            position: sticky;
+            top: 5.8rem;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+        .resume-main > section {
+            margin-bottom: 1rem;
+        }
+        .resume-main > section .max-w-6xl,
+        .resume-main > section .max-w-4xl,
+        .resume-main > section .container {
+            max-width: unset;
+            margin: 0;
+            padding: 0;
+        }
+        .resume-main > section {
+            background: var(--surface-elevated);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-soft);
+            padding: 1.6rem;
+        }
+        .resume-main #home {
+            min-height: auto;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .resume-main #projects-grid img {
+            height: 8.5rem;
+        }
+        @media (max-width: 1180px) {
+            .resume-shell {
+                grid-template-columns: 1fr;
+                padding: 5.5rem 1rem 2rem;
+            }
+            .resume-sidebar {
+                position: static;
+                top: auto;
+            }
+        }
+        @media (min-width: 1181px) {
+            html {
+                zoom: 0.8;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .animate-on-scroll,
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            body::before,
+            body::after {
+                display: none;
+            }
+        }
     </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+<body class="text-slate-900 transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+    <nav class="fixed top-0 w-full z-50 glass-card border-b-0 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-xl font-bold text-primary">Benard Okello</div>
+                <div class="text-xl font-bold text-primary tracking-tight">Benard Okello</div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">About</a>
-                    <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Projects</a>
-                    <a href="#soft-skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Soft Skills</a>
-                    <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Experience</a>
-                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Contact</a>
+                    <a href="#home" class="nav-link text-slate-600 hover:text-primary font-medium transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-slate-600 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#projects" class="nav-link text-slate-600 hover:text-primary font-medium transition-colors">Projects</a>
+                    <a href="#experience" class="nav-link text-slate-600 hover:text-primary font-medium transition-colors">Experience</a>
+                    <a href="#contact" class="nav-link text-slate-600 hover:text-primary font-medium transition-colors">Contact</a>
                 </div>
+                <button id="theme-toggle" class="hidden md:flex w-10 h-10 rounded-full border border-slate-300 items-center justify-center text-slate-700 hover:text-primary transition-colors focus-ring" aria-label="Toggle theme">
+                    <i class="ri-moon-line text-lg"></i>
+                </button>
                 <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center" aria-label="Open navigation menu">
-                    <i class="ri-menu-line text-xl dark:text-gray-200"></i>
+                    <i class="ri-menu-line text-xl text-slate-700"></i>
                 </button>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-gray-200">
             <div class="px-6 py-4 space-y-4">
-                <a href="#home" class="block text-gray-700 hover:text-primary transition-colors">Home</a>
-                <a href="#about" class="block text-gray-700 hover:text-primary transition-colors">About</a>
-                <a href="#projects" class="block text-gray-700 hover:text-primary transition-colors">Projects</a>
-                <a href="#soft-skills" class="block text-gray-700 hover:text-primary transition-colors">Soft Skills</a>
-                <a href="#experience" class="block text-gray-700 hover:text-primary transition-colors">Experience</a>
-                <a href="#contact" class="block text-gray-700 hover:text-primary transition-colors">Contact</a>
+                <a href="#home" class="block text-slate-600 hover:text-primary font-medium transition-colors">Home</a>
+                <a href="#about" class="block text-slate-600 hover:text-primary font-medium transition-colors">About</a>
+                <a href="#projects" class="block text-slate-600 hover:text-primary font-medium transition-colors">Projects</a>
+                <a href="#experience" class="block text-slate-600 hover:text-primary font-medium transition-colors">Experience</a>
+                <a href="#contact" class="block text-slate-600 hover:text-primary font-medium transition-colors">Contact</a>
+                <button id="theme-toggle-mobile" class="w-full border border-slate-300 text-slate-700 hover:text-primary rounded-xl py-2 font-medium transition-colors focus-ring">Toggle Theme</button>
             </div>
         </div>
     </nav>
 
+    <div class="resume-shell">
+    <aside class="resume-sidebar glass-card p-7 rounded-2xl">
+        <div class="w-28 h-28 mx-auto rounded-2xl overflow-hidden mb-4">
+            <img src="assets/profile.jpeg" alt="Benard Okello" class="w-full h-full object-cover object-top">
+        </div>
+        <h2 class="text-xl font-bold text-dark text-center">Benard Okello</h2>
+        <p class="text-sm text-slate-600 text-center mt-1">Geospatial Analyst & Research Specialist</p>
+        <div class="mt-5 space-y-3 text-sm">
+            <a href="mailto:benardokellotieno@gmail.com" class="flex items-center gap-2 text-slate-700 hover:text-primary"><i class="ri-mail-line"></i> benardokellotieno@gmail.com</a>
+            <a href="tel:+254729482189" class="flex items-center gap-2 text-slate-700 hover:text-primary"><i class="ri-phone-line"></i> +254 729 482 189</a>
+            <p class="flex items-center gap-2 text-slate-700"><i class="ri-map-pin-line"></i> Nairobi, Kenya</p>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2">
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">ArcGIS</span>
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">QGIS</span>
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">Remote Sensing</span>
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">PostGIS</span>
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">Power BI</span>
+            <span class="bg-white border border-slate-200 text-primary px-3 py-1 rounded-full text-xs font-semibold">Python</span>
+        </div>
+        <div class="mt-5 border-t border-slate-200 pt-4 grid grid-cols-2 gap-3 text-center">
+            <div>
+                <p class="text-2xl font-extrabold text-dark">10+</p>
+                <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Years</p>
+            </div>
+            <div>
+                <p class="text-2xl font-extrabold text-dark">20+</p>
+                <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Projects</p>
+            </div>
+        </div>
+        <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" class="mt-6 w-full inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-accent transition-colors">
+            <i class="ri-whatsapp-line"></i> Chat on WhatsApp
+        </a>
+        <a href="assets/benard_okello_CV.pdf" target="_blank" class="mt-3 inline-flex items-center justify-center gap-1 text-xs font-medium text-slate-600 hover:text-primary transition-colors">
+            <i class="ri-download-line"></i> Resume (PDF)
+        </a>
+    </aside>
+    <main class="resume-main">
+
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
-        <div class="relative z-10 text-center text-white px-6">
-            <div class="fade-in">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">Benard Okello</h1>
-                <p class="text-xl md:text-2xl mb-4 font-light">
-                    <span class="sr-only">Geospatial Researcher/Specialist & Data Analyst</span>
-                    <span class="block bg-blue-200/60 rounded px-4 py-2 text-black w-full" style="backdrop-filter: blur(2px);">Geospatial Researcher/Specialist & Data Analyst</span>
-                </p>
-                <p class="text-base md:text-lg mb-2 max-w-2xl mx-auto opacity-90">
-                    <i class="block bg-blue-200/60 rounded px-4 py-2 text-black w-full" style="backdrop-filter: blur(2px);">
-                        Bridging spatial science and data analytics to deliver research-driven insights for real-world decisions.
-                    </i>
-                </p>
-                <p class="text-base md:text-lg max-w-2xl mx-auto opacity-90">
-                    <i class="block bg-blue-200/60 rounded px-4 py-2 text-black w-full" style="backdrop-filter: blur(2px);">
-                        Specialized with expertise in web development, geographic information systems, and data visualization
-                    </i>
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                    <button onclick="scrollToSection('projects')" class="!rounded-button whitespace-nowrap bg-white text-primary px-8 py-4 text-lg font-semibold hover:bg-gray-100 transition-colors">
-                        View My Work
-                    </button>
-                    <a href="assets/benard_okello_CV.pdf" target="_blank" class="!rounded-button whitespace-nowrap border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
-                        Download Resume
-                    </a>
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-24 pb-12">
+        <div class="container mx-auto px-6">
+            <div class="glass-card rounded-[32px] shadow-2xl overflow-hidden relative p-8 md:p-12">
+                <div class="z-10 animate-on-scroll fade-up">
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                        Geospatial Insights That
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"> Improve Real-World Decisions</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mt-6 max-w-3xl font-medium">
+                        Bridging spatial science and data analytics to deliver decision-ready outputs for agriculture, infrastructure, environmental monitoring, and digital mapping programs.
+                    </p>
+                    <ul class="mt-6 grid md:grid-cols-3 gap-3 text-sm text-slate-700">
+                        <li class="bg-white border border-slate-200 rounded-lg px-4 py-3">Research-driven spatial analysis</li>
+                        <li class="bg-white border border-slate-200 rounded-lg px-4 py-3">Reliable GIS data systems and QA</li>
+                        <li class="bg-white border border-slate-200 rounded-lg px-4 py-3">Actionable dashboards and reporting</li>
+                    </ul>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-accent transition-all shadow-lg hover:shadow-primary/50">
+                            View Projects
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section id="about" class="py-20">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">About Me</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">About Me</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                     Passionate geospatial professional with 10+ years of experience delivering impactful spatial data solutions and digital mapping applications.
                 </p>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                        <img src="assets/profile.jpeg" 
-                             alt="Benard Okello Profile" class="w-32 h-32 rounded-xl mx-auto mb-6 object-cover object-top shadow-md border-2 border-gray-200">
-                        <p class="text-gray-700 leading-relaxed mb-6">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="animate-on-scroll fade-up">
+                    <div class="glass-card rounded-3xl p-8 shadow-lg">
+                        <p class="text-slate-700 leading-relaxed mb-6">
                             I am a seasoned GIS specialist with ten years of experience in geospatial analysis, remote sensing, environmental management, and a strong focus on geospatial research, applied spatial statistics, and bridging spatial and non-spatial data for comprehensive insights.
                         </p>
-                        <p class="text-gray-700 leading-relaxed">
+                        <p class="text-slate-700 leading-relaxed">
                             Throughout my career, I have led and contributed to various large-scale projects, utilising cutting-edge GIS technologies and tools to provide critical data analysis and support decision-making. My expertise spans from agricultural monitoring, infrastructure development, and data management, equipping me to deliver high-quality geospatial solutions tailored to diverse sectors.
                         </p>
                     </div>
                 </div>
-                <div class="fade-in">
-                    <h3 class="text-2xl font-bold mb-8">Technical Skills</h3>
+                <div class="animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-8 text-dark">Technical Skills</h3>
                     <div class="space-y-6">
                         <div class="skill-item">
                             <div class="flex items-center justify-between mb-2">
@@ -135,11 +392,11 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-map-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">GIS & Mapping Software</span>
+                                    <span class="font-semibold text-slate-800">GIS & Mapping Software</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">100%</span>
+                                <span class="text-slate-600">100%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="100%"></div>
                             </div>
                         </div>
@@ -149,11 +406,11 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-database-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">Spatial Analysis & Data Management</span>
+                                    <span class="font-semibold text-slate-800">Spatial Analysis & Data Management</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">90%</span>
+                                <span class="text-slate-600">90%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="90%"></div>
                             </div>
                         </div>
@@ -163,11 +420,11 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-smartphone-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">Field & Mobile Data Collection</span>
+                                    <span class="font-semibold text-slate-800">Field & Mobile Data Collection</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">100%</span>
+                                <span class="text-slate-600">100%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="100%"></div>
                             </div>
                         </div>
@@ -177,11 +434,11 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-cloud-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">Cloud & Web GIS</span>
+                                    <span class="font-semibold text-slate-800">Cloud & Web GIS</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">80%</span>
+                                <span class="text-slate-600">80%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="80%"></div>
                             </div>
                         </div>
@@ -191,11 +448,11 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-code-s-slash-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">Programming & Automation</span>
+                                    <span class="font-semibold text-slate-800">Programming & Automation</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">80%</span>
+                                <span class="text-slate-600">80%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="80%"></div>
                             </div>
                         </div>
@@ -205,35 +462,33 @@
                                     <div class="w-8 h-8 flex items-center justify-center mr-3">
                                         <i class="ri-bar-chart-line text-primary text-lg"></i>
                                     </div>
-                                    <span class="font-semibold">Data Visualization & Reporting</span>
+                                    <span class="font-semibold text-slate-800">Data Visualization & Reporting</span>
                                 </div>
-                                <span class="text-gray-600 dark:text-gray-400">95%</span>
+                                <span class="text-slate-600">95%</span>
                             </div>
-                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-gray-200 rounded-full h-2">
                                 <div class="skill-bar bg-primary h-2 rounded-full" data-width="95%"></div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-8">
-                        <h4 class="font-semibold mb-4">Technologies</h4>
+                        <h4 class="font-semibold mb-4 text-dark">Technologies</h4>
                         <div class="flex flex-wrap gap-3">
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">ArcGIS Desktop & Pro</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">QGIS</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">AutoCAD</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Geoserver</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Leaflet.js</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">ArcGIS API</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">PostGIS</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">PostgreSQL</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">KoboToolbox</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Survey123</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">ODK</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">QField</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Google Earth Engine (JavaScript API)</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Google Colab (Python)</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Python (Pandas, NumPy, SciPy, Streamlit)</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Power BI</span>
-                            <span class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Microsoft Excel</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">ArcGIS Desktop & Pro</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">QGIS</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">AutoCAD</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Geoserver</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Leaflet.js</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">ArcGIS API</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">PostGIS</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">PostgreSQL</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">KoboToolbox</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Survey123</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">ODK</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">QField</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Google Earth Engine</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Python (Pandas, NumPy)</span>
+                            <span class="bg-white border border-slate-200 text-primary px-4 py-2 rounded-lg text-sm font-medium shadow-sm">Power BI</span>
                         </div>
                     </div>
                 </div>
@@ -242,110 +497,116 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white dark:bg-gray-900">
+    <section id="projects" class="py-20">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">Featured Projects</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                    My portfolio covers applied GIS, web-based solutions, GIS application development, and data visualization dashboards.
                 </p>
             </div>
             
             <!-- Project Filters -->
-            <div class="flex justify-center mb-12 fade-in">
-                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-1 inline-flex">
-                    <button class="filter-btn active px-6 py-2 rounded-md text-sm font-medium transition-colors" data-filter="all">All Projects</button>
-                    <button class="filter-btn px-6 py-2 rounded-md text-sm font-medium transition-colors" data-filter="web">Web Development</button>
-                    <button class="filter-btn px-6 py-2 rounded-md text-sm font-medium transition-colors" data-filter="gis">GIS Applications</button>
-                    <button class="filter-btn px-6 py-2 rounded-md text-sm font-medium transition-colors" data-filter="data">Data Visualization</button>
+            <div class="flex justify-center mb-12 animate-on-scroll fade-up">
+                <div class="glass-card rounded-full p-1 inline-flex">
+                    <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-white" data-filter="all">All Projects</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-colors text-slate-600 hover:text-primary" data-filter="web">Web Development</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-colors text-slate-600 hover:text-primary" data-filter="gis">GIS Applications</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-colors text-slate-600 hover:text-primary" data-filter="data">Data Visualization</button>
                 </div>
             </div>
 
             <!-- Projects Grid -->
             <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project1" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project1" data-metric="20% faster planning" role="button" tabindex="0">
                     <img src="assets/Kabras_sugar.jpg" alt="Mapping of Cane Fields for Kabras Sugar West Kenya" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mapping of Cane Fields for Kabras Sugar West Kenya</h3>
-                        <p class="text-gray-600 mb-4">Addressed challenges with an outdated agricultural database by leading a large-scale data collection exercise to update cane field records and improve supply chain management.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Mapping of Cane Fields for Kabras Sugar West Kenya</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Addressed challenges with an outdated agricultural database by leading a large-scale data collection exercise to update cane field records and improve supply chain management.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Spatial Analysis</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Data Management</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Team Leadership</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project1">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project1">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project2" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project2" data-metric="National infrastructure" role="button" tabindex="0">
                     <img src="assets/KRC.jpg" alt="Kenyan Standard Gauge Railway Construction" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Kenyan Standard Gauge Railway (SGR) Construction</h3>
-                        <p class="text-gray-600 mb-4">Contributed to one of Kenya's largest infrastructure projects by creating foundational GIS datasets to guide sustainable and efficient construction, minimizing environmental impact.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Kenyan Standard Gauge Railway (SGR) Construction</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Contributed to one of Kenya's largest infrastructure projects by creating foundational GIS datasets to guide sustainable and efficient construction, minimizing environmental impact.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Terrain Modeling</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Ecosystem Mapping</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Data Compilation</span>
                             <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">ArcGIS</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project2">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project2">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project3" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project3" data-metric="Airport digital twin" role="button" tabindex="0">
                     <img src="assets/Entebbe-International-Airport.jpg" alt="Entebbe International Airport GIS Database Update" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Entebbe International Airport GIS Database Update</h3>
-                        <p class="text-gray-600 mb-4">Executed a full-scale update of the airport's GIS database, creating a digital twin to enhance safety, support expansion, and meet international aviation standards.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Entebbe International Airport GIS Database Update</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Executed a full-scale update of the airport's GIS database, creating a digital twin to enhance safety, support expansion, and meet international aviation standards.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">ArcGIS</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">3D Mapping</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Aeronautical Charting</span>
                             <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">AutoCAD</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project3">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project3">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="data" data-project="project6" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="data" data-project="project6" data-metric="Live reporting" role="button" tabindex="0">
                     <img src="assets/Dashboard.png" alt="Mapping Analytics Dashboard" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mapping Analytics Dashboard</h3>
-                        <p class="text-gray-600 mb-4">A concept for a live monitoring dashboard that turns geospatial and tabular data from field mapping projects into actionable insights for project teams.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Mapping Analytics Dashboard</h3>
+                        <p class="text-slate-600 mb-4 text-sm">A concept for a live monitoring dashboard that turns geospatial and tabular data from field mapping projects into actionable insights for project teams.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Excel</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Power BI</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Python (Streamlit, Dash)</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project6">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project6">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 7 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project7" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project7" data-metric="Conservation insights" role="button" tabindex="0">
                     <img src="assets/EnvironmentalSuite.png" alt="Environmental Monitoring & Conservation" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Environmental Monitoring & Conservation GIS</h3>
-                        <p class="text-gray-600 mb-4">Leveraged a strong background in environmental studies to manage GIS projects integrating remote sensing and spatial modeling, delivering key insights for conservation.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Environmental Monitoring & Conservation GIS</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Leveraged a strong background in environmental studies to manage GIS projects integrating remote sensing and spatial modeling, delivering key insights for conservation.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Remote Sensing</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Environmental Analysis</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Spatial Data Modelling</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project7">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project7">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 8 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project8" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project8" data-metric="Dispute reduction support" role="button" tabindex="0">
                     <img src="assets/QGIS.png" alt="Juba City Mapping: Base Mapping and Land Information Management System" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Juba City Mapping: Land Information Management System (LIMS)</h3>
-                        <p class="text-gray-600 mb-4">Led the development of a Land Information Management System (LIMS) to centralize land records, improve data transparency, and reduce disputes in Juba, South Sudan.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Juba City Mapping: Land Information Management System (LIMS)</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Led the development of a Land Information Management System (LIMS) to centralize land records, improve data transparency, and reduce disputes in Juba, South Sudan.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">GIS Mapping</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Database Management</span>
@@ -353,16 +614,17 @@
                             <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Dashboard Development</span>
                             <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Project Supervision</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project8">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project8">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 9 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project9" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project9" data-metric="100k+ fields tracked" role="button" tabindex="0">
                     <img src="assets/NDVI1.png" alt="West Kenya Crop Management & NDVI Analysis" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">West Kenya Sugarcane Management & NDVI Analysis</h3>
-                        <p class="text-gray-600 mb-4">Contributed to an NDVI-based crop management system to monitor 100,000+ sugarcane fields, overcoming the limitations of traditional surveys and improving farm management.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">West Kenya Sugarcane Management & NDVI Analysis</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Contributed to an NDVI-based crop management system to monitor 100,000+ sugarcane fields, overcoming the limitations of traditional surveys and improving farm management.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">NDVI Analysis</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Remote Sensing</span>
@@ -370,31 +632,33 @@
                             <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Geospatial Analysis</span>
                             <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Google Earth Engine</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project9">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project9">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="gis" data-project="project4" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="gis" data-project="project4" data-metric="Web GIS concept" role="button" tabindex="0">
                     <img src="assets/mapping.jpg" alt="Web-based GIS Application for Environmental Data Analysis" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Web-based GIS Application for Environmental Data Analysis and Visualization</h3>
-                        <p class="text-gray-600 mb-4">A concept showcasing the ability to build interactive web GIS apps that integrate spatial databases with analysis tools for environmental monitoring and resource management.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Web-based GIS Application for Environmental Data Analysis and Visualization</h3>
+                        <p class="text-slate-600 mb-4 text-sm">A concept showcasing the ability to build interactive web GIS apps that integrate spatial databases with analysis tools for environmental monitoring and resource management.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Leaflet</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">PostGIS</span>
                             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Python</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project4">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project4">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer fade-in" data-category="web" data-project="project5" role="button" tabindex="0">
+                <div class="project-card glass-card rounded-2xl overflow-hidden cursor-pointer animate-on-scroll fade-up hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-category="web" data-project="project5" data-metric="Modern responsive sites" role="button" tabindex="0">
                     <img src="assets/Webdev.jpeg" alt="Website Design & Development" class="w-full h-24 object-cover object-top">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Website Design & Development</h3>
-                        <p class="text-gray-600 mb-4">Design and develop responsive, modern websites tailored to different industries, ensuring functionality, aesthetics, and a seamless user experience.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Website Design & Development</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Design and develop responsive, modern websites tailored to different industries, ensuring functionality, aesthetics, and a seamless user experience.</p>
+                        <p class="case-study-line mb-3">Problem • Approach • Tools • Impact</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Frontend Development</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Responsive UI/UX</span>
@@ -402,7 +666,7 @@
                             <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">CSS</span>
                             <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
                         </div>
-                        <button class="mt-4 bg-primary text-white px-2 py-1 rounded-lg hover:bg-secondary transition-colors view-details-btn" data-project="project5">View Details</button>
+                        <button class="mt-4 text-primary font-semibold hover:text-accent transition-colors view-details-btn" data-project="project5">View Details <i class="ri-arrow-right-line ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -410,103 +674,103 @@
     </section>
 
     <!-- Soft Skills Section -->
-    <section id="soft-skills" class="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section id="soft-skills" class="py-20">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">Soft Skills</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">Soft Skills</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                     Soft Skills & Professional Attributes.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <!-- Soft Skill 1 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform">
                     <div class="p-6 text-center">
                         <i class="fas fa-users text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Interpersonal Skills</h3>
-                        <p class="text-sm text-gray-600 mb-4">Building strong professional relationships and collaborating effectively.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Interpersonal Skills</h3>
+                        <p class="text-sm text-slate-600 mb-4">Building strong professional relationships and collaborating effectively.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 2 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.1s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-brain text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Contingency Analysis</h3>
-                        <p class="text-sm text-gray-600 mb-4">Proactive problem-solving and diagnosis in complex situations.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Contingency Analysis</h3>
+                        <p class="text-sm text-slate-600 mb-4">Proactive problem-solving and diagnosis in complex situations.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 3 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.2s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-heart text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Dedication & Commitment</h3>
-                        <p class="text-sm text-gray-600 mb-4">Dedicated to achieving project goals with focused determination.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Dedication & Commitment</h3>
+                        <p class="text-sm text-slate-600 mb-4">Dedicated to achieving project goals with focused determination.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 4 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.3s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-comments text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Communication</h3>
-                        <p class="text-sm text-gray-600 mb-4">Clearly articulating technical concepts to diverse stakeholders.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Communication</h3>
+                        <p class="text-sm text-slate-600 mb-4">Clearly articulating technical concepts to diverse stakeholders.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 5 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.4s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-clock text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Time Management</h3>
-                        <p class="text-sm text-gray-600 mb-4">Efficiently prioritizing and executing tasks to meet deadlines.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Time Management</h3>
+                        <p class="text-sm text-slate-600 mb-4">Efficiently prioritizing and executing tasks to meet deadlines.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 6 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform">
                     <div class="p-6 text-center">
                         <i class="fas fa-handshake text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Delegation</h3>
-                        <p class="text-sm text-gray-600 mb-4">Effective assignment of responsibilities to optimize team performance.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Delegation</h3>
+                        <p class="text-sm text-slate-600 mb-4">Effective assignment of responsibilities to optimize team performance.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 7 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.1s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-eye text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Attention to Detail</h3>
-                        <p class="text-sm text-gray-600 mb-4">Analytical and precise approach in all deliverables.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Attention to Detail</h3>
+                        <p class="text-sm text-slate-600 mb-4">Analytical and precise approach in all deliverables.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 8 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.2s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-lightbulb text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Leadership</h3>
-                        <p class="text-sm text-gray-600 mb-4">Guiding teams to success with vision and inspiration.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Leadership</h3>
+                        <p class="text-sm text-slate-600 mb-4">Guiding teams to success with vision and inspiration.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 9 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.3s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-flask text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Research & Critical Thinking</h3>
-                        <p class="text-sm text-gray-600 mb-4">Applying rigorous methodologies to derive actionable insights from complex geospatial problems.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Research & Critical Thinking</h3>
+                        <p class="text-sm text-slate-600 mb-4">Applying rigorous methodologies to derive actionable insights from complex geospatial problems.</p>
                     </div>
                 </div>
 
                 <!-- Soft Skill 10 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up hover:scale-105 transition-transform" style="transition-delay: 0.4s;">
                     <div class="p-6 text-center">
                         <i class="fas fa-hands-helping text-primary text-4xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Capacity Building</h3>
-                        <p class="text-sm text-gray-600 mb-4">Proven ability to train and mentor teams in geospatial data collection and analysis.</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Capacity Building</h3>
+                        <p class="text-sm text-slate-600 mb-4">Proven ability to train and mentor teams in geospatial data collection and analysis.</p>
                     </div>
                 </div>
             </div>
@@ -514,133 +778,138 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section id="experience" class="py-20">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">Experience & Education</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    My professional journey and educational background in Geosaptial Technologies.
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">Experience & Education</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    My professional journey and educational background in Geospatial Technologies.
                 </p>
             </div>
 
             <div class="relative">
                 <!-- Timeline Line -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-primary h-full hidden md:block"></div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-indigo-200 h-full hidden md:block"></div>
 
                 <!-- Timeline Items -->
                 <div class="space-y-12">
                     <!-- Experience 1 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
                         <div class="md:w-1/2 md:pr-8">
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <!-- Arrow -->
+                                <div class="hidden md:block absolute top-1/2 right-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-t border-r border-white/20"></div>
                                 <div class="flex items-center mb-4">
                                     <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-lg mr-4">
                                         <i class="ri-building-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">Senior GIS Technician</h3>
-                                        <p class="text-gray-600">Ramani Geosystems Limited </p>
+                                        <h3 class="text-xl font-bold text-dark">Senior GIS Technician</h3>
+                                        <p class="text-primary font-medium">Ramani Geosystems Limited </p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-500 mb-3">2022 - Present</p>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1">
-                                        <li>Provide training, coaching, assign tasks and monitor quality and quantity of work for GIS Technicians, GIS assist Technicians, and interns.</li>
-                                        <li>Performs data analysis using ArcGIS/QGIS and related extensions/add-ons, relational databases, and other computer software; Apply the capabilities of GIS, databases, and other computer programs to solve complex spatial and relational problems.</li>
-                                        <li>Conducts data analysis and preparation of training manual documents, data reports, and maps.</li>
-                                        <li>Monitors and analyzes project and programmatic budgets.</li>
-                                        <li>Communicates complex technical issues both verbally and in writing.</li>
+                                <p class="text-sm text-slate-500 mb-3 font-semibold">2022 - Present</p>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
+                                        <li>Provide training and coaching, assign tasks, and monitor quality and quantity of work for GIS Technicians, Assistant GIS Technicians, and interns.</li>
+                                        <li>Perform data analysis using ArcGIS/QGIS and related extensions, relational databases, and other software; apply GIS capabilities to solve complex spatial and relational problems.</li>
+                                        <li>Conduct data analysis and prepare training manuals, data reports, and maps.</li>
+                                        <li>Monitor and analyze project and programmatic budgets.</li>
+                                        <li>Communicate complex technical issues both verbally and in writing.</li>
                                         <li>Developed automation scripts in Python/PyQGIS to streamline data cleaning, validation, and mapping workflows, reducing manual processing time by 40%.</li>
                                         <li>Designed interactive dashboards linked to live PostgreSQL/PostGIS databases, enabling real-time monitoring of field data collection and mapping progress.</li>
-                                        <li>Application of Google Earth Engine for large-scale remote sensing analysis, including vegetation monitoring, climate-related change detection, and temporal NDVI analysis.</li>
+                                        <li>Applied Google Earth Engine for large-scale remote sensing analysis, including vegetation monitoring, climate-related change detection, and temporal NDVI analysis.</li>
                                         <li>Conducted advanced spatial and statistical analysis integrating both geospatial and non-spatial datasets to support agricultural monitoring and environmental resilience projects.</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:block w-4 h-4 bg-primary rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
-                        <div class="md:w-1/2 md:pl-8"></div>
+                        <div class="hidden md:block w-6 h-6 bg-primary rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
+                        <div class="hidden md:block md:w-1/2 md:pl-8"></div>
                     </div>
 
                     <!-- Experience 2 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-8"></div>
-                        <div class="hidden md:block w-4 h-4 bg-primary rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
+                        <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                        <div class="hidden md:block w-6 h-6 bg-accent rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
                         <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white rounded-2xl p-6 shadow-lg">
-                                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                                    <div class="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-lg mr-4">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <div class="hidden md:block absolute top-1/2 left-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-b border-l border-white/20"></div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-accent text-white rounded-lg mr-4">
                                         <i class="ri-building-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">GIS Technician - Team Lead</h3>
-                                        <p class="text-gray-600">Ramani Geosystems Limited</p>
+                                        <h3 class="text-xl font-bold text-dark">GIS Technician - Team Lead</h3>
+                                        <p class="text-primary font-medium">Ramani Geosystems Limited</p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-500 mb-3">Nov 2015 - Aug 2022</p>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1">
-                                        <li>Technical training to new production team members and offer training and support to visiting students/Interns.</li>
-                                        <li>Supervision of mapping technicians.</li>
-                                        <li>Allocation of assignment, duties, and tasks.</li>
-                                        <li>Compile and review initial data outputs from production team before submissions.</li>
-                                        <li>Data compilation in both ArcMap & AutoCAD and produce soft copy maps and perform printing for hardcopies for clients.</li>
-                                        <li>First level quality control assessments of work out from production team.</li>
-                                        <li>Any other related technical and administrative duties as required by manager and the other roles above.</li>
-                                        <li>Provide basic technical assistance and guidance for the production team members.</li>
+                                <p class="text-sm text-slate-500 mb-3 font-semibold">Nov 2015 - Aug 2022</p>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
+                                        <li>Provided technical training to new production team members and offered support to visiting students and interns.</li>
+                                        <li>Supervised mapping technicians.</li>
+                                        <li>Allocated assignments, duties, and tasks.</li>
+                                        <li>Compiled and reviewed initial data outputs from the production team before submission.</li>
+                                        <li>Compiled data in both ArcMap & AutoCAD, produced soft copy maps, and managed hardcopy printing for clients.</li>
+                                        <li>Conducted first-level quality control assessments of work from the production team.</li>
+                                        <li>Performed other related technical and administrative duties as required.</li>
+                                        <li>Provided basic technical assistance and guidance to production team members.</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Experience 3 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
                         <div class="md:w-1/2 md:pr-8">
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <div class="hidden md:block absolute top-1/2 right-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-t border-r border-white/20"></div>
                                 <div class="flex items-center mb-4">
                                     <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-lg mr-4">
                                         <i class="ri-building-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">Assistant GIS Technician</h3>
-                                        <p class="text-gray-600">Ramani Geosystems Limited</p>
+                                        <h3 class="text-xl font-bold text-dark">Assistant GIS Technician</h3>
+                                        <p class="text-primary font-medium">Ramani Geosystems Limited</p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-500 mb-3">Dec 2014 - Oct 2015</p>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1">
+                                <p class="text-sm text-slate-500 mb-3 font-semibold">Dec 2014 - Oct 2015</p>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
                                         <li>Conducted terrain editing using stereo workstations with either stereo image pairs or Lidar point clouds to support accurate data mapping for migration projects.</li>
                                         <li>Performed digital stereo mapping using stereo pairs to create 3D vector data for GIS or CAD platforms, ensuring consistency in data structures for effective data transformation.</li>
                                         <li>Executed Lidar point cloud processing including project set-up, cloud calibration, classification, terrain modeling, and data product creation, with an emphasis on data validation.</li>
                                         <li>Led Quality Assurance & Quality Control efforts for project work, ensuring proper consistency of processes and deliverables in line with data migration and transformation standards.</li>
                                         <li>Conducted technical research to remain current with industry developments and best practices, supporting the continual improvement of data mapping and validation methodologies.</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:block w-4 h-4 bg-primary rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
-                        <div class="md:w-1/2 md:pl-8"></div>
+                        <div class="hidden md:block w-6 h-6 bg-primary rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
+                        <div class="hidden md:block md:w-1/2 md:pl-8"></div>
                     </div>
 
                     <!-- Experience 4 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-8"></div>
-                        <div class="hidden md:block w-4 h-4 bg-secondary rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
+                        <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                        <div class="hidden md:block w-6 h-6 bg-accent rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
                         <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white rounded-2xl p-6 shadow-lg">
-                                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                                    <div class="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-lg mr-4">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <div class="hidden md:block absolute top-1/2 left-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-b border-l border-white/20"></div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-accent text-white rounded-lg mr-4">
                                         <i class="ri-building-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">Ramani Geosystems Internship</h3>
-                                        <p class="text-gray-600">Ramani Geosystems Limited</p>
+                                        <h3 class="text-xl font-bold text-dark">Ramani Geosystems Internship</h3>
+                                        <p class="text-primary font-medium">Ramani Geosystems Limited</p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-500 mb-3">Jun 2014 - Nov 2014</p>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1">
+                                <p class="text-sm text-slate-500 mb-3 font-semibold">Jun 2014 - Nov 2014</p>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
                                         <li>Created innovative geospatial vector dataset products using a range of GIS tools (2D and 3D mapping) and data analysis techniques, resulting in improved data accuracy and faster project delivery.</li>
                                         <li>Enhanced the integrity and accessibility of geospatial databases by ensuring accurate mapping specifications and data quality using PostgreSQL and PostGIS, aligning with rigorous data transformation standards.</li>
                                         <li>Compiled, symbolized, and created maps using advanced cartographic techniques while documenting steps for data transformation and cleansing to support quality migration processes.</li>
@@ -650,7 +919,7 @@
                                         <li>Reviewed and improved geospatial vector products' quality through detailed assessments to ensure data accuracy, reliability, and consistency with data migration standards.</li>
                                         <li>Provided technical and administrative support for the Technical Manager, enhancing team efficiency by ensuring timely and accurate completion of data quality and mapping tasks.</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -658,59 +927,61 @@
                     
 
                     <!-- Education 3 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-8"></div>
-                        <div class="hidden md:block w-4 h-4 bg-green-600 rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white rounded-2xl p-6 shadow-lg">
-                                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                                    <div class="w-12 h-12 flex items-center justify-center bg-green-600 text-white rounded-lg mr-4">
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <div class="hidden md:block absolute top-1/2 right-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-t border-r border-white/20"></div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-lg mr-4">
                                         <i class="ri-graduation-cap-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">Bachelor of Arts in Geography</h3>
-                                        <p class="text-gray-600">University of Nairobi</p>
+                                        <h3 class="text-xl font-bold text-dark">Bachelor of Arts in Geography</h3>
+                                        <p class="text-primary font-medium">University of Nairobi</p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-500 mb-3">Oct 2009 - Dec 2013</p>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1">
+                                <p class="text-sm text-slate-500 mb-3 font-semibold">Oct 2009 - Dec 2013</p>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
                                         <li>Specialized in Spatial Data and GIS Applications</li>
                                         <li>Coursework included: Physical and Human Geography, Environmental Studies, Cartography, Remote Sensing, GIS, and Spatial Analysis.</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
+                        <div class="hidden md:block w-6 h-6 bg-green-500 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
+                        <div class="hidden md:block md:w-1/2 md:pl-8"></div>
                     </div>
 
                     
 
                     <!-- Education 2 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-8">
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center animate-on-scroll fade-up">
+                        <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                        <div class="hidden md:block w-6 h-6 bg-green-500 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 border-4 border-white shadow-md"></div>
+                        <div class="md:w-1/2 md:pl-8">
+                            <div class="glass-card rounded-2xl p-6 shadow-lg relative">
+                                <div class="hidden md:block absolute top-1/2 left-[-10px] transform -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-b border-l border-white/20"></div>
                                 <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 flex items-center justify-center bg-green-600 text-white rounded-lg mr-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-lg mr-4">
                                         <i class="ri-graduation-cap-line text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold">Short Courses & Accomplishments</h3>
+                                        <h3 class="text-xl font-bold text-dark">Short Courses & Accomplishments</h3>
                                     </div>
                                 </div>
-                                <p class="text-gray-700">
-                                    <ul class="list-disc list-outside space-y-1 text-gray-700">
-                                        <li>Disaster management - Incident Command System (ICS 1 and 2), and First Aid training: St. John Ambulance Head Quarters at Nairobi, dedicated member- 2012</li>
-                                        <li>CPR/First Aid - Emergency Life Support, Water Rescue and Decision Making in Incident Management: Collaboration with Polish and Kenyans government at St. John Ambulance Head Quarter at Nairobi-2012</li>
-                                        <li>Emergency Operation Centre (EOC)- Disaster management: Humanitarian Peace Support School (HPSS) Nairobi Embakasi - 2018</li>
-                                        <li>Python for Data Science (self-study - UDEMY).</li>
-                                        <li>Google Earth Engine (self-study - UDEMY).</li>
-                                        <li>Data Visualization with Power BI / Plotly Dash, Streamlit (self-study - UDEMY).</li>
+                                <div class="text-slate-700">
+                                    <ul class="list-disc list-outside space-y-1 ml-4">
+                                        <li>Disaster Management - Incident Command System (ICS 1 and 2) and First Aid training: St. John Ambulance Headquarters, Nairobi (Dedicated Member, 2012).</li>
+                                        <li>CPR/First Aid - Emergency Life Support, Water Rescue, and Decision Making in Incident Management: Collaboration between Polish and Kenyan governments at St. John Ambulance Headquarters, Nairobi (2012).</li>
+                                        <li>Emergency Operation Centre (EOC) - Disaster Management: Humanitarian Peace Support School (HPSS), Nairobi Embakasi (2018).</li>
+                                        <li>Python for Data Science (Self-study - Udemy).</li>
+                                        <li>Google Earth Engine (Self-study - Udemy).</li>
+                                        <li>Data Visualization with Power BI, Plotly Dash, and Streamlit (Self-study - Udemy).</li>
                                     </ul>
-                                </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:block w-4 h-4 bg-green-600 rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
-                        <div class="md:w-1/2 md:pl-8"></div>
                     </div>
                 </div>
             </div>
@@ -718,93 +989,99 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-white dark:bg-gray-900">
+    <section id="certifications" class="py-20">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">Certifications</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">Certifications</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                     Specialized training and certifications in GIS and Data Science.
                 </p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Certificate 1 -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in p-6 text-center border border-gray-100 dark:border-gray-700">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up p-6 text-center hover:shadow-xl transition-shadow">
                     <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-xl mx-auto mb-4">
                         <i class="ri-award-line text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">GIS Specialization</h3>
-                    <p class="text-gray-600">University of California (Coursera)</p>
+                    <h3 class="text-xl font-bold mb-2 text-dark">GIS Specialization</h3>
+                    <p class="text-slate-600">University of California (Coursera)</p>
                 </div>
                 <!-- Certificate 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in p-6 text-center border border-gray-100 dark:border-gray-700">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up p-6 text-center hover:shadow-xl transition-shadow" style="transition-delay: 0.1s;">
                     <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-xl mx-auto mb-4">
                         <i class="ri-award-line text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">GIS Mapping and Spatial Analysis Specialization</h3>
-                    <p class="text-gray-600">University of Toronto (Coursera)</p>
+                    <h3 class="text-xl font-bold mb-2 text-dark">GIS Mapping and Spatial Analysis Specialization</h3>
+                    <p class="text-slate-600">University of Toronto (Coursera)</p>
                 </div>
                 <!-- Certificate 3 -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden fade-in p-6 text-center border border-gray-100 dark:border-gray-700">
+                <div class="glass-card rounded-2xl shadow-lg overflow-hidden animate-on-scroll fade-up p-6 text-center hover:shadow-xl transition-shadow" style="transition-delay: 0.2s;">
                     <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-xl mx-auto mb-4">
                         <i class="ri-award-line text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Esri MOOC – Cartography, Spatial Analysis</h3>
-                    <p class="text-gray-600">Esri</p>
+                    <h3 class="text-xl font-bold mb-2 text-dark">Esri MOOC – Cartography, Spatial Analysis</h3>
+                    <p class="text-slate-600">Esri</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white dark:bg-gray-900 relative">
-        <div class="absolute inset-0 opacity-5" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+    <section id="contact" class="py-20 relative">
         <div class="max-w-4xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-4xl font-bold mb-4 text-dark">Get In Touch</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                     Ready to collaborate on your next project? Let's discuss how we can work together
                 </p>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-accent transition-colors shadow-lg">
+                        <i class="ri-whatsapp-line"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div class="fade-in">
-                    <form id="contact-form" class="space-y-6">
+                <div class="animate-on-scroll fade-up">
+                    <form id="contact-form" class="space-y-6 glass-card p-8 rounded-2xl">
+                        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Typically replies within 24 hours</p>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" id="form-name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Your full name">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                            <input type="text" id="form-name" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white/50" placeholder="Your full name">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" id="form-email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="your.email@example.com">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                            <input type="email" id="form-email" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white/50" placeholder="your.email@example.com">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="form-subject" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Project discussion">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
+                            <input type="text" id="form-subject" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white/50" placeholder="Project discussion">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="form-message" rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Tell me about your project..."></textarea>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                            <textarea id="form-message" rows="5" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white/50" placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <button type="submit" class="!rounded-button whitespace-nowrap w-full bg-primary text-white px-6 py-3 font-semibold hover:bg-secondary transition-colors">
+                        <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent transition-colors shadow-lg">
                             Send Message
                         </button>
                     </form>
                 </div>
 
                 <!-- Contact Info -->
-                <div class="fade-in">
+                <div class="animate-on-scroll fade-up" style="transition-delay: 0.2s;">
                     <div class="space-y-8">
                         <div>
-                            <h3 class="text-xl font-bold mb-6">Get In Touch</h3>
+                            <h3 class="text-xl font-bold mb-6 text-dark">Contact Information</h3>
                             <div class="space-y-4">
                                 <div class="flex items-center">
                                     <div class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg mr-4">
                                         <i class="ri-phone-line"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium">Phone</p>
-                                        <a href="tel:+254729482189" class="text-gray-600 dark:text-gray-400">+254 729 482 189</a>
+                                        <p class="font-medium text-dark">Phone</p>
+                                        <a href="tel:+254729482189" class="text-slate-600 hover:text-primary transition-colors">+254 729 482 189</a>
                                     </div>
                                 </div>
                                 <div class="flex items-center">
@@ -812,8 +1089,8 @@
                                         <i class="ri-mail-line"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium">Email</p>
-                                        <a href="mailto:benardokellotieno@gmail.com" target="_blank" class="text-gray-600 dark:text-gray-400">benardokellotieno@gmail.com</a>
+                                        <p class="font-medium text-dark">Email</p>
+                                        <a href="mailto:benardokellotieno@gmail.com" target="_blank" class="text-slate-600 hover:text-primary transition-colors">benardokellotieno@gmail.com</a>
                                     </div>
                                 </div>
                                 <div class="flex items-center">
@@ -821,8 +1098,8 @@
                                         <i class="ri-whatsapp-line"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium">WhatsApp</p>
-                                        <a href="https://wa.me/254729482189?text=Hello%20Benard,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="text-gray-600 dark:text-gray-400">Chat with me directly on WhatsApp</a>
+                                        <p class="font-medium text-dark">WhatsApp</p>
+                                        <a href="https://wa.me/254729482189?text=Hello%20Benard,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="text-slate-600 hover:text-primary transition-colors">Chat with me directly on WhatsApp</a>
                                     </div>
                                 </div>
                                 <div class="flex items-center">
@@ -830,46 +1107,40 @@
                                         <i class="ri-map-pin-line"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium">Location</p>
-                                        <p class="text-gray-600 dark:text-gray-400">Nairobi, Kenya</p>
+                                        <p class="font-medium text-dark">Location</p>
+                                        <p class="text-slate-600">Nairobi, Kenya</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div>
-                            <h4 class="font-bold mb-4">Follow Me</h4>
+                            <h4 class="font-bold mb-4 text-dark">Follow Me</h4>
                             <div class="flex space-x-4">
-                                <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-primary hover:text-white rounded-lg transition-colors" title="Connect with me on LinkedIn">
+                                <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank" class="w-12 h-12 flex items-center justify-center bg-white shadow-sm hover:bg-primary hover:text-white rounded-lg transition-colors" title="Connect with me on LinkedIn">
                                     <i class="ri-linkedin-fill text-lg"></i>
                                 </a>
-                                <a href="https://github.com/Benard10" target="_blank" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-primary hover:text-white rounded-lg transition-colors" title="View my GitHub">
+                                <a href="https://github.com/Benard10" target="_blank" class="w-12 h-12 flex items-center justify-center bg-white shadow-sm hover:bg-primary hover:text-white rounded-lg transition-colors" title="View my GitHub">
                                     <i class="ri-github-fill text-lg"></i>
                                 </a>
-                                <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20just%20viewed%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-primary hover:text-white rounded-lg transition-colors" title="Chat with me on WhatsApp">
+                                <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20just%20viewed%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="w-12 h-12 flex items-center justify-center bg-white shadow-sm hover:bg-primary hover:text-white rounded-lg transition-colors" title="Chat with me on WhatsApp">
                                     <i class="ri-whatsapp-line text-lg"></i>
                                 </a>
                             </div>
                         </div>
 
-                        <div>
-                            <a href="assets/benard_okello_CV.pdf" target="_blank" class="!rounded-button whitespace-nowrap w-full bg-gray-900 text-white px-6 py-3 font-semibold hover:bg-gray-800 transition-colors flex items-center justify-center">
-                                <div class="w-5 h-5 flex items-center justify-center mr-2">
-                                    <i class="ri-download-line"></i>
-                                </div>
-                                Download Resume
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    </main>
+    </div>
 
     <!-- Project Modal -->
-    <div id="project-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Close project details">
+    <div id="project-modal" class="hidden fixed inset-0 z-50 bg-dark/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full hover:bg-slate-200 transition-colors" aria-label="Close project details">
                 <i class="ri-close-line text-xl"></i>
             </button>
             <div class="p-8 md:p-12">
@@ -878,8 +1149,8 @@
                         <img id="modal-image" src="" alt="Project Image" class="w-full h-auto rounded-lg shadow-md object-cover">
                     </div>
                     <div class="md:col-span-2">
-                        <h2 id="modal-title" class="text-3xl font-bold mb-6"></h2>
-                        <div id="modal-content" class="prose dark:prose-invert max-w-none"></div>
+                        <h2 id="modal-title" class="text-3xl font-bold mb-6 text-dark"></h2>
+                        <div id="modal-content" class="prose max-w-none text-slate-600"></div>
                     </div>
                 </div>
             </div>
@@ -887,14 +1158,79 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-dark text-white py-8">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="italic text-sm text-gray-300">“Tobler’s First Law: Near things influence each other more than distant ones.”</p>
+            <p class="italic text-sm text-gray-300">“Tobler’s First Law: Everything is related to everything else, but near things are more related than distant things.”</p>
             <p>&copy; <span id="copyright-year"></span> Benard Okello. All rights reserved.</p>
         </div>
     </footer>
+    <a href="https://wa.me/254729482189?text=Hello%20Benard%2C%20I%20just%20viewed%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" class="floating-cta fixed md:hidden bottom-5 left-1/2 -translate-x-1/2 z-50 bg-primary text-white px-5 py-3 rounded-full font-semibold shadow-lg flex items-center gap-2" aria-label="Chat on WhatsApp">
+        <i class="ri-whatsapp-line text-lg"></i>
+        Message on WhatsApp
+    </a>
 
     <script src="main.js"></script>
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Skill Bar Animation
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width;
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-bar').forEach(bar => skillObserver.observe(bar));
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('i') : null;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('glass-card');
+                navbar.classList.add('bg-dark/95', 'backdrop-blur-md', 'shadow-md');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-slate-600');
+                    link.classList.add('text-gray-300');
+                });
+                
+                if (mobileIcon) {
+                    mobileIcon.classList.remove('text-slate-700');
+                    mobileIcon.classList.add('text-white');
+                }
+            } else {
+                navbar.classList.add('glass-card');
+                navbar.classList.remove('bg-dark/95', 'backdrop-blur-md', 'shadow-md');
+                
+                navLinks.forEach(link => {
+                    link.classList.add('text-slate-600');
+                    link.classList.remove('text-gray-300');
+                });
+                
+                if (mobileIcon) {
+                    mobileIcon.classList.add('text-slate-700');
+                    mobileIcon.classList.remove('text-white');
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
