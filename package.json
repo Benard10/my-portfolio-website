@@ -1,0 +1,11 @@
+{
+  "name": "benard-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Benard Okello",
+  "main": "main.js",
+  "scripts": {
+    "start": "start index.html"
+  },
+  "author": "Benard Okello",
+  "license": "ISC"
+}

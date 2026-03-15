@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Benard Okello</title>
+    <meta name="description" content="About Benard Okello: geospatial specialist focused on GIS, remote sensing, data analytics, and decision-support systems.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+    <nav class="site-nav sticky top-0 z-50 glass-card border-0 rounded-none">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="../index.html" class="text-xl font-bold text-teal-700">Benard Okello</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="active-link text-slate-600 hover:text-teal-700">About</a>
+                <a href="projects.html" class="text-slate-600 hover:text-teal-700">Projects</a>
+                <a href="experience.html" class="text-slate-600 hover:text-teal-700">Experience</a>
+                <a href="contact.html" class="text-slate-600 hover:text-teal-700">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button data-theme-toggle class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 focus-ring"><i class="ri-moon-line text-lg"></i></button>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center"><i class="ri-menu-line text-xl text-slate-700"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 px-6 py-4 space-y-3">
+            <a href="about.html" class="block text-teal-700 font-semibold">About</a>
+            <a href="projects.html" class="block text-slate-600">Projects</a>
+            <a href="experience.html" class="block text-slate-600">Experience</a>
+            <a href="contact.html" class="block text-slate-600">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16 space-y-10">
+        <section class="glass-card p-8 md:p-10">
+            <div class="split-media">
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-teal-700 font-semibold mb-3">About</p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-main mb-6">Geospatial Specialist focused on high-impact decision systems</h1>
+                    <p class="text-muted leading-relaxed mb-4">I am Benard Okello, a GIS and geospatial research professional with 10+ years of experience delivering practical mapping, spatial analysis, and data-driven planning support across agriculture, infrastructure, aviation, and environmental monitoring.</p>
+                    <p class="text-muted leading-relaxed">My work combines geospatial engineering discipline with research thinking, helping teams move from raw location data to operational decisions that are accurate, timely, and measurable.</p>
+                </div>
+                <div class="media-frame hero-image">
+                    <img src="../assets/profile.jpeg" alt="Benard Okello portrait" class="object-top">
+                </div>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-3 gap-6">
+            <article class="glass-card p-6">
+                <h2 class="text-xl font-bold text-main mb-3">Core Strengths</h2>
+                <ul class="list-disc list-outside ml-5 text-muted space-y-1">
+                    <li>GIS database design and QA</li>
+                    <li>Remote sensing and NDVI analysis</li>
+                    <li>Spatial statistics and reporting</li>
+                </ul>
+            </article>
+            <article class="glass-card p-6">
+                <h2 class="text-xl font-bold text-main mb-3">Tech Stack</h2>
+                <ul class="list-disc list-outside ml-5 text-muted space-y-1">
+                    <li>ArcGIS, QGIS, AutoCAD</li>
+                    <li>PostGIS, PostgreSQL</li>
+                    <li>Python, Power BI, GEE</li>
+                </ul>
+            </article>
+            <article class="glass-card p-6">
+                <h2 class="text-xl font-bold text-main mb-3">Recent Outcomes</h2>
+                <ul class="list-disc list-outside ml-5 text-muted space-y-1">
+                    <li>100,000+ fields monitored</li>
+                    <li>70 mappers coordinated</li>
+                    <li>40% workflow time reduction</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="glass-card p-8 md:p-10">
+            <h2 class="text-3xl font-bold text-main mb-5">What I Deliver</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-main mb-2">For organizations</h3>
+                    <p class="text-muted">I build reliable geospatial systems that improve planning visibility and reduce operational uncertainty.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-main mb-2">For project teams</h3>
+                    <p class="text-muted">I design workflows that make data collection, validation, and reporting faster and more consistent.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card p-8 md:p-10">
+            <h2 class="text-3xl font-bold text-main mb-5">Project Visuals</h2>
+            <div class="thumb-grid">
+                <div class="media-frame h-40"><img src="../assets/Kabras_sugar.jpg" alt="Kabras sugar GIS mapping"></div>
+                <div class="media-frame h-40"><img src="../assets/KRC.jpg" alt="SGR corridor mapping"></div>
+                <div class="media-frame h-40"><img src="../assets/Entebbe-International-Airport.jpg" alt="Entebbe airport mapping"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center space-y-2">
+            <p class="text-sm opacity-85">&copy; <span id="copyright-year"></span> Benard Okello. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../site.js"></script>
+</body>
+</html>

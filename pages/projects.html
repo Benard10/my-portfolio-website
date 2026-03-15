@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Benard Okello</title>
+    <meta name="description" content="Featured geospatial and analytics projects by Benard Okello, including agriculture GIS, transport mapping, and airport digital twin work.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+    <nav class="site-nav sticky top-0 z-50 glass-card border-0 rounded-none">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="../index.html" class="text-xl font-bold text-teal-700">Benard Okello</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-slate-600 hover:text-teal-700">About</a>
+                <a href="projects.html" class="active-link text-slate-600 hover:text-teal-700">Projects</a>
+                <a href="experience.html" class="text-slate-600 hover:text-teal-700">Experience</a>
+                <a href="contact.html" class="text-slate-600 hover:text-teal-700">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button data-theme-toggle class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 focus-ring"><i class="ri-moon-line text-lg"></i></button>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center"><i class="ri-menu-line text-xl text-slate-700"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 px-6 py-4 space-y-3">
+            <a href="about.html" class="block text-slate-600">About</a>
+            <a href="projects.html" class="block text-teal-700 font-semibold">Projects</a>
+            <a href="experience.html" class="block text-slate-600">Experience</a>
+            <a href="contact.html" class="block text-slate-600">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        <header class="text-center mb-12">
+            <p class="text-xs uppercase tracking-widest text-teal-700 font-semibold mb-3">Projects</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-main mb-4">Geospatial Projects Built for Real Decisions</h1>
+            <p class="text-muted text-lg max-w-3xl mx-auto">A selected project collection across GIS operations, infrastructure, remote sensing, and analytics dashboards.</p>
+        </header>
+
+        <section class="grid md:grid-cols-3 gap-8">
+            <article class="glass-card p-6">
+                <div class="project-photo media-frame"><img src="../assets/Kabras_sugar.jpg" alt="Kabras sugar cane mapping project"></div>
+                <span class="metric-chip">20% faster planning</span>
+                <h2 class="text-xl font-bold text-main mt-4 mb-2">Kabras Sugar Cane Mapping</h2>
+                <p class="text-muted text-sm mb-4">Modernized field records and improved supply visibility with structured geospatial workflows.</p>
+                <a href="case-studies/kabras.html" class="text-teal-700 font-semibold hover:text-sky-600">Open Case Study <i class="ri-arrow-right-line"></i></a>
+            </article>
+            <article class="glass-card p-6">
+                <div class="project-photo media-frame"><img src="../assets/KRC.jpg" alt="Kenyan standard gauge railway GIS project"></div>
+                <span class="metric-chip">National infrastructure</span>
+                <h2 class="text-xl font-bold text-main mt-4 mb-2">Kenyan SGR GIS Foundation</h2>
+                <p class="text-muted text-sm mb-4">Built corridor datasets used for route alignment, planning analysis, and environmental consideration.</p>
+                <a href="case-studies/sgr.html" class="text-teal-700 font-semibold hover:text-sky-600">Open Case Study <i class="ri-arrow-right-line"></i></a>
+            </article>
+            <article class="glass-card p-6">
+                <div class="project-photo media-frame"><img src="../assets/Entebbe-International-Airport.jpg" alt="Entebbe airport GIS update project"></div>
+                <span class="metric-chip">Airport digital twin</span>
+                <h2 class="text-xl font-bold text-main mt-4 mb-2">Entebbe Airport GIS Update</h2>
+                <p class="text-muted text-sm mb-4">Delivered GIS modernization supporting airport operations, charting, and expansion readiness.</p>
+                <a href="case-studies/entebbe.html" class="text-teal-700 font-semibold hover:text-sky-600">Open Case Study <i class="ri-arrow-right-line"></i></a>
+            </article>
+        </section>
+
+        <section class="mt-10 glass-card p-8">
+            <h3 class="text-2xl font-bold text-main mb-5">Additional Portfolio Areas</h3>
+            <div class="grid md:grid-cols-2 gap-6 text-sm mb-6">
+                <div>
+                    <p class="font-semibold text-main mb-2">Web GIS & Data Platforms</p>
+                    <p class="text-muted">Leaflet, PostGIS, and Python-enabled systems for visualization and geospatial querying.</p>
+                </div>
+                <div>
+                    <p class="font-semibold text-main mb-2">Analytics Dashboards</p>
+                    <p class="text-muted">Power BI, Streamlit, and Plotly Dash to monitor field operations and track KPIs.</p>
+                </div>
+            </div>
+            <div class="thumb-grid">
+                <div class="media-frame h-40"><img src="../assets/mapping.jpg" alt="Web GIS interface preview"></div>
+                <div class="media-frame h-40"><img src="../assets/Dashboard.png" alt="Dashboard analytics preview"></div>
+                <div class="media-frame h-40"><img src="../assets/NDVI1.png" alt="NDVI analysis preview"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-sm opacity-85">&copy; <span id="copyright-year"></span> Benard Okello. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../site.js"></script>
+</body>
+</html>
