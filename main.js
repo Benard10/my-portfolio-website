@@ -23,6 +23,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     applyTheme(startDark);
 
+    // Brittany Chiang-style cursor spotlight (respects reduced motion).
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+        let rafPending = false;
+        let lastX = window.innerWidth * 0.5;
+        let lastY = window.innerHeight * 0.3;
+
+        const paint = () => {
+            rafPending = false;
+            document.documentElement.style.setProperty('--spotlight-x', `${Math.round(lastX)}px`);
+            document.documentElement.style.setProperty('--spotlight-y', `${Math.round(lastY)}px`);
+        };
+
+        // Initial position so the gradient doesn't "pop" on first move.
+        paint();
+
+        window.addEventListener('pointermove', (e) => {
+            lastX = e.clientX;
+            lastY = e.clientY;
+            if (!rafPending) {
+                rafPending = true;
+                requestAnimationFrame(paint);
+            }
+        }, { passive: true });
+    }
+
     function toggleTheme() {
         const isDark = !document.body.classList.contains('theme-dark');
         applyTheme(isDark);

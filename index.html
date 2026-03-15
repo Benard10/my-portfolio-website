@@ -11,9 +11,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#809fff',
-                        accent: '#c91b68',
-                        dark: '#0d0f12',
+                        primary: '#599692',
+                        accent: '#599692',
+                        dark: '#11172a',
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -31,32 +31,39 @@
     <link rel="preload" as="image" href="assets/profile.jpeg">
     <style>
         :root {
-            --surface: #0d0f12;
-            --surface-elevated: rgba(255, 255, 255, 0.03);
-            --text-main: #c7cacc;
-            --text-muted: #94979a;
-            --ring: #809fff;
-            --accent-1: #809fff;
-            --accent-2: #c91b68;
-            --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.3);
+            /* Brittany Chiang-inspired palette */
+            --surface: #11172a;
+            --surface-elevated: rgba(17, 23, 42, 0.72);
+            --surface-elevated-2: rgba(17, 23, 42, 0.5);
+            --text-main: #dfe5ec;
+            --text-muted: #626c7d;
+            --ring: #599692;
+            --accent-1: #599692;
+            --accent-2: #599692;
+            --border: rgba(223, 229, 236, 0.12);
+            --border-strong: rgba(223, 229, 236, 0.18);
+            --shadow-soft: 0 16px 44px rgba(0, 0, 0, 0.38);
         }
         .theme-dark {
-            --surface: #0d0f12;
-            --surface-elevated: rgba(255, 255, 255, 0.03);
-            --text-main: #c7cacc;
-            --text-muted: #94979a;
-            --ring: #809fff;
-            --accent-1: #809fff;
-            --accent-2: #c91b68;
-            --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.5);
+            --surface: #11172a;
+            --surface-elevated: rgba(17, 23, 42, 0.72);
+            --surface-elevated-2: rgba(17, 23, 42, 0.5);
+            --text-main: #dfe5ec;
+            --text-muted: #626c7d;
+            --ring: #599692;
+            --accent-1: #599692;
+            --accent-2: #599692;
+            --border: rgba(223, 229, 236, 0.12);
+            --border-strong: rgba(223, 229, 236, 0.18);
+            --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.5);
         }
         :where([class^="ri-"])::before { content: "\f3c2"; }
         * { font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
         .glass-card {
-            background: var(--surface-elevated);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(148, 163, 184, 0.24);
+            background: linear-gradient(180deg, rgba(223, 229, 236, 0.06) 0%, rgba(223, 229, 236, 0.02) 100%);
+            backdrop-filter: blur(12px) saturate(130%);
+            border: 1px solid var(--border);
             box-shadow: var(--shadow-soft);
         }
         .profile-shape {
@@ -86,7 +93,7 @@
         }
         body {
             background-color: var(--surface);
-            color: var(--text-main);
+            color: var(--text-muted);
             position: relative;
             min-height: 100vh;
             overflow-x: hidden;
@@ -96,23 +103,43 @@
             content: "";
             position: fixed;
             z-index: -1;
-            border-radius: 9999px;
-            filter: blur(5px);
             pointer-events: none;
         }
+        /* Cursor "spotlight" */
         body::before {
-            width: 440px;
-            height: 440px;
-            top: -120px;
-            left: -90px;
-            background: radial-gradient(circle at center, rgba(128, 159, 255, 0.15) 0%, rgba(128, 159, 255, 0) 72%);
+            inset: 0;
+            border-radius: 0;
+            background:
+                radial-gradient(650px circle at var(--spotlight-x, 50vw) var(--spotlight-y, 30vh),
+                    rgba(89, 150, 146, 0.16),
+                    rgba(17, 23, 42, 0) 58%);
+            opacity: 0.9;
         }
+        /* Ambient glow */
         body::after {
-            width: 520px;
-            height: 520px;
-            bottom: -190px;
-            right: -130px;
-            background: radial-gradient(circle at center, rgba(201, 27, 104, 0.15) 0%, rgba(201, 27, 104, 0) 72%);
+            width: 900px;
+            height: 900px;
+            top: -360px;
+            right: -420px;
+            border-radius: 9999px;
+            filter: blur(60px);
+            background:
+                radial-gradient(circle at 30% 30%,
+                    rgba(89, 150, 146, 0.18) 0%,
+                    rgba(89, 150, 146, 0) 70%);
+        }
+
+        /* Subtle texture overlay (cheap, no images) */
+        body {
+            background-image:
+                radial-gradient(rgba(223, 229, 236, 0.04) 1px, rgba(17, 23, 42, 0) 1px);
+            background-size: 34px 34px;
+            background-position: 0 0;
+        }
+
+        ::selection {
+            background: rgba(89, 150, 146, 0.32);
+            color: var(--text-main);
         }
         .text-dark,
         .text-slate-900,
@@ -121,12 +148,35 @@
         }
         .text-slate-700,
         .text-slate-600,
-        .text-slate-500 {
+        .text-slate-500,
+        .text-gray-700,
+        .text-gray-600,
+        .text-gray-500 {
             color: var(--text-muted) !important;
+        }
+        .text-gray-300 {
+            color: rgba(223, 229, 236, 0.72) !important;
         }
         .nav-link.is-current {
             color: var(--accent-1) !important;
             font-weight: 700;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--accent-1);
+            transition: width 220ms ease;
+            opacity: 0.9;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
         .focus-ring:focus-visible,
         button:focus-visible,
@@ -169,21 +219,55 @@
             color: var(--accent-1);
         }
         .floating-cta {
-            box-shadow: 0 10px 28px rgba(128, 159, 255, 0.35);
+            box-shadow: 0 10px 28px rgba(89, 150, 146, 0.35);
         }
-        .theme-dark .bg-white {
-            background-color: #0f172a !important;
+        /* Force Tailwind "light" utility classes to behave on the dark palette */
+        .bg-white {
+            background-color: var(--surface-elevated) !important;
         }
-        .theme-dark .border-slate-200,
-        .theme-dark .border-gray-200 {
-            border-color: rgba(100, 116, 139, 0.4) !important;
+        .bg-white\/50 {
+            background-color: var(--surface-elevated-2) !important;
         }
-        .theme-dark .bg-gray-200 {
-            background-color: #334155 !important;
+        .bg-slate-100,
+        .bg-slate-200,
+        .bg-gray-200 {
+            background-color: rgba(223, 229, 236, 0.06) !important;
         }
-        .theme-dark .bg-dark\/95 {
-            background-color: rgba(15, 23, 42, 0.95) !important;
+        .border-slate-200,
+        .border-gray-200 {
+            border-color: var(--border) !important;
         }
+        .border-slate-300 {
+            border-color: var(--border-strong) !important;
+        }
+        .bg-dark\/95 {
+            background-color: rgba(17, 23, 42, 0.95) !important;
+        }
+
+        input,
+        textarea {
+            background-color: rgba(17, 23, 42, 0.42) !important;
+            color: var(--text-main) !important;
+            border-color: var(--border) !important;
+        }
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(98, 108, 125, 0.95) !important;
+        }
+
+        /* Nicer scrollbars (supported browsers only) */
+        :root {
+            scrollbar-color: rgba(89, 150, 146, 0.55) rgba(17, 23, 42, 0.6);
+            scrollbar-width: thin;
+        }
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: rgba(17, 23, 42, 0.6); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(89, 150, 146, 0.42);
+            border: 2px solid rgba(17, 23, 42, 0.6);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(89, 150, 146, 0.58); }
         .resume-shell {
             width: min(100%, 1680px);
             margin: 0 auto;
@@ -259,7 +343,7 @@
         }
     </style>
 </head>
-<body class="text-slate-900 transition-colors duration-300">
+<body class="transition-colors duration-300">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-card border-b-0 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-6 py-4">
