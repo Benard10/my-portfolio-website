@@ -27,7 +27,7 @@ const projects = [
     sector: "Agriculture",
     category: "agriculture",
     image: "assets/ndvi-analysis.webp",
-    metric: "100,000+ fields in the source portfolio",
+    metric: "100,000+ fields",
     summary: "Remote-sensing and NDVI workflows for monitoring sugarcane condition at a scale that would be difficult to support through repeated field surveys alone.",
     challenge: "Kabras Sugar needed a scalable way to monitor more than 100,000 sugarcane fields and improve visibility of crop health, irrigation needs, and yield signals.",
     contribution: [

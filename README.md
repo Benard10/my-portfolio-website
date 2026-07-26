@@ -1,153 +1,86 @@
 # Benard Okello - Geospatial Skills Portfolio
 
-I am a geospatial analyst and research specialist based in Nairobi, Kenya, with experience turning spatial data into practical evidence for planning, infrastructure, land administration, agriculture, aviation, environmental management, and digital GIS products.
+This portfolio presents my geospatial work through the skills I bring to real planning, infrastructure, land, agriculture, aviation, and environmental problems.
 
-I use this portfolio to present the skills, methods, and project experience that shape my work. I approach geospatial problems from the ground up: I first understand the decision to be made, prepare reliable data, apply analysis, automate repeatable workflows, and deliver outputs that teams can use with confidence.
+Rather than only listing completed projects, the site shows how spatial data skills can be applied: from field data capture and database design to remote sensing, automation, dashboards, and web GIS tools that support practical decisions.
 
-## What I Bring
-
-I work at the intersection of field operations, spatial data systems, remote sensing, databases, automation, dashboards, and web GIS. I focus on building geospatial outputs that are not only technically correct, but also useful to the people who need to plan, review, monitor, manage, or make decisions.
-
-Across my projects:
-
-- I analyse and map spatial patterns that support planning and operational decisions.
-- I collect, structure, and prepare field data for reliable use.
-- I design and maintain spatial databases with quality-control workflows.
-- I apply remote sensing and image-analysis methods to monitor change.
-- I automate GIS tasks using Python and GIS scripting tools.
-- I design dashboards and web GIS tools for decision support.
-- I coordinate project work, lead technical teams, and support delivery.
-- I connect geospatial evidence to the real-world decisions teams need to make.
-
-## Core Skill Areas
+## Core Skills
 
 ### Spatial Analysis and Mapping
 
-I work with terrain, infrastructure, settlement, environmental, network, land, and operational datasets to produce maps and analysis that support planning and decision-making.
+I work with terrain, infrastructure, settlement, environmental, network, and operational datasets to produce maps and analysis that teams can use as evidence.
 
-I apply these skills in:
+Applied in:
 
 - Infrastructure route planning and corridor mapping
 - Land administration and boundary review
 - Environmental assessment and conservation planning
 - Airport, utilities, and built-environment mapping
-- Terrain modelling, suitability analysis, and change analysis
-- Production of clear map products for technical and non-technical audiences
+- Terrain, suitability, and change analysis
 
-I use tools and methods such as ArcGIS, QGIS, AutoCAD, spatial modelling workflows, cartographic production, and geospatial data interpretation.
+Relevant tools include ArcGIS, QGIS, AutoCAD, spatial modelling workflows, and cartographic production methods.
 
 ### Spatial Databases and Data Quality
 
-I understand that reliable geospatial decisions depend on reliable data. I structure, clean, validate, document, and maintain spatial datasets so that they can be trusted and reused.
+A strong geospatial product depends on reliable data. The portfolio highlights experience in structuring, cleaning, validating, documenting, and maintaining spatial datasets.
 
-I apply these skills in:
+Applied in:
 
 - Land information management systems
 - Agricultural field and farmer-record databases
 - Infrastructure asset and corridor datasets
 - PostGIS-backed operational systems
-- Spatial data cleaning and standardisation
 - Metadata, topology checks, and auditable QA workflows
 
-I use tools and methods such as PostgreSQL, PostGIS, QGIS, Python, data governance practices, quality-control rules, and database-driven GIS workflows.
+Relevant tools include PostgreSQL, PostGIS, QGIS, Python, data governance practices, and quality-control rules.
 
 ### Remote Sensing and Environmental Monitoring
 
-I use satellite imagery and cloud-based analysis to monitor large areas, detect change, and support decisions where repeated field surveys may be expensive, slow, or impractical.
+Satellite imagery and cloud-based analysis make it possible to monitor large areas more efficiently than repeated field surveys alone.
 
-I apply these skills in:
+Applied in:
 
 - NDVI and crop-health monitoring
 - Agricultural resource planning
 - Vegetation and land-cover change detection
 - Environmental monitoring and conservation support
-- Natural-resource assessment
-- Scalable image analysis for decision-support platforms
+- Scalable image analysis for decision platforms
 
-I use tools and methods such as Google Earth Engine, NDVI workflows, remote sensing methods, Python, PostGIS, GeoServer, and environmental spatial modelling.
+Relevant tools include Google Earth Engine, NDVI workflows, remote sensing methods, Python, PostGIS, and GeoServer.
 
 ### Automation and Decision Tools
 
-I use automation to reduce repetitive GIS production work, improve consistency, and make spatial outputs easier to review, publish, and use.
+The portfolio also focuses on reducing repetitive GIS production work and turning spatial outputs into usable interfaces for non-specialist users.
 
-I apply these skills in:
+Applied in:
 
-- Automated validation and quality checks
+- Automated validation and QA checks
 - Web GIS applications
 - Mapping and operations dashboards
 - Data pipelines for spatial and tabular information
-- Project monitoring and reporting workflows
-- Decision-support tools for managers, field teams, and technical users
+- Project monitoring, reporting, and decision-support tools
 
-I use tools and methods such as Python, PyQGIS, Leaflet, Power BI, Streamlit, Plotly Dash, HTML, CSS, JavaScript, PostGIS, and GeoServer.
+Relevant tools include Python, PyQGIS, Leaflet, Power BI, Streamlit, Plotly Dash, HTML, CSS, JavaScript, PostGIS, and GeoServer.
 
-## Where I Apply These Skills
+## Application Areas
 
-### Land Administration
+The selected work demonstrates how these skills can support:
 
-I apply geospatial skills to improve how land records are captured, organised, verified, accessed, and reviewed. I support land information systems, boundary review, dispute support, planning, and transparent management of spatial land records.
+- Land administration: centralised land records, dispute review, planning support, and transparent spatial data access.
+- Agriculture: field mapping, crop-health monitoring, farmer records, supply estimation, and operational resource planning.
+- Infrastructure: transport corridors, terrain intelligence, environmental review, and engineering support datasets.
+- Aviation GIS: airport spatial databases, aerodrome charting, 3D mapping, and operational safety support.
+- Environmental GIS: conservation planning, resource monitoring, change analysis, and environmental data publishing.
+- Digital GIS: dashboards, web maps, spatial services, and cloud-ready decision interfaces.
 
-### Agriculture
+## What the Website Shows
 
-I use spatial data to support field mapping, crop-health monitoring, farmer records, cane or crop supply estimation, resource planning, and operational decision-making for large agricultural programmes.
-
-### Infrastructure
-
-I use GIS to support route planning, corridor mapping, terrain review, environmental assessment, asset mapping, and engineering support. I build workflows that help teams understand where infrastructure is located, what it affects, and how it can be managed over time.
-
-### Aviation GIS
-
-I apply GIS in airport environments where accurate spatial information is needed for safety, operations, infrastructure management, charting, and future planning. I support airport databases, 3D mapping, aerodrome charts, and reliable reference data.
-
-### Environmental GIS
-
-I support environmental programmes with consistent spatial evidence for monitoring change, understanding resource distribution, supporting conservation planning, and communicating findings clearly.
-
-### Digital GIS and Dashboards
-
-I build web maps, dashboards, and spatial decision tools that make GIS outputs accessible beyond desktop GIS users. I use them to support project monitoring, reporting, interactive querying, and communication with managers, clients, and field teams.
-
-## Project Themes I Present
-
-I use the selected work in this portfolio to show my experience across:
-
-- I support land information management.
-- I carry out sugarcane field mapping and agricultural monitoring.
-- I apply NDVI and remote-sensing analysis.
-- I contribute to airport GIS database updates.
-- I support railway corridor and infrastructure mapping.
-- I work on environmental monitoring and conservation GIS.
-- I design spatial operations dashboards.
-- I build interactive web GIS applications.
-
-I present each project around the problem being addressed, my geospatial contribution, the tools or methods used, and the practical value of the output.
-
-## My Delivery Approach
-
-I approach geospatial work as a complete process, not just as map production.
-
-1. Frame the decision
-   I start by understanding the users, the required output, the accuracy needs, the available data, and the decision the work must support.
-
-2. Prepare the data
-   I collect, clean, structure, document, validate, and integrate spatial and non-spatial data into a dependable working foundation.
-
-3. Analyse and automate
-   I apply spatial analysis, database logic, scripts, and quality checks in ways that can be reviewed, repeated, and improved.
-
-4. Deliver for action
-   I prepare maps, reports, dashboards, databases, or web GIS tools in a form that the intended audience can use.
-
-## Website Features
-
-I have included:
-
-- I introduce my professional profile and capability areas.
-- I organise my skills around practical use cases.
-- I present filterable project case studies from different sectors.
-- I explain how I move from raw data to trusted decisions.
-- I show my career progression and education.
-- I provide contact links and a WhatsApp project-intake form.
+- A professional profile and capability overview
+- Practical skill areas grouped by use case
+- Filterable project case studies
+- A delivery approach from raw data to trusted decisions
+- Career progression and education
+- Contact options and a WhatsApp project-intake form
 
 ## Built With
 
