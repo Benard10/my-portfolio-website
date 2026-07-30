@@ -217,7 +217,6 @@ html[data-theme="light"] .hero-badge { color: var(--accent-deep); background: rg
 .capability-card.featured .capability-icon, .capability-card:nth-child(2) .capability-icon { width: 104px; height: 104px; border-radius: 30px; background: rgba(57,217,158,.1); }
 .capability-card.featured .capability-icon svg, .capability-card:nth-child(2) .capability-icon svg { width: 58px; }
 .capability-card h3 { position: relative; z-index: 1; font-size: clamp(1.65rem, 2.5vw, 2.55rem); }
-.capability-card.featured h3, .capability-card:nth-child(2) h3 { font-size: clamp(2rem, 3.4vw, 3.25rem); }
 .capability-card p { position: relative; z-index: 1; margin-top: 15px; color: var(--muted); }
 .tag-list { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin: auto 0 0; padding: 28px 0 0; list-style: none; }
 .tag-list li { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted-strong); background: color-mix(in srgb, var(--surface-solid) 55%, transparent); font-size: .72rem; font-weight: 750; }
@@ -236,8 +235,8 @@ html[data-theme="light"] .hero-badge { color: var(--accent-deep); background: rg
 .project-card:hover .project-image { transform: scale(1.045); }
 .project-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,13,10,.08) 14%, rgba(3,13,10,.58) 54%, rgba(3,13,10,.94) 100%); }
 .project-topline { position: absolute; top: 22px; left: 22px; right: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px; }
-.project-sector, .project-metric { padding: 7px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: rgba(5, 20, 15, .54); color: #e9fff7; backdrop-filter: blur(12px); font-size: .69rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
-.project-metric { max-width: min(100%, 260px); color: #9dffda; }
+.project-sector, .project-metric { min-height: 30px; display: inline-flex; align-items: center; padding: 7px 11px; border: 1px solid rgba(255,255,255,.24); border-radius: 999px; background: rgba(5,20,15,.78); box-shadow: 0 5px 16px rgba(0,0,0,.14); color: #e9fff7; backdrop-filter: blur(12px); font-size: .69rem; font-weight: 850; letter-spacing: .08em; line-height: 1.2; text-transform: uppercase; }
+.project-metric { max-width: min(100%, 260px); }
 .project-content { position: absolute; z-index: 2; left: 24px; right: 24px; bottom: 24px; color: #fff; }
 .project-content h3 { max-width: 620px; font-size: clamp(1.45rem, 2.2vw, 2.15rem); }
 .project-card:nth-child(-n + 2) .project-content h3 { font-size: clamp(1.85rem, 3.4vw, 3rem); }

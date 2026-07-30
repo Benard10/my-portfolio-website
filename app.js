@@ -28,7 +28,7 @@ const projects = [
     category: "agriculture",
     image: "assets/ndvi-analysis.webp",
     metric: "100,000+ fields",
-    summary: "Remote-sensing and NDVI workflows for monitoring sugarcane condition at a scale that would be difficult to support through repeated field surveys alone.",
+    summary: "Using Google Earth Engine and NDVI workflows to monitor sugarcane health across vast areas, saving hundreds of hours that would otherwise be spent on manual field surveys.",
     challenge: "Kabras Sugar needed a scalable way to monitor more than 100,000 sugarcane fields and improve visibility of crop health, irrigation needs, and yield signals.",
     contribution: [
       "Contributed NDVI and satellite-image workflows in Google Earth Engine.",
@@ -50,7 +50,7 @@ const projects = [
     category: "aviation",
     image: "assets/entebbe-airport.webp",
     metric: "3D airport GIS and aerodrome charting",
-    summary: "A comprehensive update of airport spatial information to support operational safety, infrastructure management, charting, and future planning.",
+    summary: "A complete overhaul of the airport's spatial records, mapping out 3D infrastructure to improve operational safety, update aerodrome charts, and streamline future planning.",
     challenge: "The airport required current, detailed infrastructure data and aeronautical mapping to strengthen operations, safety management, navigation support, and expansion planning.",
     contribution: [
       "Compiled field and mapped infrastructure data.",
@@ -94,7 +94,7 @@ const projects = [
     category: "agriculture",
     image: "assets/kabrassugar.webp",
     metric: "70-person mapping team",
-    summary: "A large field-mapping and database programme that strengthened cane-field records, farmer information, supply estimation, and resource planning.",
+    summary: "Led a 70-person field team to map out sugarcane fields, organizing the raw data into a structured database that improved supply estimations and resource planning.",
     challenge: "Outdated and incomplete field records made it difficult to maintain farmer information, estimate cane supply, and plan operational resources.",
     contribution: [
       "Led a team of 70 mappers using GPS-enabled smartphones.",
@@ -160,7 +160,7 @@ const projects = [
     category: "digital",
     image: "assets/webgis.webp",
     metric: "Responsive spatial decision interfaces",
-    summary: "Web mapping and dashboard interfaces that make spatial data easier to query, inspect, communicate, and use outside desktop GIS software.",
+    summary: "Custom web maps and responsive interfaces built to take spatial data out of complex desktop software and put it directly into the hands of everyday users.",
     challenge: "Many valuable GIS datasets remain difficult for project teams and decision-makers to access when they are limited to specialist desktop environments.",
     contribution: [
       "Designed responsive web GIS interfaces and dashboards.",
