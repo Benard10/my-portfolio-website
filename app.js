@@ -1,10 +1,17 @@
 const projects = [
   {
     id: "juba-lims",
+    featured: true,
     title: "Juba City Land Information Management System",
     sector: "Land administration",
     category: "land",
+    type: "Client project",
+    role: "GIS team supervision and spatial-systems delivery",
+    deliverables: "Mapped land records, PostGIS database, monitoring dashboards, QA workflows, and GeoServer services",
     image: "assets/juba-lims.webp",
+    imageAlt: "Land information dashboard and mapped parcels for Juba City",
+    imageWidth: 1363,
+    imageHeight: 673,
     metric: "Centralised spatial land records",
     summary: "A mapping, database, and dashboard workflow designed to improve access to fragmented land information and support more auditable administration.",
     challenge: "Juba needed a dependable way to manage fragmented land records, limited data accessibility, and recurring boundary disputes through a central spatial system.",
@@ -23,10 +30,17 @@ const projects = [
   },
   {
     id: "west-kenya-ndvi",
+    featured: true,
     title: "West Kenya Sugarcane Management & NDVI Analysis",
     sector: "Agriculture",
     category: "agriculture",
+    type: "Client project",
+    role: "Remote-sensing workflow contributor",
+    deliverables: "NDVI workflow, crop-health analysis, decision-platform outputs, and automated spatial validation",
     image: "assets/ndvi-analysis.webp",
+    imageAlt: "NDVI crop-health map highlighting variation across sugarcane fields",
+    imageWidth: 1355,
+    imageHeight: 634,
     metric: "100,000+ fields",
     summary: "Using Google Earth Engine and NDVI workflows to monitor sugarcane health across vast areas, saving hundreds of hours that would otherwise be spent on manual field surveys.",
     challenge: "Kabras Sugar needed a scalable way to monitor more than 100,000 sugarcane fields and improve visibility of crop health, irrigation needs, and yield signals.",
@@ -48,7 +62,13 @@ const projects = [
     title: "Entebbe International Airport GIS Database Update",
     sector: "Aviation",
     category: "aviation",
+    type: "Client project",
+    role: "GIS production and quality control",
+    deliverables: "3D airport features, updated spatial database, aerodrome-chart inputs, and QA outputs",
     image: "assets/entebbe-airport.webp",
+    imageAlt: "Three-dimensional airport infrastructure mapping at Entebbe International Airport",
+    imageWidth: 1234,
+    imageHeight: 900,
     metric: "3D airport GIS and aerodrome charting",
     summary: "A complete overhaul of the airport's spatial records, mapping out 3D infrastructure to improve operational safety, update aerodrome charts, and streamline future planning.",
     challenge: "The airport required current, detailed infrastructure data and aeronautical mapping to strengthen operations, safety management, navigation support, and expansion planning.",
@@ -70,7 +90,13 @@ const projects = [
     title: "Kenyan Standard Gauge Railway GIS Foundation",
     sector: "Infrastructure",
     category: "infrastructure",
+    type: "Client project",
+    role: "GIS mapping and data production",
+    deliverables: "Terrain, infrastructure, settlement, environmental, and corridor datasets",
     image: "assets/aerial.webp",
+    imageAlt: "Aerial view of transport infrastructure and surrounding terrain",
+    imageWidth: 1379,
+    imageHeight: 900,
     metric: "National infrastructure corridor",
     summary: "Foundational terrain, network, settlement, and environmental datasets prepared for engineering and planning decisions along a major transport corridor.",
     challenge: "The railway programme needed dependable corridor intelligence to support route planning, engineering review, environmental assessment, and construction decisions.",
@@ -92,7 +118,13 @@ const projects = [
     title: "Kabras Sugar Cane Field Mapping",
     sector: "Agriculture",
     category: "agriculture",
+    type: "Client project",
+    role: "Field-mapping team lead",
+    deliverables: "Field-collection workflow, mapped cane fields, farmer records, PostGIS database, and validation checks",
     image: "assets/kabrassugar.webp",
+    imageAlt: "Mapped sugarcane fields used for agricultural field operations",
+    imageWidth: 905,
+    imageHeight: 300,
     metric: "70-person mapping team",
     summary: "Led a 70-person field team to map out sugarcane fields, organizing the raw data into a structured database that improved supply estimations and resource planning.",
     challenge: "Outdated and incomplete field records made it difficult to maintain farmer information, estimate cane supply, and plan operational resources.",
@@ -114,7 +146,13 @@ const projects = [
     title: "Spatial Operations & Mapping Dashboard",
     sector: "Digital GIS",
     category: "digital",
+    type: "Concept design",
+    role: "Dashboard designer",
+    deliverables: "KPI structure, spatial and tabular data model, and interactive monitoring views",
     image: "assets/dashboard.webp",
+    imageAlt: "Spatial operations dashboard showing project progress and quality indicators",
+    imageWidth: 1365,
+    imageHeight: 634,
     metric: "Progress, quality, and completion KPIs",
     summary: "A dashboard concept that connects spatial and tabular project data to operational reporting for field mapping teams and managers.",
     challenge: "Field programmes need a clear view of coverage, quality status, activity, completion, and resource use without manually assembling repeated reports.",
@@ -136,7 +174,13 @@ const projects = [
     title: "Environmental Monitoring & Conservation GIS",
     sector: "Environmental GIS",
     category: "digital",
+    type: "Technical demonstration",
+    role: "Geospatial analysis and data management",
+    deliverables: "Remote-sensing analysis, spatial models, structured environmental data, metadata, and QA rules",
     image: "assets/environment.webp",
+    imageAlt: "Environmental land-cover map used for monitoring and conservation planning",
+    imageWidth: 1017,
+    imageHeight: 698,
     metric: "Remote sensing + spatial modelling",
     summary: "Environmental data, remote sensing, and spatial modelling combined to support monitoring, conservation planning, and sustainable resource decisions.",
     challenge: "Environmental programmes require consistent, documented spatial evidence to understand change, assess resource distribution, and prioritise conservation action.",
@@ -158,7 +202,13 @@ const projects = [
     title: "Interactive Web GIS Applications",
     sector: "Digital GIS",
     category: "digital",
+    type: "Technical demonstration",
+    role: "Web GIS interface designer",
+    deliverables: "Responsive web-map interface, spatial-service integration, and deployable interface components",
     image: "assets/webgis.webp",
+    imageAlt: "Interactive web map interface displaying spatial information",
+    imageWidth: 644,
+    imageHeight: 363,
     metric: "Responsive spatial decision interfaces",
     summary: "Custom web maps and responsive interfaces built to take spatial data out of complex desktop software and put it directly into the hands of everyday users.",
     challenge: "Many valuable GIS datasets remain difficult for project teams and decision-makers to access when they are limited to specialist desktop environments.",
@@ -179,11 +229,12 @@ const projects = [
 
 const root = document.documentElement;
 const header = document.getElementById("site-header");
-const themeToggle = document.getElementById("theme-toggle");
+const themeToggles = [...document.querySelectorAll("[data-theme-toggle]")];
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 const projectGrid = document.getElementById("project-grid");
 const filters = document.getElementById("project-filters");
+const projectCount = document.getElementById("project-count");
 const dialog = document.getElementById("project-dialog");
 const closeDialogButton = document.getElementById("dialog-close");
 const progressBar = document.getElementById("scroll-progress-bar");
@@ -192,14 +243,28 @@ const savedTheme = localStorage.getItem("portfolio-theme");
 const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 root.dataset.theme = savedTheme || preferredTheme;
 
-themeToggle?.addEventListener("click", () => {
+function updateThemeControls() {
+  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+  themeToggles.forEach(button => {
+    const label = `Switch to ${nextTheme} theme`;
+    button.setAttribute("aria-label", label);
+    button.setAttribute("title", label);
+    const visibleLabel = button.querySelector(".theme-toggle-label");
+    if (visibleLabel) visibleLabel.textContent = `Use ${nextTheme} theme`;
+  });
+}
+
+themeToggles.forEach(button => button.addEventListener("click", () => {
   root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
   localStorage.setItem("portfolio-theme", root.dataset.theme);
-});
+  updateThemeControls();
+}));
+updateThemeControls();
 
 const closeMenu = () => {
   navLinks?.classList.remove("is-open");
   menuToggle?.setAttribute("aria-expanded", "false");
+  menuToggle?.setAttribute("aria-label", "Open menu");
   document.body.classList.remove("is-menu-open");
 };
 
@@ -207,39 +272,74 @@ menuToggle?.addEventListener("click", () => {
   const open = !navLinks.classList.contains("is-open");
   navLinks.classList.toggle("is-open", open);
   menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   document.body.classList.toggle("is-menu-open", open);
 });
 
 navLinks?.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
 window.addEventListener("resize", () => { if (window.innerWidth > 1050) closeMenu(); });
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && navLinks?.classList.contains("is-open")) {
+    closeMenu();
+    menuToggle?.focus();
+  }
+});
+
+function responsiveWidths(project) {
+  return [...new Set([480, 960, project.imageWidth].filter(width => width <= project.imageWidth))].sort((a, b) => a - b);
+}
+
+function projectSrcset(project, format) {
+  const base = project.image.replace(/\.webp$/, "");
+  return responsiveWidths(project).map(width => {
+    const source = format === "avif"
+      ? `${base}-${width}.avif`
+      : width === project.imageWidth ? project.image : `${base}-${width}.webp`;
+    return `${source} ${width}w`;
+  }).join(", ");
+}
 
 function renderProjects(filter = "all") {
   const visible = filter === "all" ? projects : projects.filter(project => project.category === filter);
   projectGrid.innerHTML = visible.map((project, index) => `
-    <article class="project-card reveal" style="--delay:${Math.min(index * 55, 220)}ms">
-      <img class="project-image" src="${project.image}" alt="${project.title} project visual" loading="lazy" width="1400" height="900">
+    <article class="project-card${project.featured ? " project-card--featured" : ""} reveal" data-delay-step="${Math.min(index, 4)}">
+      <picture>
+        <source type="image/avif" srcset="${projectSrcset(project, "avif")}" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw">
+        <img class="project-image" src="${project.image}" srcset="${projectSrcset(project, "webp")}" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="${project.imageAlt}" loading="lazy" decoding="async" width="${project.imageWidth}" height="${project.imageHeight}">
+      </picture>
       <div class="project-overlay"></div>
       <div class="project-topline">
         <span class="project-sector">${project.sector}</span>
-        <span class="project-metric">${project.metric}</span>
+        <span class="project-type">${project.type}</span>
       </div>
       <div class="project-content">
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
+        <dl class="project-facts">
+          <div><dt>Role</dt><dd>${project.role}</dd></div>
+          <div><dt>Scope</dt><dd>${project.metric}</dd></div>
+        </dl>
         <div class="project-footer">
           <span class="project-tools">${project.tools.slice(0, 3).join(" · ")}</span>
-          <button class="project-open" type="button" data-project-id="${project.id}" aria-label="Open ${project.title} case study">↗</button>
+          <a class="project-open" href="#work/${project.id}" data-project-id="${project.id}" aria-label="Open ${project.title} case study">↗</a>
         </div>
       </div>
     </article>
   `).join("");
+  if (projectCount) {
+    projectCount.textContent = `${visible.length} ${visible.length === 1 ? "project" : "projects"} displayed`;
+  }
   observeReveals(projectGrid);
 }
 
 filters?.addEventListener("click", event => {
   const button = event.target.closest("button[data-filter]");
   if (!button) return;
-  filters.querySelectorAll("button").forEach(item => item.classList.toggle("is-active", item === button));
+  filters.querySelectorAll("button").forEach(item => {
+    const active = item === button;
+    item.classList.toggle("is-active", active);
+    item.setAttribute("aria-pressed", String(active));
+  });
   renderProjects(button.dataset.filter);
 });
 
@@ -248,26 +348,42 @@ function setList(elementId, items) {
   list.innerHTML = items.map(item => `<li>${item}</li>`).join("");
 }
 
-function openProject(project) {
+let lastProjectTrigger = null;
+let closingDialogFromUrl = false;
+
+function openProject(project, trigger, updateUrl = true) {
+  lastProjectTrigger = trigger;
   document.getElementById("dialog-image").src = project.image;
-  document.getElementById("dialog-image").alt = `${project.title} project visual`;
+  document.getElementById("dialog-image").srcset = projectSrcset(project, "webp");
+  document.getElementById("dialog-image").alt = project.imageAlt;
+  document.getElementById("dialog-image").width = project.imageWidth;
+  document.getElementById("dialog-image").height = project.imageHeight;
+  document.getElementById("dialog-source-avif").srcset = projectSrcset(project, "avif");
   document.getElementById("dialog-sector").textContent = project.sector;
   document.getElementById("dialog-title").textContent = project.title;
   document.getElementById("dialog-summary").textContent = project.summary;
   document.getElementById("dialog-metric").textContent = project.metric;
+  document.getElementById("dialog-type").textContent = project.type;
+  document.getElementById("dialog-role").textContent = project.role;
+  document.getElementById("dialog-deliverables").textContent = project.deliverables;
   document.getElementById("dialog-challenge").textContent = project.challenge;
   setList("dialog-contribution", project.contribution);
   setList("dialog-outcome", project.outcome);
   document.getElementById("dialog-tools").innerHTML = project.tools.map(tool => `<b>${tool}</b>`).join("");
-  dialog.showModal();
+  dialog.dataset.projectId = project.id;
+  if (!dialog.open) dialog.showModal();
   document.body.style.overflow = "hidden";
+  if (updateUrl && window.location.hash !== `#work/${project.id}`) {
+    history.pushState(null, "", `#work/${project.id}`);
+  }
 }
 
 projectGrid?.addEventListener("click", event => {
-  const button = event.target.closest("button[data-project-id]");
-  if (!button) return;
-  const project = projects.find(item => item.id === button.dataset.projectId);
-  if (project) openProject(project);
+  const link = event.target.closest("a[data-project-id]");
+  if (!link) return;
+  event.preventDefault();
+  const project = projects.find(item => item.id === link.dataset.projectId);
+  if (project) openProject(project, link);
 });
 
 function closeDialog() {
@@ -280,34 +396,78 @@ dialog?.addEventListener("click", event => {
   const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
   if (outside) closeDialog();
 });
-dialog?.addEventListener("close", () => { document.body.style.overflow = ""; });
+dialog?.addEventListener("close", () => {
+  document.body.style.overflow = "";
+  delete dialog.dataset.projectId;
+  if (!closingDialogFromUrl && window.location.hash.startsWith("#work/")) {
+    history.replaceState(null, "", "#work");
+  }
+  closingDialogFromUrl = false;
+  if (lastProjectTrigger?.isConnected) lastProjectTrigger.focus();
+  lastProjectTrigger = null;
+});
 
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: "0px 0px -45px" });
+function projectFromHash() {
+  const match = window.location.hash.match(/^#work\/([^/]+)$/);
+  if (!match) return null;
+  let projectId;
+  try {
+    projectId = decodeURIComponent(match[1]);
+  } catch {
+    return null;
+  }
+  return projects.find(project => project.id === projectId) || null;
+}
+
+function syncProjectWithUrl() {
+  const project = projectFromHash();
+  if (project) {
+    const trigger = projectGrid?.querySelector(`[data-project-id="${project.id}"]`) || null;
+    if (dialog.dataset.projectId !== project.id) openProject(project, trigger, false);
+  } else if (dialog.open) {
+    closingDialogFromUrl = true;
+    dialog.close();
+  }
+}
+
+window.addEventListener("hashchange", syncProjectWithUrl);
+
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -45px" })
+  : null;
+
+if (revealObserver) root.classList.add("reveal-capable");
 
 function observeReveals(scope = document) {
   scope.querySelectorAll(".reveal:not(.is-visible)").forEach(element => {
-    const delay = element.dataset.delay;
-    if (delay) element.style.setProperty("--delay", `${delay}ms`);
-    revealObserver.observe(element);
+    if (revealObserver) revealObserver.observe(element);
+    else element.classList.add("is-visible");
   });
 }
 
 const sections = [...document.querySelectorAll("main section[id]")];
 const navAnchors = [...document.querySelectorAll(".nav-links a")];
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    navAnchors.forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
-  });
-}, { rootMargin: "-32% 0px -58%", threshold: 0 });
-sections.forEach(section => sectionObserver.observe(section));
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navAnchors.forEach(link => {
+        const active = link.getAttribute("href") === `#${entry.target.id}`;
+        link.classList.toggle("is-active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    });
+  }, { rootMargin: "-32% 0px -58%", threshold: 0 });
+  sections.forEach(section => sectionObserver.observe(section));
+}
 
 function updateScrollUI() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -318,16 +478,28 @@ function updateScrollUI() {
 window.addEventListener("scroll", updateScrollUI, { passive: true });
 
 const contactForm = document.getElementById("contact-form");
+const contactMessage = document.getElementById("contact-message");
+const messageCounter = document.getElementById("message-counter");
+
+function updateMessageCounter() {
+  if (contactMessage && messageCounter) {
+    messageCounter.textContent = `${contactMessage.value.length} / ${contactMessage.maxLength}`;
+  }
+}
+
+contactMessage?.addEventListener("input", updateMessageCounter);
+updateMessageCounter();
+
 contactForm?.addEventListener("submit", event => {
   event.preventDefault();
   if (!contactForm.reportValidity()) return;
   const name = document.getElementById("contact-name").value.trim();
   const email = document.getElementById("contact-email").value.trim();
   const type = document.getElementById("contact-type").value;
-  const message = document.getElementById("contact-message").value.trim();
-  const body = `Hello Benard, I viewed your portfolio and would like to discuss a project.\n\nName: ${name}\nEmail: ${email}\nProject type: ${type}\n\nProject brief:\n${message}`;
+  const message = contactMessage.value.trim();
+  const body = `Hello Benard, I viewed your portfolio and would like to discuss a project.\n\nName: ${name}\nEmail: ${email || "Not provided"}\nProject type: ${type}\n\nProject brief:\n${message}`;
   const url = `https://wa.me/254729482189?text=${encodeURIComponent(body)}`;
-  document.getElementById("form-note").textContent = "Opening WhatsApp with your message ready for review…";
+  document.getElementById("form-status").textContent = "Opening WhatsApp with your message ready for review…";
   window.open(url, "_blank", "noopener,noreferrer");
 });
 
@@ -335,3 +507,4 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
 renderProjects();
 observeReveals();
 updateScrollUI();
+syncProjectWithUrl();

@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://benardokelloportfolio.vercel.app/sitemap.xml

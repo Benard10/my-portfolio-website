@@ -1,15 +1,19 @@
 {
   "name": "Benard Okello \u2014 Geospatial Portfolio",
   "short_name": "Benard GIS",
-  "start_url": "./index.html",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "description": "Geospatial systems, remote sensing, automation, dashboards, and web GIS by Benard Okello.",
   "background_color": "#07120f",
   "theme_color": "#07120f",
   "icons": [
     {
       "src": "assets/map.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

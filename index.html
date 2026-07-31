@@ -2,31 +2,64 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <script src="init.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio of Benard Okello, a Nairobi-based geospatial analyst and research specialist working across spatial data systems, remote sensing, automation, dashboards, and web GIS.">
   <meta name="theme-color" content="#07120f">
+  <link rel="canonical" href="https://benardokelloportfolio.vercel.app/">
   <meta property="og:title" content="Benard Okello — Geospatial Analyst">
   <meta property="og:description" content="Decision-ready geospatial systems for infrastructure, agriculture, aviation, land administration, and environmental programmes.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/aerial.webp">
+  <meta property="og:site_name" content="Benard Okello — Geospatial Portfolio">
+  <meta property="og:url" content="https://benardokelloportfolio.vercel.app/">
+  <meta property="og:image" content="https://benardokelloportfolio.vercel.app/assets/social-preview.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:alt" content="Benard Okello, Geospatial Analyst, with an aerial mapping and spatial-data graphic">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Benard Okello — Geospatial Analyst">
+  <meta name="twitter:description" content="Geospatial systems, remote sensing, automation, dashboards, and web GIS for practical decisions.">
+  <meta name="twitter:image" content="https://benardokelloportfolio.vercel.app/assets/social-preview.webp">
+  <meta name="twitter:image:alt" content="Benard Okello, Geospatial Analyst, with an aerial mapping and spatial-data graphic">
   <title>Benard Okello — Geospatial Analyst & Research Specialist</title>
   <link rel="icon" href="assets/map.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/map.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preload" href="assets/profile.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/profile-825.avif" as="image" type="image/avif" imagesrcset="assets/profile-400.avif 400w, assets/profile-640.avif 640w, assets/profile-825.avif 825w" imagesizes="(max-width: 820px) min(calc(100vw - 28px), 520px), 400px">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Benard Okello",
-    "jobTitle": "Geospatial Analyst & Research Specialist",
-    "email": "mailto:benardokellotieno@gmail.com",
-    "telephone": "+254729482189",
-    "address": {"@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE"},
-    "sameAs": [
-      "https://www.linkedin.com/in/benard-okello-79682a112/",
-      "https://github.com/Benard10"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://benardokelloportfolio.vercel.app/#person",
+        "name": "Benard Okello",
+        "url": "https://benardokelloportfolio.vercel.app/",
+        "jobTitle": "Geospatial Analyst & Research Specialist",
+        "email": "mailto:benardokellotieno@gmail.com",
+        "telephone": "+254729482189",
+        "address": {"@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE"},
+        "sameAs": [
+          "https://www.linkedin.com/in/benard-okello-79682a112/",
+          "https://github.com/Benard10"
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://benardokelloportfolio.vercel.app/#portfolio",
+        "url": "https://benardokelloportfolio.vercel.app/",
+        "name": "Benard Okello — Geospatial Portfolio",
+        "about": {"@id": "https://benardokelloportfolio.vercel.app/#person"},
+        "hasPart": [
+          {"@type": "CreativeWork", "name": "Juba City Land Information Management System", "url": "https://benardokelloportfolio.vercel.app/#work/juba-lims"},
+          {"@type": "CreativeWork", "name": "West Kenya Sugarcane Management & NDVI Analysis", "url": "https://benardokelloportfolio.vercel.app/#work/west-kenya-ndvi"},
+          {"@type": "CreativeWork", "name": "Entebbe International Airport GIS Database Update", "url": "https://benardokelloportfolio.vercel.app/#work/entebbe-airport"},
+          {"@type": "CreativeWork", "name": "Kenyan Standard Gauge Railway GIS Foundation", "url": "https://benardokelloportfolio.vercel.app/#work/sgr"},
+          {"@type": "CreativeWork", "name": "Kabras Sugar Cane Field Mapping", "url": "https://benardokelloportfolio.vercel.app/#work/kabras-field-mapping"}
+        ]
+      }
     ]
   }
   </script>
@@ -54,10 +87,17 @@
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
+        <div class="mobile-nav-actions">
+          <button class="mobile-theme-toggle" id="theme-toggle-mobile" type="button" data-theme-toggle aria-label="Switch to light theme">
+            <span aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Use light theme</span>
+          </button>
+          <a href="#contact" class="button button-primary">Start a conversation</a>
+        </div>
       </div>
 
       <div class="nav-actions">
-        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+        <button class="icon-button" id="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme">
           <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
           <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.4A8.5 8.5 0 1 1 8.6 4 7 7 0 0 0 20 15.4Z"/></svg>
         </button>
@@ -83,13 +123,16 @@
             <i aria-hidden="true"></i>
             <span>10+ years experience</span>
             <i aria-hidden="true"></i>
-            <span>Field to executive evidence</span>
+            <span>QA-driven delivery</span>
           </div>
         </div>
 
         <div class="hero-visual reveal" data-delay="120">
           <div class="profile-frame">
-            <img src="assets/profile.webp" alt="Portrait of Benard Okello" width="900" height="1100">
+            <picture>
+              <source type="image/avif" srcset="assets/profile-400.avif 400w, assets/profile-640.avif 640w, assets/profile-825.avif 825w" sizes="(max-width: 820px) min(calc(100vw - 28px), 520px), 400px">
+              <img src="assets/profile.webp" srcset="assets/profile-400.webp 400w, assets/profile-640.webp 640w, assets/profile.webp 825w" sizes="(max-width: 820px) min(calc(100vw - 28px), 520px), 400px" alt="Portrait of Benard Okello" width="825" height="1100" fetchpriority="high" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -100,9 +143,14 @@
         <div class="section-heading reveal">
           <p class="kicker">01 · Profile</p>
           <h2>Bridging the Gap Between Field Operations and Executive Decisions.</h2>
+          <dl class="profile-highlights" aria-label="Professional overview">
+            <div><dt>Automation impact</dt><dd>40% less manual processing with Python and PyQGIS</dd></div>
+            <div><dt>Leadership</dt><dd>Production teams, technical training and QA oversight</dd></div>
+            <div><dt>Coverage</dt><dd>Agriculture, aviation, land and infrastructure</dd></div>
+          </dl>
         </div>
         <div class="about-copy reveal" data-delay="100">
-          <p class="lead">I am a geospatial specialist with over a decade of experience bridging the gap between raw spatial data and strategic research. Over the last ten years, my career has evolved from hands-on data collection to designing automated workflows, managing databases, and leading technical teams.</p>
+          <p class="lead">I am a geospatial specialist whose career has evolved from hands-on data collection to automated workflows, database management, technical research, and team leadership.</p>
           <p>Rather than delivering isolated maps, I build connected systems—linking field operations and satellite imagery directly to clean databases and interactive dashboards that your team can rely on.</p>
           <div class="about-links">
             <a href="mailto:benardokellotieno@gmail.com">Email me <span>↗</span></a>
@@ -120,14 +168,14 @@
           <p>My technical toolkit is built around four practical outcomes: creating trustworthy data, delivering rigorous analysis, automating repetitive workflows, and providing clear decision support.</p>
         </div>
         <div class="capability-grid">
-          <article class="capability-card featured reveal">
+          <article class="capability-card capability-card--prominent reveal">
             <span class="card-number">01</span>
             <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m8 35 9-21 8 11 7-17 8 27H8Z"/><path d="M11 39h28"/></svg></div>
             <h3>Spatial Analysis &amp; Mapping</h3>
             <p>I translate complex terrain, network, environmental, and infrastructure data into clean, easy-to-understand map products that stand up to scrutiny.</p>
             <ul class="tag-list"><li>ArcGIS Pro</li><li>QGIS</li><li>Spatial modelling</li><li>AutoCAD</li></ul>
           </article>
-          <article class="capability-card reveal" data-delay="70">
+          <article class="capability-card capability-card--prominent reveal" data-delay="70">
             <span class="card-number">02</span>
             <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="11" rx="14" ry="6"/><path d="M10 11v12c0 3 6 6 14 6s14-3 14-6V11M10 23v12c0 3 6 6 14 6s14-3 14-6V23"/></svg></div>
             <h3>Spatial Databases &amp; QA</h3>
@@ -158,16 +206,66 @@
           <div><p class="kicker">03 · Selected work</p><h2>Projects Shaped Around Real Operational Needs.</h2></div>
           <p>Each case study is presented as a problem, role, delivery approach, and impact—not only as a final map.</p>
         </div>
-        <div class="filter-bar reveal" id="project-filters" aria-label="Filter projects">
-          <button class="filter-button is-active" type="button" data-filter="all">All work</button>
-          <button class="filter-button" type="button" data-filter="infrastructure">Infrastructure</button>
-          <button class="filter-button" type="button" data-filter="agriculture">Agriculture</button>
-          <button class="filter-button" type="button" data-filter="land">Land</button>
-          <button class="filter-button" type="button" data-filter="aviation">Aviation</button>
-          <button class="filter-button" type="button" data-filter="digital">Digital GIS</button>
+        <div class="filter-bar reveal" id="project-filters" role="group" aria-label="Filter projects">
+          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All work</button>
+          <button class="filter-button" type="button" data-filter="infrastructure" aria-pressed="false">Infrastructure</button>
+          <button class="filter-button" type="button" data-filter="agriculture" aria-pressed="false">Agriculture</button>
+          <button class="filter-button" type="button" data-filter="land" aria-pressed="false">Land</button>
+          <button class="filter-button" type="button" data-filter="aviation" aria-pressed="false">Aviation</button>
+          <button class="filter-button" type="button" data-filter="digital" aria-pressed="false">Digital GIS</button>
         </div>
-        <div class="project-grid" id="project-grid"></div>
-        <noscript><p class="noscript-message">JavaScript is required to display the interactive project case studies.</p></noscript>
+        <p class="project-count" id="project-count" aria-live="polite">8 projects displayed</p>
+        <div class="project-grid" id="project-grid">
+          <article class="project-card project-card--featured reveal">
+            <picture><source type="image/avif" srcset="assets/juba-lims-480.avif 480w, assets/juba-lims-960.avif 960w, assets/juba-lims-1363.avif 1363w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/juba-lims.webp" srcset="assets/juba-lims-480.webp 480w, assets/juba-lims-960.webp 960w, assets/juba-lims.webp 1363w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Land information dashboard and mapped parcels for Juba City" loading="lazy" decoding="async" width="1363" height="673"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Land administration</span><span class="project-type">Client project</span></div>
+            <div class="project-content"><h3>Juba City Land Information Management System</h3><p>A mapping, database, and dashboard workflow designed to improve access to fragmented land information and support more auditable administration.</p><dl class="project-facts"><div><dt>Role</dt><dd>GIS team supervision and spatial-systems delivery</dd></div><div><dt>Scope</dt><dd>Centralised spatial land records</dd></div></dl><div class="project-footer"><span class="project-tools">QGIS · PostgreSQL · PostGIS</span><a class="project-open" href="#work/juba-lims" data-project-id="juba-lims" aria-label="Open Juba City Land Information Management System case study">↗</a></div></div>
+          </article>
+          <article class="project-card project-card--featured reveal">
+            <picture><source type="image/avif" srcset="assets/ndvi-analysis-480.avif 480w, assets/ndvi-analysis-960.avif 960w, assets/ndvi-analysis-1355.avif 1355w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/ndvi-analysis.webp" srcset="assets/ndvi-analysis-480.webp 480w, assets/ndvi-analysis-960.webp 960w, assets/ndvi-analysis.webp 1355w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="NDVI crop-health map highlighting variation across sugarcane fields" loading="lazy" decoding="async" width="1355" height="634"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Agriculture</span><span class="project-type">Client project</span></div>
+            <div class="project-content"><h3>West Kenya Sugarcane Management &amp; NDVI Analysis</h3><p>Using Google Earth Engine and NDVI workflows to monitor sugarcane health across vast areas and reduce reliance on manual field surveys.</p><dl class="project-facts"><div><dt>Role</dt><dd>Remote-sensing workflow contributor</dd></div><div><dt>Scope</dt><dd>100,000+ fields</dd></div></dl><div class="project-footer"><span class="project-tools">Google Earth Engine · NDVI · Remote sensing</span><a class="project-open" href="#work/west-kenya-ndvi" data-project-id="west-kenya-ndvi" aria-label="Open West Kenya Sugarcane Management and NDVI Analysis case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/entebbe-airport-480.avif 480w, assets/entebbe-airport-960.avif 960w, assets/entebbe-airport-1234.avif 1234w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/entebbe-airport.webp" srcset="assets/entebbe-airport-480.webp 480w, assets/entebbe-airport-960.webp 960w, assets/entebbe-airport.webp 1234w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Three-dimensional airport infrastructure mapping at Entebbe International Airport" loading="lazy" decoding="async" width="1234" height="900"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Aviation</span><span class="project-type">Client project</span></div>
+            <div class="project-content"><h3>Entebbe International Airport GIS Database Update</h3><p>An overhaul of airport spatial records and 3D infrastructure mapping to support operational safety, aerodrome charting, and future planning.</p><dl class="project-facts"><div><dt>Role</dt><dd>GIS production and quality control</dd></div><div><dt>Scope</dt><dd>3D airport GIS and aerodrome charting</dd></div></dl><div class="project-footer"><span class="project-tools">ArcGIS · AutoCAD · PostGIS</span><a class="project-open" href="#work/entebbe-airport" data-project-id="entebbe-airport" aria-label="Open Entebbe International Airport GIS Database Update case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/aerial-480.avif 480w, assets/aerial-960.avif 960w, assets/aerial-1379.avif 1379w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/aerial.webp" srcset="assets/aerial-480.webp 480w, assets/aerial-960.webp 960w, assets/aerial.webp 1379w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Aerial view of transport infrastructure and surrounding terrain" loading="lazy" decoding="async" width="1379" height="900"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Infrastructure</span><span class="project-type">Client project</span></div>
+            <div class="project-content"><h3>Kenyan Standard Gauge Railway GIS Foundation</h3><p>Terrain, network, settlement, and environmental datasets prepared for engineering and planning decisions along a major transport corridor.</p><dl class="project-facts"><div><dt>Role</dt><dd>GIS mapping and data production</dd></div><div><dt>Scope</dt><dd>National infrastructure corridor</dd></div></dl><div class="project-footer"><span class="project-tools">ArcGIS · AutoCAD · PostGIS</span><a class="project-open" href="#work/sgr" data-project-id="sgr" aria-label="Open Kenyan Standard Gauge Railway GIS Foundation case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/kabrassugar-480.avif 480w, assets/kabrassugar-905.avif 905w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/kabrassugar.webp" srcset="assets/kabrassugar-480.webp 480w, assets/kabrassugar.webp 905w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Mapped sugarcane fields used for agricultural field operations" loading="lazy" decoding="async" width="905" height="300"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Agriculture</span><span class="project-type">Client project</span></div>
+            <div class="project-content"><h3>Kabras Sugar Cane Field Mapping</h3><p>Led a 70-person field team to map sugarcane fields and organise the data into a structured database for supply estimation and resource planning.</p><dl class="project-facts"><div><dt>Role</dt><dd>Field-mapping team lead</dd></div><div><dt>Scope</dt><dd>70-person mapping team</dd></div></dl><div class="project-footer"><span class="project-tools">GPS field mapping · QGIS · PostGIS</span><a class="project-open" href="#work/kabras-field-mapping" data-project-id="kabras-field-mapping" aria-label="Open Kabras Sugar Cane Field Mapping case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/dashboard-480.avif 480w, assets/dashboard-960.avif 960w, assets/dashboard-1365.avif 1365w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/dashboard.webp" srcset="assets/dashboard-480.webp 480w, assets/dashboard-960.webp 960w, assets/dashboard.webp 1365w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Spatial operations dashboard showing project progress and quality indicators" loading="lazy" decoding="async" width="1365" height="634"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Digital GIS</span><span class="project-type">Concept design</span></div>
+            <div class="project-content"><h3>Spatial Operations &amp; Mapping Dashboard</h3><p>A dashboard concept connecting spatial and tabular project data to operational reporting for field mapping teams and managers.</p><dl class="project-facts"><div><dt>Role</dt><dd>Dashboard designer</dd></div><div><dt>Scope</dt><dd>Progress, quality, and completion KPIs</dd></div></dl><div class="project-footer"><span class="project-tools">Power BI · Python · Streamlit</span><a class="project-open" href="#work/mapping-dashboard" data-project-id="mapping-dashboard" aria-label="Open Spatial Operations and Mapping Dashboard case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/environment-480.avif 480w, assets/environment-960.avif 960w, assets/environment-1017.avif 1017w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/environment.webp" srcset="assets/environment-480.webp 480w, assets/environment-960.webp 960w, assets/environment.webp 1017w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Environmental land-cover map used for monitoring and conservation planning" loading="lazy" decoding="async" width="1017" height="698"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Environmental GIS</span><span class="project-type">Technical demonstration</span></div>
+            <div class="project-content"><h3>Environmental Monitoring &amp; Conservation GIS</h3><p>Environmental data, remote sensing, and spatial modelling combined to support monitoring, conservation planning, and sustainable resource decisions.</p><dl class="project-facts"><div><dt>Role</dt><dd>Geospatial analysis and data management</dd></div><div><dt>Scope</dt><dd>Remote sensing + spatial modelling</dd></div></dl><div class="project-footer"><span class="project-tools">Remote sensing · Spatial modelling · PostGIS</span><a class="project-open" href="#work/environmental-gis" data-project-id="environmental-gis" aria-label="Open Environmental Monitoring and Conservation GIS case study">↗</a></div></div>
+          </article>
+          <article class="project-card reveal">
+            <picture><source type="image/avif" srcset="assets/webgis-480.avif 480w, assets/webgis-644.avif 644w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/webgis.webp" srcset="assets/webgis-480.webp 480w, assets/webgis.webp 644w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Interactive web map interface displaying spatial information" loading="lazy" decoding="async" width="644" height="363"></picture>
+            <div class="project-overlay"></div>
+            <div class="project-topline"><span class="project-sector">Digital GIS</span><span class="project-type">Technical demonstration</span></div>
+            <div class="project-content"><h3>Interactive Web GIS Applications</h3><p>Custom web maps and responsive interfaces that make spatial data accessible to everyday users outside specialist desktop software.</p><dl class="project-facts"><div><dt>Role</dt><dd>Web GIS interface designer</dd></div><div><dt>Scope</dt><dd>Responsive spatial decision interfaces</dd></div></dl><div class="project-footer"><span class="project-tools">HTML · CSS · JavaScript</span><a class="project-open" href="#work/webgis" data-project-id="webgis" aria-label="Open Interactive Web GIS Applications case study">↗</a></div></div>
+          </article>
+        </div>
+        <noscript><p class="noscript-message">All project summaries are available above. Enable JavaScript to filter projects and open the full case-study details.</p></noscript>
       </div>
     </section>
 
@@ -224,7 +322,7 @@
         <form class="contact-form" id="contact-form">
           <div class="form-row">
             <label>Name<input id="contact-name" name="name" type="text" autocomplete="name" required placeholder="Your name"></label>
-            <label>Email<input id="contact-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+            <label><span class="field-label">Email <span class="optional-label">Optional</span></span><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
           </div>
           <label>Project type
             <select id="contact-type" name="project-type" required>
@@ -237,9 +335,12 @@
               <option>Other geospatial work</option>
             </select>
           </label>
-          <label>Project brief<textarea id="contact-message" name="message" rows="5" required placeholder="Describe the project, available data, expected output, and timing."></textarea></label>
-          <button class="button button-primary" type="submit">Continue in WhatsApp <span aria-hidden="true">↗</span></button>
-          <p class="form-note" id="form-note" aria-live="polite">Clicking the button will format your message and open it directly in WhatsApp so you can review it before sending. This website doesn't store any of your personal data.</p>
+          <label>Project brief<textarea id="contact-message" name="message" rows="5" maxlength="1500" required aria-describedby="message-counter form-privacy" placeholder="Describe the project, available data, expected output, and timing."></textarea></label>
+          <div class="field-meta"><span>Include the goal, available data, expected output, and timing.</span><span id="message-counter">0 / 1500</span></div>
+          <button class="button button-primary" type="submit">Review message in WhatsApp <span aria-hidden="true">↗</span></button>
+          <a class="form-email-fallback" href="mailto:benardokellotieno@gmail.com?subject=Geospatial%20project%20enquiry">Prefer email? Send your enquiry directly ↗</a>
+          <p class="form-note" id="form-privacy">This website does not save your form details. When you continue, the information entered above will be included in a WhatsApp message and processed according to WhatsApp’s privacy terms.</p>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -254,17 +355,22 @@
     <div class="container footer-bottom"><span>© <span id="current-year"></span> Benard Okello</span><a href="#home">Back to top ↑</a></div>
   </footer>
 
-  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-summary">
     <div class="dialog-shell">
       <button class="dialog-close icon-button" id="dialog-close" type="button" aria-label="Close project details">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
-      <div class="dialog-image-wrap"><img id="dialog-image" src="" alt=""></div>
+      <div class="dialog-image-wrap"><picture><source id="dialog-source-avif" type="image/avif"><img id="dialog-image" src="" sizes="(max-width: 1100px) calc(100vw - 28px), 1100px" alt="" decoding="async"></picture></div>
       <div class="dialog-content">
         <p class="kicker" id="dialog-sector"></p>
         <h2 id="dialog-title"></h2>
         <p class="dialog-summary" id="dialog-summary"></p>
         <div class="dialog-metric" id="dialog-metric"></div>
+        <dl class="dialog-evidence" aria-label="Project evidence">
+          <div><dt>Project type</dt><dd id="dialog-type"></dd></div>
+          <div><dt>Role</dt><dd id="dialog-role"></dd></div>
+          <div><dt>Deliverables</dt><dd id="dialog-deliverables"></dd></div>
+        </dl>
         <div class="case-columns">
           <section><h3>Challenge</h3><p id="dialog-challenge"></p></section>
           <section><h3>My contribution</h3><ul id="dialog-contribution"></ul></section>
