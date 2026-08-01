@@ -255,9 +255,9 @@ html[data-theme="light"] .hero-badge { color: var(--accent-deep); background: rg
 .project-facts dd { margin: 0; color: #d8e6e0; }
 .project-footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 20px; }
 .project-tools { min-width: 0; color: #9fb3aa; font-size: .66rem; font-weight: 750; letter-spacing: .06em; line-height: 1.35; text-transform: uppercase; }
-.project-open { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; cursor: pointer; font-size: 1.2rem; transition: .2s ease; }
+.project-open { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; cursor: pointer; font-size: 1.2rem; transition: background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease; }
 .project-open::after { content: ""; position: absolute; inset: 0; }
-.project-open:hover { background: var(--accent); border-color: var(--accent); color: #052118; transform: rotate(-8deg); }
+.project-open:hover { background: var(--accent); border-color: var(--accent); color: #052118; box-shadow: 0 8px 22px rgba(57,217,158,.25); }
 .noscript-message { padding: 20px; border: 1px solid var(--line); border-radius: 15px; color: var(--muted); }
 
 .process-section { overflow: hidden; }
