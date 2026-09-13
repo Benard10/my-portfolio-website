@@ -5,7 +5,7 @@
   <script src="init.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio of Benard Okello, a Nairobi-based geospatial analyst and research specialist working across spatial data systems, remote sensing, automation, dashboards, and web GIS.">
-  <meta name="theme-color" content="#07120f">
+  <meta name="theme-color" content="#0b0c0e">
   <link rel="canonical" href="https://benardokelloportfolio.vercel.app/">
   <meta property="og:title" content="Benard Okello — Geospatial Analyst">
   <meta property="og:description" content="Decision-ready geospatial systems for infrastructure, agriculture, aviation, land administration, and environmental programmes.">
@@ -53,11 +53,18 @@
         "name": "Benard Okello — Geospatial Portfolio",
         "about": {"@id": "https://benardokelloportfolio.vercel.app/#person"},
         "hasPart": [
+          {"@type": "CreativeWork", "name": "Kisarawe Ranch Land-Cover Monitoring", "url": "https://benardokelloportfolio.vercel.app/#work/kisarawe-monitoring"},
+          {"@type": "CreativeWork", "name": "Nyongoro Palm Oil Suitability", "url": "https://benardokelloportfolio.vercel.app/#work/nyongoro-suitability"},
+          {"@type": "SoftwareApplication", "name": "Ebola Outbreak Tracking Dashboard", "url": "https://benardokelloportfolio.vercel.app/#work/outbreak-map"},
           {"@type": "CreativeWork", "name": "Juba City Land Information Management System", "url": "https://benardokelloportfolio.vercel.app/#work/juba-lims"},
           {"@type": "CreativeWork", "name": "West Kenya Sugarcane Management & NDVI Analysis", "url": "https://benardokelloportfolio.vercel.app/#work/west-kenya-ndvi"},
           {"@type": "CreativeWork", "name": "Entebbe International Airport GIS Database Update", "url": "https://benardokelloportfolio.vercel.app/#work/entebbe-airport"},
           {"@type": "CreativeWork", "name": "Kenyan Standard Gauge Railway GIS Foundation", "url": "https://benardokelloportfolio.vercel.app/#work/sgr"},
-          {"@type": "CreativeWork", "name": "Kabras Sugar Cane Field Mapping", "url": "https://benardokelloportfolio.vercel.app/#work/kabras-field-mapping"}
+          {"@type": "CreativeWork", "name": "Kabras Sugar Cane Field Mapping", "url": "https://benardokelloportfolio.vercel.app/#work/kabras-field-mapping"},
+          {"@type": "CreativeWork", "name": "Spatial Operations & Mapping Dashboard", "url": "https://benardokelloportfolio.vercel.app/#work/mapping-dashboard"},
+          {"@type": "CreativeWork", "name": "Environmental Monitoring & Conservation GIS", "url": "https://benardokelloportfolio.vercel.app/#work/environmental-gis"},
+          {"@type": "SoftwareApplication", "name": "Interactive Web GIS Applications", "url": "https://benardokelloportfolio.vercel.app/#work/webgis"},
+          {"@type": "Service", "name": "Website & Web Application Development", "url": "https://benardokelloportfolio.vercel.app/#work/website-development"}
         ]
       }
     ]
@@ -110,20 +117,20 @@
     <section class="hero section" id="home">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <div class="hero-badge">Geospatial portfolio</div>
-          <h1>Benard Okello</h1>
-          <p class="hero-title">Geospatial Analyst &amp; Research Specialist</p>
-          <p class="hero-lede">I build spatial data systems, remote sensing workflows, and web dashboards that turn complex data into clear, dependable evidence for decision-makers.</p>
+          <div class="hero-badge"><span aria-hidden="true"></span> Geospatial Analyst · Nairobi, Kenya</div>
+          <p class="hero-name">Benard Okello</p>
+          <h1>I transform geospatial data into decision-ready solutions.</h1>
+          <p class="hero-lede">From satellite imagery and field observations to spatial models and databases, I build analyses, maps, and tools that make complex conditions clear and actionable.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
-            <a class="button button-secondary" href="assets/benard_okello_CV.pdf" target="_blank" rel="noopener">View résumé</a>
+            <button class="button button-secondary" type="button" data-resume-request>Request résumé</button>
           </div>
           <div class="hero-proof" aria-label="Professional highlights">
-            <span>Nairobi, Kenya</span>
+            <span><strong>10+</strong> years in GIS</span>
             <i aria-hidden="true"></i>
-            <span>10+ years experience</span>
+            <span>End-to-end geospatial delivery</span>
             <i aria-hidden="true"></i>
-            <span>QA-driven delivery</span>
+            <span>Team leadership &amp; QA</span>
           </div>
         </div>
 
@@ -134,24 +141,30 @@
               <img src="assets/profile-1122.webp" srcset="assets/profile-400.webp 400w, assets/profile-640.webp 640w, assets/profile-960.webp 960w, assets/profile-1122.webp 1122w" sizes="(max-width: 820px) min(calc(100vw - 28px), 520px), (max-width: 1100px) 400px, 480px" alt="Portrait of Benard Okello" width="1122" height="1402" fetchpriority="high" decoding="async">
             </picture>
           </div>
+          <div class="tool-chip tool-chip--one"><span>Google Earth Engine</span><strong>Cloud remote sensing</strong></div>
+          <div class="tool-chip tool-chip--two"><span>QGIS · PyQGIS</span><strong>Analysis &amp; automation</strong></div>
+          <div class="tool-chip tool-chip--three"><span>PostgreSQL · PostGIS</span><strong>Spatial databases</strong></div>
+          <div class="tool-chip tool-chip--four"><span>Python · GeoPandas</span><strong>Spatial models &amp; pipelines</strong></div>
+          <div class="map-coordinate" aria-hidden="true">01.2921° S / 36.8219° E</div>
         </div>
+
       </div>
     </section>
 
     <section class="section about-section" id="about">
       <div class="container about-grid">
         <div class="section-heading reveal">
-          <p class="kicker">01 · Profile</p>
-          <h2>Bridging the Gap Between Field Operations and Executive Decisions.</h2>
+          <p class="kicker">Profile</p>
+          <h2>Reading the ground from above—and making it useful.</h2>
           <dl class="profile-highlights" aria-label="Professional overview">
-            <div><dt>Automation impact</dt><dd>40% less manual processing with Python and PyQGIS</dd></div>
+            <div><dt>Practice</dt><dd>Remote sensing, spatial systems and applied research</dd></div>
             <div><dt>Leadership</dt><dd>Production teams, technical training and QA oversight</dd></div>
-            <div><dt>Coverage</dt><dd>Agriculture, aviation, land and infrastructure</dd></div>
+            <div><dt>Base</dt><dd>  Nairobi, Kenya</dd></div>
           </dl>
         </div>
         <div class="about-copy reveal" data-delay="100">
-          <p class="lead">I am a geospatial specialist whose career has evolved from hands-on data collection to automated workflows, database management, technical research, and team leadership.</p>
-          <p>Rather than delivering isolated maps, I build connected systems—linking field operations and satellite imagery directly to clean databases and interactive dashboards that your team can rely on.</p>
+          <p class="lead">For more than a decade, I’ve worked across the full geospatial workflow—from field capture and production mapping to remote-sensing analysis, database design, automation, and team leadership.</p>
+          <p>I turn imagery and field evidence into clear reports, dependable spatial data, and practical tools. The aim is simple: help teams see what is changing, understand what is viable, and decide what to do next.</p>
           <div class="about-links">
             <a href="mailto:benardokellotieno@gmail.com">Email me <span>↗</span></a>
             <a href="https://www.linkedin.com/in/benard-okello-79682a112/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
@@ -164,37 +177,30 @@
     <section class="section capabilities-section" id="capabilities">
       <div class="container">
         <div class="section-heading split-heading reveal">
-          <div><p class="kicker">02 · Capabilities</p><h2>A Full Geospatial Delivery Stack.</h2></div>
-          <p>My technical toolkit is built around four practical outcomes: creating trustworthy data, delivering rigorous analysis, automating repetitive workflows, and providing clear decision support.</p>
+          <div><p class="kicker">What I deliver</p><h2>Geospatial work built around the decision.</h2></div>
+          <p>From satellite pixels to boardroom-ready recommendations, each engagement is designed around a real operational question.</p>
         </div>
         <div class="capability-grid">
           <article class="capability-card capability-card--prominent reveal">
-            <span class="card-number">01</span>
+            <span class="service-label">Remote sensing</span>
             <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m8 35 9-21 8 11 7-17 8 27H8Z"/><path d="M11 39h28"/></svg></div>
-            <h3>Spatial Analysis &amp; Mapping</h3>
-            <p>I translate complex terrain, network, environmental, and infrastructure data into clean, easy-to-understand map products that stand up to scrutiny.</p>
-            <ul class="tag-list"><li>ArcGIS Pro</li><li>QGIS</li><li>Spatial modelling</li><li>AutoCAD</li></ul>
+            <h3>Change monitoring</h3>
+            <p>Satellite and LiDAR analysis, land-use and land-cover classification, vegetation monitoring, and change detection across large landscapes.</p>
+            <ul class="tag-list"><li>Google Earth Engine</li><li>OBIA</li><li>Random Forest</li><li>LiDAR</li></ul>
           </article>
           <article class="capability-card capability-card--prominent reveal" data-delay="70">
-            <span class="card-number">02</span>
+            <span class="service-label">Spatial advisory</span>
             <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="11" rx="14" ry="6"/><path d="M10 11v12c0 3 6 6 14 6s14-3 14-6V11M10 23v12c0 3 6 6 14 6s14-3 14-6V23"/></svg></div>
-            <h3>Spatial Databases &amp; QA</h3>
-            <p>Structured spatial databases, topology checks, metadata, quality rules, and auditable workflows that keep data dependable.</p>
-            <ul class="tag-list"><li>PostGIS</li><li>PostgreSQL</li><li>Data governance</li><li>QC rules</li></ul>
+            <h3>Suitability &amp; reporting</h3>
+            <p>Terrain, slope, hydrology, access, and constraint analysis translated into defensible viability findings and client-ready advisory reports.</p>
+            <ul class="tag-list"><li>QGIS</li><li>ArcGIS</li><li>Spatial modelling</li><li>Advisory reports</li></ul>
           </article>
           <article class="capability-card reveal" data-delay="140">
-            <span class="card-number">03</span>
+            <span class="service-label">Applied tooling</span>
             <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 32c-5-8 1-16 9-15 3-9 17-8 19 2 8 1 8 13 0 14H13"/><path d="m18 38 5-5 5 5 7-8"/></svg></div>
-            <h3>Remote Sensing &amp; Cloud</h3>
-            <p>Satellite-image workflows for vegetation monitoring, change detection, environmental assessment, and scalable analysis.</p>
-            <ul class="tag-list"><li>Google Earth Engine</li><li>NDVI</li><li>Change detection</li><li>GeoServer</li></ul>
-          </article>
-          <article class="capability-card reveal" data-delay="210">
-            <span class="card-number">04</span>
-            <div class="capability-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m18 13-9 11 9 11M30 13l9 11-9 11M27 8l-6 32"/></svg></div>
-            <h3>Automation &amp; Decision Tools</h3>
-            <p>Python and PyQGIS automation, web maps, dashboards, data pipelines, and interfaces that reduce repetitive production work.</p>
-            <ul class="tag-list"><li>Python</li><li>PyQGIS</li><li>Leaflet</li><li>Power BI</li></ul>
+            <h3>Field data &amp; mapping tools</h3>
+            <p>KoboCollect, ODK, and Survey123 pipelines alongside Leaflet maps, Streamlit tools, dashboards, and automated quality checks.</p>
+            <ul class="tag-list"><li>Python</li><li>PostGIS</li><li>Leaflet</li><li>Streamlit</li></ul>
           </article>
         </div>
       </div>
@@ -203,19 +209,23 @@
     <section class="section work-section" id="work">
       <div class="container">
         <div class="section-heading split-heading reveal">
-          <div><p class="kicker">03 · Selected work</p><h2>Projects Shaped Around Real Operational Needs.</h2></div>
+          <div><p class="kicker">Selected work</p><h2>Projects shaped around real operational needs.</h2></div>
           <p>Each case study is presented as a problem, role, delivery approach, and impact—not only as a final map.</p>
         </div>
         <div class="filter-bar reveal" id="project-filters" role="group" aria-label="Filter projects">
           <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All work</button>
-          <button class="filter-button" type="button" data-filter="infrastructure" aria-pressed="false">Infrastructure</button>
+          <button class="filter-button" type="button" data-filter="remote" aria-pressed="false">Remote sensing</button>
+          <button class="filter-button" type="button" data-filter="advisory" aria-pressed="false">Spatial advisory</button>
           <button class="filter-button" type="button" data-filter="agriculture" aria-pressed="false">Agriculture</button>
+          <button class="filter-button" type="button" data-filter="infrastructure" aria-pressed="false">Infrastructure</button>
           <button class="filter-button" type="button" data-filter="land" aria-pressed="false">Land</button>
           <button class="filter-button" type="button" data-filter="aviation" aria-pressed="false">Aviation</button>
-          <button class="filter-button" type="button" data-filter="digital" aria-pressed="false">Digital GIS</button>
+          <button class="filter-button" type="button" data-filter="digital" aria-pressed="false">Digital tools</button>
         </div>
-        <p class="project-count" id="project-count" aria-live="polite">8 projects displayed</p>
-        <div class="project-grid" id="project-grid">
+        <p class="project-count" id="project-count" aria-live="polite">12 projects displayed</p>
+        <div class="project-grid" id="project-grid"></div>
+        <noscript><p class="noscript-message">Enable JavaScript to view the detailed project case studies.</p></noscript>
+        <template id="legacy-projects">
           <article class="project-card project-card--featured reveal">
             <picture><source type="image/avif" srcset="assets/juba-lims-480.avif 480w, assets/juba-lims-960.avif 960w, assets/juba-lims-1536.avif 1536w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw"><img class="project-image" src="assets/juba-lims.webp" srcset="assets/juba-lims-480.webp 480w, assets/juba-lims-960.webp 960w, assets/juba-lims.webp 1536w" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="Illustrative land information system showing parcel records and cadastral mapping for Juba City" loading="lazy" decoding="async" width="1536" height="1024"></picture>
             <div class="project-overlay"></div>
@@ -264,15 +274,14 @@
             <div class="project-topline"><span class="project-sector">Digital GIS</span><span class="project-type">Technical demonstration</span></div>
             <div class="project-content"><h3>Interactive Web GIS Applications</h3><p>Custom web maps and responsive interfaces that make spatial data accessible to everyday users outside specialist desktop software.</p><dl class="project-facts"><div><dt>Role</dt><dd>Web GIS interface designer</dd></div><div><dt>Scope</dt><dd>Responsive spatial decision interfaces</dd></div></dl><div class="project-footer"><span class="project-tools">HTML · CSS · JavaScript</span><a class="project-open" href="#work/webgis" data-project-id="webgis" aria-label="Open Interactive Web GIS Applications case study">↗</a></div></div>
           </article>
-        </div>
-        <noscript><p class="noscript-message">All project summaries are available above. Enable JavaScript to filter projects and open the full case-study details.</p></noscript>
+        </template>
       </div>
     </section>
 
     <section class="section process-section" aria-labelledby="process-title">
       <div class="container process-grid">
         <div class="section-heading reveal">
-          <p class="kicker">04 · Approach</p>
+          <p class="kicker">How I work</p>
           <h2 id="process-title">A Practical Path from Raw Data to Trusted Decisions.</h2>
           <p class="section-note">The strongest geospatial outputs come from a controlled workflow, not a single software tool.</p>
         </div>
@@ -288,10 +297,10 @@
     <section class="section experience-section" id="experience">
       <div class="container experience-grid">
         <div class="experience-intro reveal">
-          <p class="kicker">05 · Experience</p>
+          <p class="kicker">Experience</p>
           <h2>A Decade of Progression in Geospatial Practice.</h2>
-          <p>My career at Ramani Geosystems has moved through production, team leadership, senior technical delivery, automation, research, and geospatial systems work.</p>
-          <a class="text-link" href="assets/benard_okello_CV.pdf" target="_blank" rel="noopener">Open full résumé <span>↗</span></a>
+          <p>My career has moved through production, team leadership, senior technical delivery, automation, research, and geospatial systems work.</p>
+          <button class="text-link resume-text-link" type="button" data-resume-request>Request full résumé <span>↗</span></button>
         </div>
         <div class="timeline" aria-label="Professional experience timeline">
           <article class="timeline-item reveal"><div class="timeline-date">Mar 2026 — Present</div><div><h3>Geospatial Analyst &amp; Research</h3><p>Designing automated QA tools, managing cloud-hosted web GIS workflows, and deploying GeoServer services alongside interactive dashboards.</p></div></article>
@@ -308,10 +317,24 @@
     </section>
 
     <section class="section contact-section" id="contact">
+      <div class="container testimonial-card contact-testimonial reveal" aria-label="Professional recognition">
+        <div class="testimonial-mark" aria-hidden="true">RG</div>
+        <figure class="testimonial-quote">
+          <p class="kicker">Workplace recognition</p>
+          <blockquote>
+            “Benard combines expertise in spatial analysis, remote sensing, geospatial databases, and Python automation with machine learning and deep learning to extract meaningful intelligence from satellite imagery and complex spatial datasets.”
+          </blockquote>
+        </figure>
+        <div class="testimonial-attribution">
+          <strong>Ramani Geosystems</strong>
+          <span>Employee spotlight</span>
+          <span>Published on LinkedIn</span>
+        </div>
+      </div>
       <div class="container contact-panel reveal">
         <div class="contact-copy">
-          <p class="kicker">06 · Contact</p>
-          <h2>Have a Spatial Problem Worth Solving?</h2>
+          <p class="kicker">Direct channels</p>
+          <h2>Have a spatial problem worth solving?</h2>
           <p>Tell me a bit about your project, the data you're working with, and the problem you need to solve.</p>
           <div class="direct-contact">
             <a href="mailto:benardokellotieno@gmail.com"><span>Email</span><strong>benardokellotieno@gmail.com</strong></a>
@@ -354,6 +377,37 @@
     </div>
     <div class="container footer-bottom"><span>© <span id="current-year"></span> Benard Okello</span><a href="#home">Back to top ↑</a></div>
   </footer>
+
+  <dialog class="resume-dialog" id="resume-dialog" aria-labelledby="resume-dialog-title" aria-describedby="resume-dialog-intro">
+    <div class="resume-dialog-shell">
+      <button class="dialog-close icon-button" id="resume-dialog-close" type="button" aria-label="Close résumé request form">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+      <p class="kicker">Résumé access</p>
+      <h2 id="resume-dialog-title">Request my résumé.</h2>
+      <p class="resume-dialog-intro" id="resume-dialog-intro">Share a little context about your opportunity. Your request will open in WhatsApp for my review, and I’ll send the résumé directly if it is a suitable fit.</p>
+      <form class="contact-form resume-request-form" id="resume-request-form">
+        <div class="form-row">
+          <label>Name<input id="resume-name" name="name" type="text" autocomplete="name" required placeholder="Your name"></label>
+          <label>Organisation <span class="optional-label">Optional</span><input id="resume-organisation" name="organisation" type="text" autocomplete="organization" placeholder="Company or organisation"></label>
+        </div>
+        <label>Reason for your request
+          <select id="resume-context" name="context" required>
+            <option value="">Select one</option>
+            <option>Employment opportunity</option>
+            <option>Consulting or contract project</option>
+            <option>Professional collaboration</option>
+            <option>Recruitment or talent network</option>
+            <option>Other professional enquiry</option>
+          </select>
+        </label>
+        <label>Brief context<textarea id="resume-message" name="message" rows="4" maxlength="700" required placeholder="Briefly describe the role, project, or reason for your interest."></textarea></label>
+        <button class="button button-primary" type="submit">Request via WhatsApp <span aria-hidden="true">↗</span></button>
+        <p class="form-note">The résumé is not publicly hosted. Requests are reviewed before it is shared.</p>
+        <p class="form-status" id="resume-form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </dialog>
 
   <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-summary">
     <div class="dialog-shell">

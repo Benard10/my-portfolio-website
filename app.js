@@ -1,4 +1,4 @@
-const projects = [
+const legacyProjects = [
   {
     id: "juba-lims",
     featured: true,
@@ -227,6 +227,130 @@ const projects = [
   }
 ];
 
+const featuredProjects = [
+  {
+    id: "kisarawe-monitoring",
+    featured: true,
+    title: "Kisarawe Ranch Land-Cover Monitoring",
+    sector: "Monitoring",
+    category: "remote",
+    type: "Client project",
+    client: "Tanzania Food Corporation · via Ramani",
+    role: "Remote-sensing analysis and reporting",
+    deliverables: "LULC and human-encroachment analysis data, maps, and technical report",
+    image: "assets/kisarawe-monitoring.webp",
+    imageAlt: "Satellite-derived land-cover and human-encroachment analysis across a large East African ranch landscape",
+    imageWidth: 1254,
+    imageHeight: 1254,
+    metric: "8,555 ha · Mar–May 2026",
+    summary: "A multi-date LULC and human-encroachment assessment identifying landscape change, sensitive areas, and priority hotspots across a large Tanzanian ranch.",
+    challenge: "The client needed a clear, defensible view of recent landscape change across 8,555 hectares, including sensitive wetlands and areas requiring field attention.",
+    contribution: [
+      "Prepared and compared March–May 2026 satellite imagery.",
+      "Applied object-based image analysis and Random Forest classification.",
+      "Mapped land-use and land-cover change, human encroachment, wetland sensitivity, and priority hotspots.",
+      "Delivered the analysis as structured data, clear maps, and a technical report."
+    ],
+    outcome: [
+      "Created a consistent baseline for ongoing ranch monitoring.",
+      "Focused field verification on the highest-priority change areas.",
+      "Made technical land-cover evidence accessible to decision-makers."
+    ],
+    tools: ["Google Earth Engine", "QGIS", "OBIA", "Random Forest", "Remote sensing"]
+  },
+  {
+    id: "nyongoro-suitability",
+    featured: true,
+    title: "Nyongoro Palm Oil Suitability",
+    sector: "Suitability",
+    category: "advisory",
+    type: "Client advisory",
+    client: "CPF Financial Services",
+    role: "Spatial suitability analysis and advisory reporting",
+    deliverables: "LULC, slope and stream-flow analyses; topographic and analytical maps; technical report",
+    image: "assets/nyongoro-suitability.webp",
+    imageAlt: "Coastal terrain map combining land cover, slope contours, streams, and plantation suitability areas",
+    imageWidth: 1254,
+    imageHeight: 1254,
+    metric: "14,172 ha study · 12,283 ha net",
+    summary: "A suitability assessment combining LULC, slope, stream-flow, and topographic analysis into clear maps and an investment-ready plantation report.",
+    challenge: "CPF Financial Services needed to understand how much of the Nyongoro Ranch study area could realistically support palm-oil development and where the key constraints lay.",
+    contribution: [
+      "Structured the 14,172-hectare study area and constraint layers.",
+      "Produced LULC, slope-zone, stream-flow, and topographic analyses.",
+      "Estimated a net plantation area of approximately 12,283 hectares.",
+      "Delivered topographic and analytical maps with a client-ready technical report."
+    ],
+    outcome: [
+      "Provided a defensible view of the ranch's development potential.",
+      "Made spatial constraints clear for investment review.",
+      "Delivered both technical depth and a concise client-facing summary."
+    ],
+    tools: ["QGIS", "ArcGIS", "Terrain analysis", "Hydrology", "Suitability modelling"]
+  },
+  {
+    id: "outbreak-map",
+    title: "Ebola Outbreak Tracking Dashboard",
+    sector: "Public-health GIS",
+    category: "digital",
+    type: "Interactive dashboard",
+    role: "Dashboard, web-map, and data-workflow development",
+    deliverables: "Interactive Ebola dashboard, live-data map, and structured outbreak tracker",
+    image: "assets/ebola-dashboard.webp",
+    imageAlt: "Dark public-health dashboard mapping Ebola outbreak locations with monitoring charts and indicators",
+    imageWidth: 1254,
+    imageHeight: 1254,
+    metric: "Live outbreak data · interactive dashboard",
+    summary: "An interactive dashboard created to track a recent Ebola outbreak, presenting live location data and regional context in one accessible view.",
+    challenge: "Outbreak information needed to be organised and visualised clearly so that locations, patterns, and updates could be reviewed without specialist desktop GIS software.",
+    contribution: [
+      "Designed a responsive dashboard and Leaflet map for Ebola outbreak tracking.",
+      "Connected outbreak records to a live Google Sheets data source.",
+      "Combined mapped locations with clear monitoring information and regional context.",
+      "Paired the dashboard with a structured Excel tracker generated in Python."
+    ],
+    outcome: [
+      "Made outbreak locations and updates easier to review in one place.",
+      "Made live updates accessible through a familiar spreadsheet workflow.",
+      "Created a portable public-health monitoring dashboard suitable for static hosting."
+    ],
+    tools: ["Leaflet.js", "JavaScript", "Google Sheets", "Python", "openpyxl"]
+  }
+];
+
+const restoredProjectIds = new Set(["mapping-dashboard", "environmental-gis", "webgis"]);
+const restoredProjects = legacyProjects.filter(project => restoredProjectIds.has(project.id));
+const remainingLegacyProjects = legacyProjects.filter(project => !restoredProjectIds.has(project.id));
+const webDevelopmentProject = {
+  id: "website-development",
+  title: "Website & Web Application Development",
+  sector: "Web development",
+  category: "digital",
+  type: "Service capability",
+  role: "Front-end and full-stack web development",
+  deliverables: "Responsive portfolio websites, e-commerce experiences, landing pages, and custom web applications",
+  image: "assets/website-development.webp",
+  imageAlt: "Responsive portfolio and e-commerce interfaces displayed across desktop, tablet, and mobile screens",
+  imageWidth: 1254,
+  imageHeight: 1254,
+  metric: "Responsive websites and web applications",
+  summary: "Responsive, accessible websites and web applications developed for portfolios, e-commerce, organisations, and custom digital needs.",
+  challenge: "Businesses and professionals need fast, credible digital experiences that communicate clearly, work across devices, and can grow with their requirements.",
+  contribution: [
+    "Design responsive interfaces around clear user journeys and business goals.",
+    "Develop semantic front ends with HTML, CSS, and JavaScript.",
+    "Build Node.js functionality and connect application data where required.",
+    "Test usability, accessibility, performance, and mobile behaviour before delivery."
+  ],
+  outcome: [
+    "Create polished digital experiences that work across desktop and mobile.",
+    "Provide maintainable foundations for portfolios, e-commerce, and business websites.",
+    "Connect strong visual presentation with dependable web functionality."
+  ],
+  tools: ["HTML", "CSS", "JavaScript", "Node.js"]
+};
+const projects = [...featuredProjects, ...restoredProjects, ...remainingLegacyProjects, webDevelopmentProject];
+
 const root = document.documentElement;
 const header = document.getElementById("site-header");
 const themeToggles = [...document.querySelectorAll("[data-theme-toggle]")];
@@ -238,6 +362,11 @@ const projectCount = document.getElementById("project-count");
 const dialog = document.getElementById("project-dialog");
 const closeDialogButton = document.getElementById("dialog-close");
 const progressBar = document.getElementById("scroll-progress-bar");
+const resumeDialog = document.getElementById("resume-dialog");
+const resumeRequestButtons = [...document.querySelectorAll("[data-resume-request]")];
+const resumeDialogClose = document.getElementById("resume-dialog-close");
+const resumeRequestForm = document.getElementById("resume-request-form");
+let lastResumeTrigger = null;
 
 const savedTheme = localStorage.getItem("portfolio-theme");
 const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
@@ -316,8 +445,14 @@ function renderProjects(filter = "all") {
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
         <dl class="project-facts">
-          <div><dt>Role</dt><dd>${project.role}</dd></div>
-          <div><dt>Scope</dt><dd>${project.metric}</dd></div>
+          ${project.client ? `
+            <div><dt>Client</dt><dd>${project.client}</dd></div>
+            <div><dt>Scale</dt><dd>${project.metric}</dd></div>
+            <div><dt>Output</dt><dd>${project.deliverables}</dd></div>
+          ` : `
+            <div><dt>Role</dt><dd>${project.role}</dd></div>
+            <div><dt>Scope</dt><dd>${project.metric}</dd></div>
+          `}
         </dl>
         <div class="project-footer">
           <span class="project-tools">${project.tools.slice(0, 3).join(" · ")}</span>
@@ -447,7 +582,7 @@ if (revealObserver) root.classList.add("reveal-capable");
 
 function observeReveals(scope = document) {
   scope.querySelectorAll(".reveal:not(.is-visible)").forEach(element => {
-    if (revealObserver) revealObserver.observe(element);
+    if (revealObserver && element.closest(".hero")) revealObserver.observe(element);
     else element.classList.add("is-visible");
   });
 }
@@ -476,6 +611,41 @@ function updateScrollUI() {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
 }
 window.addEventListener("scroll", updateScrollUI, { passive: true });
+
+resumeRequestButtons.forEach(button => button.addEventListener("click", () => {
+  lastResumeTrigger = button;
+  resumeDialog?.showModal();
+  document.body.style.overflow = "hidden";
+  window.setTimeout(() => document.getElementById("resume-name")?.focus(), 0);
+}));
+
+function closeResumeDialog() {
+  resumeDialog?.close();
+}
+
+resumeDialogClose?.addEventListener("click", closeResumeDialog);
+resumeDialog?.addEventListener("click", event => {
+  const bounds = resumeDialog.getBoundingClientRect();
+  const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+  if (outside) closeResumeDialog();
+});
+resumeDialog?.addEventListener("close", () => {
+  document.body.style.overflow = "";
+  if (lastResumeTrigger?.isConnected) lastResumeTrigger.focus();
+  lastResumeTrigger = null;
+});
+
+resumeRequestForm?.addEventListener("submit", event => {
+  event.preventDefault();
+  if (!resumeRequestForm.reportValidity()) return;
+  const name = document.getElementById("resume-name").value.trim();
+  const organisation = document.getElementById("resume-organisation").value.trim();
+  const context = document.getElementById("resume-context").value;
+  const message = document.getElementById("resume-message").value.trim();
+  const body = `Hello Benard, I viewed your portfolio and would like to request your résumé.\n\nName: ${name}\nOrganisation: ${organisation || "Not provided"}\nContext: ${context}\n\nDetails:\n${message}`;
+  document.getElementById("resume-form-status").textContent = "Opening WhatsApp with your request ready for review…";
+  window.open(`https://wa.me/254729482189?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
+});
 
 const contactForm = document.getElementById("contact-form");
 const contactMessage = document.getElementById("contact-message");
