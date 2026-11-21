@@ -369,8 +369,7 @@ const resumeRequestForm = document.getElementById("resume-request-form");
 let lastResumeTrigger = null;
 
 const savedTheme = localStorage.getItem("portfolio-theme");
-const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-root.dataset.theme = savedTheme || preferredTheme;
+root.dataset.theme = savedTheme === "light" ? "light" : "dark";
 
 function updateThemeControls() {
   const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
@@ -433,10 +432,9 @@ function renderProjects(filter = "all") {
   projectGrid.innerHTML = visible.map((project, index) => `
     <article class="project-card${project.featured ? " project-card--featured" : ""} reveal" data-delay-step="${Math.min(index, 4)}">
       <picture>
-        <source type="image/avif" srcset="${projectSrcset(project, "avif")}" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw">
-        <img class="project-image" src="${project.image}" srcset="${projectSrcset(project, "webp")}" sizes="(max-width: 820px) calc(100vw - 28px), (max-width: 1050px) calc(50vw - 32px), 45vw" alt="${project.imageAlt}" loading="lazy" decoding="async" width="${project.imageWidth}" height="${project.imageHeight}">
+        <source type="image/avif" srcset="${projectSrcset(project, "avif")}" sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1050px) 48vw, (max-width: 1300px) 32vw, 400px">
+        <img class="project-image" src="${project.image}" srcset="${projectSrcset(project, "webp")}" sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1050px) 48vw, (max-width: 1300px) 32vw, 400px" alt="${project.imageAlt}" loading="lazy" decoding="async" width="${project.imageWidth}" height="${project.imageHeight}">
       </picture>
-      <div class="project-overlay"></div>
       <div class="project-topline">
         <span class="project-sector">${project.sector}</span>
         <span class="project-type">${project.type}</span>
@@ -456,7 +454,7 @@ function renderProjects(filter = "all") {
         </dl>
         <div class="project-footer">
           <span class="project-tools">${project.tools.slice(0, 3).join(" · ")}</span>
-          <a class="project-open" href="#work/${project.id}" data-project-id="${project.id}" aria-label="Open ${project.title} case study">↗</a>
+          <a class="project-open" href="#work/${project.id}" data-project-id="${project.id}" aria-label="Open ${project.title} case study"><span aria-hidden="true">&#8599;</span></a>
         </div>
       </div>
     </article>
