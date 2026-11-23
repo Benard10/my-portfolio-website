@@ -1417,18 +1417,49 @@ main > .section:not(.hero) h2 {
 }
 
 /* Technical toolkit. */
-.skills-section { background: var(--bg); }
+.skills-section {
+  --bg: #08121b;
+  --surface: #0d1c28;
+  --text: #eff6ff;
+  --muted: #b0c3d6;
+  --muted-strong: #c6d6e6;
+  --line: #263d50;
+  --accent: #5de68a;
+  color-scheme: dark;
+  background: var(--bg);
+}
+html[data-theme="light"] .skills-section {
+  --bg: #eaf1f7;
+  --surface: #f7faff;
+  --text: #122436;
+  --muted: #42586e;
+  --muted-strong: #344b62;
+  --line: #c6d6e5;
+  --accent: #176b3b;
+  color-scheme: light;
+}
+.skills-section #skills-title { color: var(--accent); }
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 24px);
 }
 .skill-group {
+  --skill-accent: var(--accent);
   padding: clamp(18px, 2.3vw, 28px);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--skill-accent);
   border-radius: 16px;
   background: var(--surface);
 }
+.skill-group:nth-child(1) { --skill-accent: light-dark(#205ba5, #79b5ff); }
+.skill-group:nth-child(2) { --skill-accent: light-dark(#5942a1, #bea8ff); }
+.skill-group:nth-child(3) { --skill-accent: light-dark(#006763, #55ded5); }
+.skill-group:nth-child(4) { --skill-accent: light-dark(#176b3b, #5de68a); }
+.skill-group:nth-child(5) { --skill-accent: light-dark(#88461b, #ffad72); }
+.skill-group:nth-child(6) { --skill-accent: light-dark(#755600, #f4d36a); }
+.skill-group:nth-child(7) { --skill-accent: light-dark(#98345d, #ff91bd); }
+.skill-group:nth-child(8) { --skill-accent: light-dark(#4b459d, #aaa7ff); }
 .skill-group h3 { font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; }
 .skill-group p { max-width: 65ch; margin-top: 8px; color: var(--muted-strong); }
 .skill-tools {
@@ -1441,7 +1472,7 @@ main > .section:not(.hero) h2 {
   font-size: .9rem;
   line-height: 1.5;
 }
-.skill-tools dt { color: var(--accent); font-weight: 700; }
+.skill-tools dt { color: var(--skill-accent); font-weight: 700; }
 .skill-tools dd { margin: 2px 0 0; }
 @media (max-width: 1150px) {
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
