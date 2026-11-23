@@ -1141,7 +1141,7 @@ html[data-theme] {
 .site-header :is(.brand, .brand strong, .brand small, .nav-links a, .icon-button) { color: var(--masthead-ink); }
 .site-header .brand strong { font-size: 1rem; }
 .site-header .brand small { font-size: .65rem; }
-.site-header .brand-mark { background: #172c3f; color: var(--masthead-accent); }
+.site-header .brand-mark { background: #172c3f; color: var(--masthead-accent); font-size: .75rem; font-weight: 750; line-height: 1; }
 .site-header .nav-links a { font-size: .86rem; font-weight: 650; }
 .site-header .nav-links a::after { background: var(--masthead-accent); }
 .site-header .icon-button { border-color: var(--masthead-line); background: transparent; }
