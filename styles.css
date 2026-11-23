@@ -1096,6 +1096,16 @@ html[data-theme="light"] .tool-chip {
 }
 .testimonial-attribution strong { color: var(--accent); font-size: .61rem; }
 .testimonial-attribution span { color: var(--muted); }
+.testimonial-source {
+  justify-self: start;
+  width: auto;
+  min-height: 44px;
+  margin-top: 5px;
+  padding-inline: .65rem;
+  border-radius: 5px;
+  font-family: var(--font-sans);
+}
+.testimonial-source:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 760px) {
   .testimonial-card { grid-template-columns: 40px minmax(0, 1fr); }
   .testimonial-attribution { grid-column: 2; padding: 12px 0 0; border-left: 0; border-top: 1px solid var(--line); }
