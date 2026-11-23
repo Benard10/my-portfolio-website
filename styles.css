@@ -1424,17 +1424,22 @@ main > .section:not(.hero) h2 {
   column-gap: clamp(24px, 5vw, 68px);
 }
 .skill-group {
-  padding: 22px 0 24px;
+  padding: 18px 0 20px;
   border-top: 1px solid var(--line);
 }
 .skill-group h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; }
 .skill-group p { max-width: 65ch; margin-top: 8px; color: var(--muted-strong); }
-.skill-group .skill-tools {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: .78rem;
-  line-height: 1.6;
+.skill-tools {
+  display: grid;
+  gap: 5px;
+  margin: 10px 0 0;
+  color: var(--muted-strong);
+  font-size: .9rem;
+  line-height: 1.5;
 }
+.skill-tools dt { display: inline; color: var(--text); font-weight: 700; }
+.skill-tools dt::after { content: ": "; }
+.skill-tools dd { display: inline; margin: 0; font-style: italic; }
 @media (max-width: 720px) {
   .skills-grid { grid-template-columns: minmax(0, 1fr); }
 }
