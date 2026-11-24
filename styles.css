@@ -1396,6 +1396,27 @@ main > .section:not(.hero) h2 {
   padding: 20px 0;
   border-top: 1px solid var(--line);
 }
+.timeline-details { margin-top: 12px; }
+.timeline-details summary {
+  width: fit-content;
+  min-height: 44px;
+  padding: 10px 4px;
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: .9rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.timeline-details summary:hover { color: var(--accent-bright); text-decoration: underline; }
+.timeline-details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.timeline-details ul {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding-inline-start: 1.25rem;
+  color: var(--muted-strong);
+}
+.timeline-details li::marker { color: var(--accent); }
 .education-card { border: 0; border-top: 1px solid var(--line-strong); background: transparent; }
 .contact-panel { border-top: 2px solid var(--accent); }
 .contact-form .button-primary:hover { background: var(--accent-bright); color: var(--on-accent); }
