@@ -207,7 +207,7 @@
       <div class="container">
         <div class="section-heading split-heading reveal">
           <h2 id="skills-title">Technical Toolkit</h2>
-          <p>The methods and software I use to collect, analyse, and publish spatial data, from field surveys to interactive web applications.</p>
+          <p>Select a category to see what each tool does and how it fits into my workflow.</p>
         </div>
         <div class="skills-grid skills-grid--technical">
           <details class="skill-group reveal">
@@ -733,6 +733,18 @@
         <div class="dialog-tools"><span>Tools & methods</span><div id="dialog-tools"></div></div>
       </div>
     </div>
+  </dialog>
+
+  <dialog class="toolkit-dialog" id="toolkit-dialog" aria-labelledby="toolkit-dialog-title">
+    <header class="toolkit-dialog-header">
+      <h2 id="toolkit-dialog-title"></h2>
+      <form method="dialog">
+        <button class="icon-button toolkit-dialog-close" type="submit" aria-label="Close toolkit details" autofocus>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </form>
+    </header>
+    <div class="toolkit-dialog-body"></div>
   </dialog>
 
   <script src="app.js" defer></script>

@@ -671,6 +671,28 @@ contactForm?.addEventListener("submit", event => {
   window.open(url, "_blank", "noopener,noreferrer");
 });
 
+const toolkitDialog = document.getElementById("toolkit-dialog");
+if (typeof toolkitDialog?.showModal === "function") {
+  const toolkitTitle = document.getElementById("toolkit-dialog-title");
+  const toolkitBody = toolkitDialog.querySelector(".toolkit-dialog-body");
+
+  document.querySelectorAll(".skills-section .skill-summary").forEach(summary => {
+    summary.setAttribute("aria-haspopup", "dialog");
+    summary.addEventListener("click", event => {
+      const card = summary.parentElement;
+      const title = summary.querySelector(".skill-title");
+      const content = card.querySelectorAll(":scope > p, :scope > .skill-tools");
+      if (!title || !content.length) return;
+
+      toolkitTitle.textContent = title.textContent;
+      toolkitBody.replaceChildren(...Array.from(content, item => item.cloneNode(true)));
+      toolkitDialog.showModal();
+      toolkitDialog.scrollTop = 0;
+      event.preventDefault();
+    });
+  });
+}
+
 document.getElementById("current-year").textContent = new Date().getFullYear();
 renderProjects();
 observeReveals();
