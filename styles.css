@@ -1645,6 +1645,12 @@ html:has(.detail-dialog[open]) { overflow: hidden; }
   .skills-grid--technical .skill-preview,
   .skills-grid--technical .skill-tools,
   .skills-grid--technical .skill-group > p { font-size: .875rem; }
+  .skills-grid--technical .skill-preview-compact {
+    gap: 5px;
+    font-size: .75rem;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+  }
 }
 @media (max-width: 950px) {
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
