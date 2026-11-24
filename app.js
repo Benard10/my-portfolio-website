@@ -671,23 +671,26 @@ contactForm?.addEventListener("submit", event => {
   window.open(url, "_blank", "noopener,noreferrer");
 });
 
-const toolkitDialog = document.getElementById("toolkit-dialog");
-if (typeof toolkitDialog?.showModal === "function") {
-  const toolkitTitle = document.getElementById("toolkit-dialog-title");
-  const toolkitBody = toolkitDialog.querySelector(".toolkit-dialog-body");
+const detailDialog = document.getElementById("detail-dialog");
+if (typeof detailDialog?.showModal === "function") {
+  const detailTitle = document.getElementById("detail-dialog-title");
+  const detailBody = detailDialog.querySelector(".detail-dialog-body");
 
-  document.querySelectorAll(".skills-section .skill-summary").forEach(summary => {
+  document.querySelectorAll(".skill-summary, .timeline-details > summary").forEach(summary => {
     summary.setAttribute("aria-haspopup", "dialog");
     summary.addEventListener("click", event => {
-      const card = summary.parentElement;
-      const title = summary.querySelector(".skill-title");
-      const content = card.querySelectorAll(":scope > p, :scope > .skill-tools");
+      const role = summary.closest(".timeline-item");
+      const container = role ?? summary.parentElement;
+      const title = container.querySelector(role ? "h3" : ".skill-title");
+      const content = container.querySelectorAll(role
+        ? ".timeline-date, :scope > div > p, .timeline-details > ul"
+        : ":scope > p, :scope > .skill-tools");
       if (!title || !content.length) return;
 
-      toolkitTitle.textContent = title.textContent;
-      toolkitBody.replaceChildren(...Array.from(content, item => item.cloneNode(true)));
-      toolkitDialog.showModal();
-      toolkitDialog.scrollTop = 0;
+      detailTitle.textContent = title.textContent;
+      detailBody.replaceChildren(...Array.from(content, item => item.cloneNode(true)));
+      detailDialog.showModal();
+      detailDialog.scrollTop = 0;
       event.preventDefault();
     });
   });
