@@ -1479,6 +1479,12 @@ html[data-theme="light"] .skills-section {
 .skills-subheading {
   margin: 32px 0 16px;
   font-size: 1.25rem;
+  text-align: center;
+}
+.skills-grid--supporting {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 640px;
+  margin-inline: auto;
 }
 .skill-group {
   --skill-accent: var(--accent);
